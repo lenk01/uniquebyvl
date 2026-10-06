@@ -1,14 +1,14 @@
 {
   "en": {
     "eyebrow": "About",
-    "title": "Virginie Lenoir",
+    "title": "Virginie Lenek",
     "paragraphs": [
       "Text to write with Virginie: how she came to Prague, why one-of-a-kind pieces, how she chooses her fabrics, what a day in the atelier looks like. This is the page people read before they commission something — it deserves to be personal.",
       "For now this block shows the useful length: around 250 words, two atelier photos and a portrait."
     ],
-    "quote": "A fabric that already had one life, given a second cut",
     "image_1": "/uploads/atelier-table.jpg",
-    "image_2": "/uploads/atelier-rack.jpg"
+    "image_2": "/uploads/atelier-rack.jpg",
+    "quote": "A fabric that already had one life, given a second cut"
   },
   "fr": {
     "eyebrow": "À propos",
