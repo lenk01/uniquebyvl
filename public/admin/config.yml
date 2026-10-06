@@ -4,9 +4,9 @@
 # ---------------------------------------------------------------------------
 backend:
   name: github
-  repo: GITHUB-ACCOUNT/uniquebyvl          # ← replace GITHUB-ACCOUNT with VL's GitHub username
+  repo: lenk01/uniquebyvl          # ← replace GITHUB-ACCOUNT with VL's GitHub username
   branch: main
-  base_url: https://sveltia-cms-auth.CHANGE-ME.workers.dev   # ← the authenticator address (step 5)
+  base_url: https://sveltia-cms-auth.klara-lenek05.workers.dev   # ← the authenticator address (step 5)
   commit_messages:
     create: "Add {{collection}} “{{slug}}”"
     update: "Update {{collection}} “{{slug}}”"
@@ -14,8 +14,8 @@ backend:
     uploadMedia: "Upload “{{path}}”"
     deleteMedia: "Delete “{{path}}”"
 
-site_url: https://uniquebyvl.pages.dev
-display_url: https://uniquebyvl.pages.dev
+site_url: https://uniquebyvl.klara-lenek05.workers.dev
+display_url: https://uniquebyvl.klara-lenek05.workers.dev
 logo_url: /uploads/logo.png
 
 media_folder: public/uploads
