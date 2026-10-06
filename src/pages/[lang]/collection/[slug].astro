@@ -1,0 +1,91 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Gallery from '../../../components/Gallery.astro';
+import Field from '../../../components/Field.astro';
+import Select from '../../../components/Select.astro';
+import Form from '../../../components/Form.astro';
+import { LANGS, publicPieces, stockists, find, v, kc, eur, mapUrl } from '../../../lib/content.js';
+import { ui, path } from '../../../lib/ui.js';
+
+export function getStaticPaths() {
+  return LANGS.flatMap((lang) => publicPieces().map((p) => ({ params: { lang, slug: p.slug }, props: { piece: p } })));
+}
+const { lang } = Astro.params;
+const { piece } = Astro.props;
+const k = ui(lang), f = k.f;
+const name = v(piece, lang, 'name');
+const images = v(piece, 'en', 'images') || [];
+const archived = !!v(piece, 'en', 'season') || v(piece, 'en', 'status') === 'sold';
+const shop = v(piece, 'en', 'stockist') ? find(stockists, v(piece, 'en', 'stockist')) : null;
+const size = v(piece, 'en', 'size');
+---
+<Base lang={lang} title={name} description={v(piece, lang, 'description')} image={images[0]}>
+  <section class="view"><div class="wrap">
+    <a class="back" href={path(lang, 'collection')}>← {k.back}</a>
+    <div class="pdp">
+      <Gallery images={images} alt={name} lang={lang} />
+      <div class="pdp-info">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span class="tag blue">{k.oneOfOne}</span>
+          {archived ? <span class="tag sold">{k.sold}</span>
+            : shop ? <span class="tag">{k.inStoreTag}</span>
+            : <span class="tag ok">{k.available}</span>}
+        </div>
+        <h1>{name}</h1>
+        <p class="pdp-price">{kc(v(piece, 'en', 'price'))}<small>{eur(v(piece, 'en', 'price'))}</small></p>
+        <p style="color:var(--ink-soft);font-size:17px">{v(piece, lang, 'description')}</p>
+        <dl class="specs">
+          <div><dt>{k.specMat}</dt><dd>{v(piece, lang, 'materials')}</dd></div>
+          <div><dt>{k.specSize}</dt><dd>{size}</dd></div>
+          <div><dt>{k.specShip}</dt><dd>{shop ? v(shop, 'en', 'name') : k.shipVal}</dd></div>
+        </dl>
+        {v(piece, lang, 'story') && (
+          <div>
+            <h4 style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px">{k.storyH}</h4>
+            <p style="color:var(--ink-soft)">{v(piece, lang, 'story')}</p>
+          </div>
+        )}
+
+        {archived ? (
+          <div class="instore" style="border-color:var(--rule);background:var(--surface)">
+            <p style="font-size:15.5px;color:var(--ink-soft)">{k.archiveNote}</p>
+            <div class="pdp-actions"><a class="btn ghost" href={path(lang, 'custom')}>{k.variation}</a></div>
+          </div>
+        ) : shop ? (
+          <div class="instore">
+            <span class="eyebrow">{k.storeOnlyH}</span>
+            <p style="font-size:15.5px">{k.storeOnlyP}</p>
+            <p><strong>{v(shop, 'en', 'name')}</strong><br />
+              <a href={mapUrl(v(shop, 'en', 'address'))} target="_blank" rel="noopener noreferrer">{v(shop, 'en', 'address')} ↗</a></p>
+            <div class="pdp-actions" style="margin-top:4px">
+              {v(shop, 'en', 'url') && <a class="btn sm blue" href={v(shop, 'en', 'url')} target="_blank" rel="noopener noreferrer">{k.storeCta} ↗</a>}
+              <a class="btn sm ghost" href={path(lang, 'custom')}>{k.variation}</a>
+            </div>
+          </div>
+        ) : (
+          <>
+            <div class="pdp-actions">
+              <button class="btn" type="button" data-reveal="order-form">{k.order}</button>
+              <a class="btn ghost" href={path(lang, 'custom')}>{k.variation}</a>
+            </div>
+            <div id="order-form" hidden>
+              <Form subject={`Order — ${v(piece, 'en', 'name')} (${kc(v(piece, 'en', 'price'))})`} submit={f.sending}>
+                <div class="frow"><Field id="o-n" label={f.name} check="name" /><Field id="o-e" label={f.email} type="email" check="email" /></div>
+                <div class="frow"><Field id="o-p" label={f.phone} type="tel" /><Field id="o-s" label={f.size} placeholder={size} /></div>
+                <fieldset>
+                  <legend>{f.delivery}</legend>
+                  <Select id="o-m" label={f.mode} options={[f.pickup, f.czech]} />
+                  <Field id="o-a" label={f.address} />
+                  <Field id="o-a2" label={f.address2} />
+                  <div class="frow3"><Field id="o-z" label={f.zip} /><Field id="o-c" label={f.city} /><Field id="o-co" label={f.country} value="Česká republika" /></div>
+                </fieldset>
+                <Field id="o-msg" label={f.notes} type="area" />
+                <p class="hint">{k.noPay}</p>
+              </Form>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  </div></section>
+</Base>

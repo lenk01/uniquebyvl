@@ -1,0 +1,11 @@
+---
+// check: "name" | "email" makes the field required and validated before sending.
+const { id, label, type = 'text', placeholder = '', check = '', value = '', star = '*' } = Astro.props;
+const attrs = { id, name: label, placeholder: placeholder || undefined, 'data-check': check || undefined, required: check ? true : undefined };
+---
+<div class="field">
+  <label for={id}>{label}{check && <span class="req"> {star}</span>}</label>
+  {type === 'area'
+    ? <textarea {...attrs}>{value}</textarea>
+    : <input type={type} {...attrs} value={value || undefined} autocomplete={check === 'email' ? 'email' : check === 'name' ? 'name' : undefined} />}
+</div>

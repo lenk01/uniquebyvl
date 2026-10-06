@@ -1,0 +1,487 @@
+# ---------------------------------------------------------------------------
+#  UNIQUE By VL — admin configuration (Sveltia CMS)
+#  Two lines to fill in during setup: repo and base_url (see README, step 5).
+# ---------------------------------------------------------------------------
+backend:
+  name: github
+  repo: GITHUB-ACCOUNT/uniquebyvl          # ← replace GITHUB-ACCOUNT with VL's GitHub username
+  branch: main
+  base_url: https://sveltia-cms-auth.CHANGE-ME.workers.dev   # ← the authenticator address (step 5)
+  commit_messages:
+    create: "Add {{collection}} “{{slug}}”"
+    update: "Update {{collection}} “{{slug}}”"
+    delete: "Delete {{collection}} “{{slug}}”"
+    uploadMedia: "Upload “{{path}}”"
+    deleteMedia: "Delete “{{path}}”"
+
+site_url: https://uniquebyvl.pages.dev
+display_url: https://uniquebyvl.pages.dev
+logo_url: /uploads/logo.png
+
+media_folder: public/uploads
+public_folder: /uploads
+
+# Phone photos are converted to WebP and resized before they are saved:
+# a 5 MB photo becomes ~300 KB, so the site stays fast.
+media_libraries:
+  all:
+    transformations:
+      raster_image:
+        format: webp
+        quality: 82
+        width: 1800
+        height: 1800
+
+i18n:
+  structure: single_file
+  locales: [en, fr, cs]
+  default_locale: en
+
+collections:
+
+  # ======================================================= COLLECTION ======
+  - name: pieces
+    label: Pieces
+    label_singular: Piece
+    description: "Each piece of the collection. The first photo is the one shown in the grid. Leave French or Czech empty and the site shows English."
+    folder: content/pieces
+    format: json
+    extension: json
+    create: true
+    i18n: true
+    identifier_field: name
+    slug: "{{name}}"
+    summary: "{{name}} — {{price}} Kč — {{status}}"
+    sortable_fields: [order, name, price]
+    fields:
+      - { name: name, label: Name, widget: string, i18n: true, required: [en] }
+      - name: images
+        label: Photos
+        hint: "Drag to reorder. The first photo is the cover. Delete a photo with its bin icon."
+        widget: list
+        field: { name: image, label: Photo, widget: image }
+      - { name: price, label: "Price (Kč)", widget: number, value_type: int, min: 0 }
+      - { name: size, label: Size, widget: string, hint: "e.g. M / 38" }
+      - { name: description, label: Short description, widget: text, i18n: true, required: [en] }
+      - { name: materials, label: Materials, widget: string, i18n: true, required: false }
+      - { name: story, label: "Story of the piece", widget: text, i18n: true, required: false, hint: "Where the fabric comes from. This is what sells upcycling." }
+      - name: category
+        label: Category
+        widget: relation
+        collection: categories
+        search_fields: [name]
+        display_fields: [name]
+      - name: subcategory
+        label: Sub-category
+        widget: relation
+        collection: subcategories
+        search_fields: [name]
+        display_fields: ["{{name}} ({{category}})"]
+        required: false
+      - name: status
+        label: Status
+        widget: select
+        default: available
+        options:
+          - { label: "Available — can be ordered", value: available }
+          - { label: "Sold", value: sold }
+          - { label: "Draft — hidden from the site", value: draft }
+      - name: season
+        label: Collection
+        hint: "Leave empty for the current collection. Choose a past collection to move the piece to Past collections."
+        widget: relation
+        collection: seasons
+        search_fields: [name]
+        display_fields: [name]
+        required: false
+      - name: stockist
+        label: Sold only at
+        hint: "Choose a shop if the piece can only be bought there. The order button then disappears."
+        widget: relation
+        collection: stockists
+        search_fields: [name]
+        display_fields: [name]
+        required: false
+      - { name: order, label: "Order in the grid", widget: number, value_type: int, default: 100, required: false }
+
+  - name: categories
+    label: Categories
+    label_singular: Category
+    description: "Bombers, Jackets, Dresses… A new category appears in the Collection filters and in the piece editor."
+    folder: content/categories
+    format: json
+    extension: json
+    create: true
+    i18n: true
+    identifier_field: name
+    slug: "{{name}}"
+    fields:
+      - { name: name, label: Name, widget: string, i18n: true, required: [en] }
+      - { name: order, label: "Order in the menu", widget: number, value_type: int, default: 10, required: false }
+
+  - name: subcategories
+    label: Sub-categories
+    label_singular: Sub-category
+    description: "Each sub-category belongs to one category. It appears as a second row of filters when that category is selected."
+    folder: content/subcategories
+    format: json
+    extension: json
+    create: true
+    i18n: true
+    identifier_field: name
+    slug: "{{category}}-{{name}}"
+    summary: "{{name}} — {{category}}"
+    fields:
+      - { name: name, label: Name, widget: string, i18n: true, required: [en] }
+      - name: category
+        label: Belongs to
+        widget: relation
+        collection: categories
+        search_fields: [name]
+        display_fields: [name]
+      - { name: order, label: Order, widget: number, value_type: int, default: 10, required: false }
+
+  - name: seasons
+    label: Past collections
+    label_singular: Past collection
+    description: "Create a collection here (e.g. Winter 2025), then choose it on a piece to move that piece to Past collections."
+    folder: content/seasons
+    format: json
+    extension: json
+    create: true
+    i18n: true
+    identifier_field: name
+    slug: "{{name}}"
+    fields:
+      - { name: name, label: Name, widget: string, i18n: true, required: [en] }
+      - { name: order, label: "Order (1 = shown first)", widget: number, value_type: int, default: 10, required: false }
+
+  # ======================================================= CALENDAR ========
+  - name: events
+    label: Upcoming events
+    label_singular: Event
+    description: "Shown on the home page. An event disappears by itself the day after its end date."
+    folder: content/events
+    format: json
+    extension: json
+    create: true
+    i18n: true
+    identifier_field: title
+    slug: "{{title}}"
+    summary: "{{title}} — {{end_date}}"
+    fields:
+      - { name: title, label: Title, widget: string, i18n: true, required: [en] }
+      - { name: dates, label: "Dates as displayed", widget: string, i18n: true, required: [en], hint: "e.g. 3–5 October 2026" }
+      - { name: end_date, label: "Last day", widget: datetime, time_format: false, date_format: "YYYY-MM-DD", format: "YYYY-MM-DD" }
+      - { name: venue, label: Venue, widget: string, i18n: true, required: false }
+      - { name: description, label: Description, widget: text, i18n: true, required: false }
+      - { name: image, label: Photo, widget: image }
+      - { name: url, label: "Link (event page)", widget: string, required: false }
+
+  - name: classes
+    label: Classes
+    label_singular: Class
+    description: "Each date is one entry. A class disappears by itself once its date has passed."
+    folder: content/classes
+    format: json
+    extension: json
+    create: true
+    i18n: true
+    identifier_field: title
+    slug: "{{title}}-{{date}}"
+    summary: "{{title}} — {{date}} — {{seats_left}} seats left"
+    fields:
+      - { name: title, label: Title, widget: string, i18n: true, required: [en] }
+      - { name: date, label: Date, widget: datetime, time_format: false, date_format: "YYYY-MM-DD", format: "YYYY-MM-DD" }
+      - { name: when, label: "Date as displayed", widget: string, i18n: true, required: [en], hint: "e.g. Sat 10 Oct" }
+      - { name: time, label: Time, widget: string, i18n: true, required: false, hint: "e.g. 14:00–17:00" }
+      - { name: price, label: Price, widget: string, hint: "e.g. 950 Kč" }
+      - { name: seats_left, label: "Seats left", widget: number, value_type: int, min: 0, hint: "Set to 0 and the class shows Full with a waiting list." }
+      - { name: capacity, label: Capacity, widget: number, value_type: int, min: 1 }
+      - { name: venue, label: Venue, widget: string, i18n: true, required: false }
+      - { name: level, label: Level, widget: string, i18n: true, required: false }
+      - { name: duration, label: Duration, widget: string, i18n: true, required: false }
+      - { name: short, label: "Short description (list)", widget: text, i18n: true, required: [en] }
+      - { name: long, label: "Full description (class page)", widget: text, i18n: true, required: false }
+      - { name: make, label: "What you will make", widget: text, i18n: true, required: false }
+      - name: included
+        label: Included
+        widget: list
+        i18n: true
+        required: false
+        field: { name: item, label: Item, widget: string }
+      - name: programme
+        label: Programme
+        widget: list
+        i18n: true
+        required: false
+        fields:
+          - { name: time, label: Time, widget: string }
+          - { name: text, label: What happens, widget: string }
+      - name: images
+        label: "Photos (pieces made in this class)"
+        widget: list
+        required: false
+        field: { name: image, label: Photo, widget: image }
+
+  - name: workshops
+    label: Past workshops
+    label_singular: Past workshop
+    folder: content/workshops
+    format: json
+    extension: json
+    create: true
+    i18n: true
+    identifier_field: title
+    slug: "{{title}}"
+    fields:
+      - { name: title, label: Title, widget: string, i18n: true, required: [en] }
+      - { name: when, label: "When (as displayed)", widget: string, i18n: true, required: [en] }
+      - { name: place, label: Place, widget: string, i18n: true, required: false }
+      - { name: short, label: "Short description (list)", widget: text, i18n: true, required: [en] }
+      - { name: long, label: "Full description (workshop page)", widget: text, i18n: true, required: false }
+      - name: included
+        label: What was involved
+        widget: list
+        i18n: true
+        required: false
+        field: { name: item, label: Item, widget: string }
+      - name: images
+        label: Photos
+        widget: list
+        field: { name: image, label: Photo, widget: image }
+      - { name: order, label: Order, widget: number, value_type: int, default: 10, required: false }
+
+  - name: formats
+    label: Workshop types
+    label_singular: Workshop type
+    description: "Not shown as blocks on the site — this list fills the Type of event menu in the workshop request form."
+    folder: content/formats
+    format: json
+    extension: json
+    create: true
+    i18n: true
+    identifier_field: title
+    slug: "{{title}}"
+    fields:
+      - { name: title, label: Name, widget: string, i18n: true, required: [en] }
+      - { name: meta, label: "Format (duration, group size)", widget: string, i18n: true, required: false }
+      - { name: description, label: Description, widget: text, i18n: true, required: false }
+      - { name: price, label: Price line, widget: string, i18n: true, required: false }
+      - { name: order, label: Order, widget: number, value_type: int, default: 10, required: false }
+
+  - name: custom
+    label: Custom pricing
+    label_singular: Custom type
+    description: "One line of the price table on the Custom page. The list also fills the Type of piece menu in the custom request form."
+    folder: content/custom
+    format: json
+    extension: json
+    create: true
+    i18n: true
+    identifier_field: type
+    slug: "{{type}}"
+    summary: "{{type}} — from {{from}}"
+    fields:
+      - { name: type, label: Type of piece, widget: string, i18n: true, required: [en] }
+      - { name: description, label: "Style & materials", widget: text, i18n: true, required: false }
+      - { name: from, label: From, widget: string, hint: "e.g. 4 500 Kč" }
+      - { name: range, label: Usual range, widget: string, hint: "e.g. 6 000 – 11 000 Kč" }
+      - { name: lead_time, label: Lead time, widget: string, i18n: true, required: false }
+      - { name: order, label: Order, widget: number, value_type: int, default: 10, required: false }
+
+  - name: stockists
+    label: Points of sale
+    label_singular: Point of sale
+    description: "Shown on the Contact page, and offered in the Sold only at menu of every piece."
+    folder: content/stockists
+    format: json
+    extension: json
+    create: true
+    i18n: true
+    identifier_field: name
+    slug: "{{name}}"
+    fields:
+      - { name: name, label: Name, widget: string }
+      - { name: note, label: "Line under the name", widget: string, i18n: true, required: false }
+      - { name: address, label: "Address (opens Google Maps)", widget: string }
+      - { name: url, label: Website, widget: string, required: false }
+      - { name: image, label: Photo, widget: image }
+      - { name: order, label: Order, widget: number, value_type: int, default: 10, required: false }
+
+  - name: legal
+    label: Legal pages
+    label_singular: Legal page
+    description: "Shown in the footer. Use ## for a heading and - for a list. {MAIL} is replaced by the contact e-mail."
+    folder: content/legal
+    format: json
+    extension: json
+    create: true
+    i18n: true
+    identifier_field: title
+    slug: "{{title}}"
+    fields:
+      - { name: title, label: Title, widget: string, i18n: true, required: [en] }
+      - { name: updated, label: "Updated (as displayed)", widget: string, i18n: true, required: false }
+      - { name: body, label: Text, widget: markdown, i18n: true, required: [en], buttons: [bold, link, heading-two, bulleted-list], editor_components: [] }
+      - { name: order, label: Order, widget: number, value_type: int, default: 10, required: false }
+
+  # ======================================================= PAGES ===========
+  - name: pages
+    label: Page texts
+    label_singular: Page
+    i18n: true
+    files:
+      - name: home
+        label: Home page
+        file: content/pages/home.json
+        format: json
+        i18n: true
+        fields:
+          - { name: hero_image, label: Hero photo, widget: image }
+          - { name: hero_subtitle, label: Hero sentence, widget: text, i18n: true, required: [en] }
+          - { name: hero_button_1, label: Button 1, widget: string, i18n: true, required: [en] }
+          - { name: hero_button_2, label: Button 2, widget: string, i18n: true, required: [en] }
+          - { name: intro_eyebrow, label: Intro — small label, widget: string, i18n: true, required: false }
+          - { name: intro_title, label: Intro — title, widget: string, i18n: true, required: false }
+          - { name: intro_text, label: Intro — text, widget: text, i18n: true, required: false }
+          - { name: intro_image, label: Intro — photo, widget: image, required: false }
+          - { name: upcoming_eyebrow, label: Upcoming — small label, widget: string, i18n: true, required: false }
+          - { name: upcoming_title, label: Upcoming — title, widget: string, i18n: true, required: false }
+          - { name: featured_eyebrow, label: Selection — small label, widget: string, i18n: true, required: false }
+          - { name: featured_title, label: Selection — title, widget: string, i18n: true, required: false }
+          - { name: featured_button, label: Selection — button, widget: string, i18n: true, required: false }
+          - { name: featured_count, label: Pieces shown, widget: number, value_type: int, min: 0, max: 12, default: 4 }
+          - { name: class_eyebrow, label: Next class — small label, widget: string, i18n: true, required: false }
+          - { name: class_button, label: Next class — button, widget: string, i18n: true, required: false }
+          - { name: atelier_eyebrow, label: Atelier — small label, widget: string, i18n: true, required: false }
+          - { name: atelier_title, label: Atelier — title, widget: string, i18n: true, required: false }
+          - { name: atelier_text, label: Atelier — text, widget: text, i18n: true, required: false }
+          - { name: atelier_button, label: Atelier — button, widget: string, i18n: true, required: false }
+          - { name: atelier_image, label: Atelier — photo, widget: image, required: false }
+      - name: collection
+        label: Collection page
+        file: content/pages/collection.json
+        format: json
+        i18n: true
+        fields:
+          - { name: eyebrow, label: Small label, widget: string, i18n: true, required: false }
+          - { name: title, label: Title, widget: string, i18n: true, required: [en] }
+          - { name: intro, label: Intro, widget: text, i18n: true, required: false }
+          - { name: tab_now, label: "Tab — current pieces", widget: string, i18n: true, required: [en] }
+          - { name: tab_archive, label: "Tab — past collections", widget: string, i18n: true, required: [en] }
+      - name: custom
+        label: Custom page
+        file: content/pages/custom.json
+        format: json
+        i18n: true
+        fields:
+          - { name: eyebrow, label: Small label, widget: string, i18n: true, required: false }
+          - { name: title, label: Title, widget: string, i18n: true, required: [en] }
+          - { name: intro, label: Intro, widget: text, i18n: true, required: false }
+          - name: steps
+            label: The steps
+            widget: list
+            i18n: true
+            required: false
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: text, label: Text, widget: text }
+          - { name: prices_eyebrow, label: Prices — small label, widget: string, i18n: true, required: false }
+          - { name: prices_title, label: Prices — title, widget: string, i18n: true, required: false }
+          - { name: prices_intro, label: Prices — intro, widget: text, i18n: true, required: false }
+          - { name: brief_eyebrow, label: Form — small label, widget: string, i18n: true, required: false }
+          - { name: brief_title, label: Form — title, widget: string, i18n: true, required: false }
+          - { name: attach_note, label: Form — note under the form, widget: string, i18n: true, required: false }
+      - name: classes
+        label: Classes page
+        file: content/pages/classes.json
+        format: json
+        i18n: true
+        fields:
+          - { name: eyebrow, label: Small label, widget: string, i18n: true, required: false }
+          - { name: title, label: Title, widget: string, i18n: true, required: [en] }
+          - { name: intro, label: Intro, widget: text, i18n: true, required: false }
+          - { name: private_eyebrow, label: Private lessons — small label, widget: string, i18n: true, required: false }
+          - { name: private_title, label: Private lessons — title, widget: string, i18n: true, required: false }
+          - { name: private_intro, label: Private lessons — text, widget: text, i18n: true, required: false }
+      - name: workshops
+        label: Workshops page
+        file: content/pages/workshops.json
+        format: json
+        i18n: true
+        fields:
+          - { name: eyebrow, label: Small label, widget: string, i18n: true, required: false }
+          - { name: title, label: Title, widget: string, i18n: true, required: [en] }
+          - { name: intro, label: Intro, widget: text, i18n: true, required: false }
+          - name: paragraphs
+            label: Paragraphs
+            widget: list
+            i18n: true
+            required: false
+            field: { name: paragraph, label: Paragraph, widget: text }
+          - { name: image, label: Photo next to the text, widget: image, required: false }
+          - { name: past_eyebrow, label: Past workshops — small label, widget: string, i18n: true, required: false }
+          - { name: past_title, label: Past workshops — title, widget: string, i18n: true, required: false }
+          - { name: form_eyebrow, label: Form — small label, widget: string, i18n: true, required: false }
+          - { name: form_title, label: Form — title, widget: string, i18n: true, required: false }
+      - name: about
+        label: About page
+        file: content/pages/about.json
+        format: json
+        i18n: true
+        fields:
+          - { name: eyebrow, label: Small label, widget: string, i18n: true, required: false }
+          - { name: title, label: Title, widget: string, i18n: true, required: [en] }
+          - name: paragraphs
+            label: Paragraphs
+            widget: list
+            i18n: true
+            required: false
+            field: { name: paragraph, label: Paragraph, widget: text }
+          - { name: image_1, label: Photo 1, widget: image, required: false }
+          - { name: image_2, label: Photo 2, widget: image, required: false }
+          - { name: quote, label: Quote, widget: string, i18n: true, required: false }
+      - name: contact
+        label: Contact page
+        file: content/pages/contact.json
+        format: json
+        i18n: true
+        fields:
+          - { name: stockists_eyebrow, label: Points of sale — small label, widget: string, i18n: true, required: false }
+          - { name: stockists_title, label: Points of sale — title, widget: string, i18n: true, required: false }
+          - { name: stockists_intro, label: Points of sale — intro, widget: text, i18n: true, required: false }
+          - { name: eyebrow, label: Form — small label, widget: string, i18n: true, required: false }
+          - { name: title, label: Form — title, widget: string, i18n: true, required: false }
+
+  # ======================================================= SETTINGS ========
+  - name: settings
+    label: Site settings
+    i18n: true
+    files:
+      - name: site
+        label: Site settings
+        file: content/settings/site.json
+        format: json
+        i18n: true
+        fields:
+          - { name: contact_email, label: "Contact e-mail (shown on the site)", widget: string }
+          - { name: form_endpoint, label: "Form address", widget: string, required: false, hint: "The address given by the form service (e.g. https://formspree.io/f/xxxx). Every form on the site sends there." }
+          - { name: phone, label: Phone, widget: string, required: false }
+          - { name: ico, label: IČO, widget: string, required: false }
+          - { name: atelier_address, label: Atelier address, widget: string, required: false }
+          - { name: instagram, label: Instagram link, widget: string, required: false }
+          - { name: facebook, label: Facebook link, widget: string, required: false }
+          - name: extra_socials
+            label: Other social networks
+            widget: list
+            required: false
+            fields:
+              - { name: label, label: Name, widget: string }
+              - { name: url, label: Link, widget: string }
+          - { name: tagline, label: Footer sentence, widget: text, i18n: true, required: false }
+          - { name: visit, label: "Atelier line (footer)", widget: string, i18n: true, required: false }
+          - { name: logo, label: Logo, widget: image }
+          - { name: logo_size, label: "Logo size (px)", widget: number, value_type: int, min: 20, max: 72, default: 34 }
+          - { name: display_font, label: Title typeface, widget: select, options: [Anton, Archivo Black, Bebas Neue, Oswald], default: Anton }
+          - { name: allow_indexing, label: "Let Google index the site", widget: boolean, default: false, required: false, hint: "Leave off until launch day." }

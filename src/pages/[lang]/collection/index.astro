@@ -1,0 +1,61 @@
+---
+import Base from '../../../layouts/Base.astro';
+import SectionHead from '../../../components/SectionHead.astro';
+import PieceCard from '../../../components/PieceCard.astro';
+import { page, publicPieces, categories, subcategories, seasons, v } from '../../../lib/content.js';
+import { ui, staticLangPaths } from '../../../lib/ui.js';
+export const getStaticPaths = staticLangPaths;
+
+const { lang } = Astro.params;
+const k = ui(lang);
+const P = page('collection');
+const t = (key) => v(P, lang, key);
+const all = publicPieces();
+const current = all.filter((p) => !v(p, 'en', 'season'));
+const archived = all.filter((p) => !!v(p, 'en', 'season'));
+const subsOf = (cat) => subcategories.filter((s) => v(s, 'en', 'category') === cat.slug);
+---
+<Base lang={lang} title={t('title')} description={t('intro')}>
+  <section class="view"><div class="wrap" data-collection>
+    <SectionHead eyebrow={t('eyebrow')} title={t('title')} lead={t('intro')} />
+
+    {archived.length > 0 && (
+      <div class="seg" role="tablist">
+        <button type="button" data-pane-btn="now" aria-pressed="true">{t('tab_now')}</button>
+        <button type="button" data-pane-btn="archive" aria-pressed="false">{t('tab_archive')}</button>
+      </div>
+    )}
+
+    <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:22px">
+      <button type="button" class="tag blue" data-cat-btn="all" style="cursor:pointer">{k.filters.all}</button>
+      {categories.map((c) => (
+        <button type="button" class="tag" data-cat-btn={c.slug} style="cursor:pointer">{v(c, lang, 'name')}</button>
+      ))}
+    </div>
+
+    {categories.map((c) => subsOf(c).length > 1 && (
+      <div class="subfilters" data-subs-for={c.slug} hidden>
+        <button type="button" data-sub-btn="all" aria-pressed="true">{k.allSub}</button>
+        {subsOf(c).map((s) => <button type="button" data-sub-btn={s.slug} aria-pressed="false">{v(s, lang, 'name')}</button>)}
+      </div>
+    ))}
+
+    <div data-pane="now">
+      <div class="grid g3">{current.map((p) => <PieceCard piece={p} lang={lang} />)}</div>
+    </div>
+
+    {archived.length > 0 && (
+      <div data-pane="archive" hidden>
+        {seasons.map((s) => {
+          const group = archived.filter((p) => v(p, 'en', 'season') === s.slug);
+          return group.length > 0 && (
+            <div class="seasongroup">
+              <h3 class="seasonlab">{v(s, lang, 'name')}</h3>
+              <div class="grid g3">{group.map((p) => <PieceCard piece={p} lang={lang} />)}</div>
+            </div>
+          );
+        })}
+      </div>
+    )}
+  </div></section>
+</Base>

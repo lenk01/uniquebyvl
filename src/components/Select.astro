@@ -1,0 +1,7 @@
+---
+const { id, label, options = [] } = Astro.props;
+---
+<div class="field">
+  <label for={id}>{label}</label>
+  <select id={id} name={label}>{options.map((o) => <option>{o}</option>)}</select>
+</div>

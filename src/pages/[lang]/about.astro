@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import { page, v } from '../../lib/content.js';
+import { staticLangPaths } from '../../lib/ui.js';
+export const getStaticPaths = staticLangPaths;
+const { lang } = Astro.params;
+const P = page('about');
+const t = (key) => v(P, lang, key);
+const paras = t('paragraphs') || [];
+---
+<Base lang={lang} title={t('title')} description={paras[0]}>
+  <section class="view"><div class="wrap stack">
+    <div class="band">
+      <div>
+        <SectionHead eyebrow={t('eyebrow')} title={t('title')} />
+        {paras.map((p, i) => <p class={i === 0 ? 'lead' : ''} style={i === 0 ? 'margin-bottom:16px' : 'color:var(--ink-soft);margin-bottom:12px'}>{p}</p>)}
+      </div>
+      {v(P, 'en', 'image_1') && <div class="shot"><img src={v(P, 'en', 'image_1')} alt="" loading="lazy" /></div>}
+    </div>
+    {(v(P, 'en', 'image_2') || t('quote')) && (
+      <div class="band">
+        {v(P, 'en', 'image_2') && <div class="shot"><img src={v(P, 'en', 'image_2')} alt="" loading="lazy" /></div>}
+        {t('quote') && <p class="quote">{t('quote')}</p>}
+      </div>
+    )}
+  </div></section>
+</Base>

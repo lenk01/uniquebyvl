@@ -1,0 +1,35 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Gallery from '../../../components/Gallery.astro';
+import { LANGS, workshops, v } from '../../../lib/content.js';
+import { ui, path } from '../../../lib/ui.js';
+
+export function getStaticPaths() {
+  return LANGS.flatMap((lang) => workshops.map((w) => ({ params: { lang, slug: w.slug }, props: { w } })));
+}
+const { lang } = Astro.params;
+const { w } = Astro.props;
+const k = ui(lang);
+const title = v(w, lang, 'title');
+const included = v(w, lang, 'included') || [];
+---
+<Base lang={lang} title={title} description={v(w, lang, 'short')} image={(v(w, 'en', 'images') || [])[0]}>
+  <section class="view"><div class="wrap">
+    <a class="back" href={path(lang, 'workshops')}>← {k.wsBack}</a>
+    <div class="pdp">
+      <Gallery images={v(w, 'en', 'images') || []} alt={title} lang={lang} />
+      <div class="pdp-info">
+        <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="tag blue">{v(w, lang, 'when')}</span><span class="tag">{v(w, lang, 'place')}</span></div>
+        <h1>{title}</h1>
+        <p style="color:var(--ink-soft);font-size:17px">{v(w, lang, 'long')}</p>
+        {included.length > 0 && (
+          <div>
+            <h4 style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:9px">{k.wsWhat}</h4>
+            <ul style="margin:0;padding-left:18px;color:var(--ink-soft);display:flex;flex-direction:column;gap:5px">{included.map((x) => <li>{x}</li>)}</ul>
+          </div>
+        )}
+        <div class="pdp-actions"><a class="btn blue" href={`${path(lang, 'workshops')}#request`}>{k.wsFormH}</a></div>
+      </div>
+    </div>
+  </div></section>
+</Base>

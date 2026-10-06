@@ -1,0 +1,74 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Gallery from '../../../components/Gallery.astro';
+import Field from '../../../components/Field.astro';
+import Select from '../../../components/Select.astro';
+import Form from '../../../components/Form.astro';
+import { LANGS, classes, v } from '../../../lib/content.js';
+import { ui, path } from '../../../lib/ui.js';
+
+export function getStaticPaths() {
+  return LANGS.flatMap((lang) => classes.map((c) => ({ params: { lang, slug: c.slug }, props: { c } })));
+}
+const { lang } = Astro.params;
+const { c } = Astro.props;
+const k = ui(lang), f = k.f;
+const title = v(c, lang, 'title');
+const seats = Number(v(c, 'en', 'seats_left')) || 0;
+const full = seats <= 0;
+const included = v(c, lang, 'included') || [];
+const programme = v(c, lang, 'programme') || [];
+---
+<Base lang={lang} title={title} description={v(c, lang, 'short')} image={(v(c, 'en', 'images') || [])[0]}>
+  <section class="view"><div class="wrap">
+    <a class="back" href={path(lang, 'classes')}>← {k.cls.back}</a>
+    <div class="pdp">
+      <Gallery images={v(c, 'en', 'images') || []} alt={title} lang={lang} caption={k.cls.gallery} />
+      <div class="pdp-info">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span class="tag blue">{k.cls.detail}</span>
+          <span class={`tag ${full ? 'sold' : 'ok'}`}>{full ? k.full : `${seats} ${k.seatsLeft}`}</span>
+        </div>
+        <h1>{title}</h1>
+        <p class="pdp-price">{v(c, 'en', 'price')}</p>
+        <p style="color:var(--ink-soft);font-size:17px">{v(c, lang, 'long')}</p>
+        <dl class="specs">
+          <div><dt>{f.date}</dt><dd>{v(c, lang, 'when')} · {v(c, lang, 'time')}</dd></div>
+          <div><dt>{k.cls.dur}</dt><dd>{v(c, lang, 'duration')}</dd></div>
+          <div><dt>{k.cls.level}</dt><dd>{v(c, lang, 'level')}</dd></div>
+          <div><dt>{k.cls.where}</dt><dd>{v(c, lang, 'venue')}</dd></div>
+        </dl>
+        {v(c, lang, 'make') && (
+          <div class="panel" style="padding:16px 18px;background:var(--blue-soft);border-color:transparent">
+            <span class="eyebrow" style="margin-bottom:7px">{k.cls.make}</span>
+            <p style="font-size:16px">{v(c, lang, 'make')}</p>
+          </div>
+        )}
+        {included.length > 0 && (
+          <div>
+            <h4 style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:9px">{k.cls.inc}</h4>
+            <ul style="margin:0;padding-left:18px;color:var(--ink-soft);display:flex;flex-direction:column;gap:5px">{included.map((x) => <li>{x}</li>)}</ul>
+          </div>
+        )}
+        {programme.length > 0 && (
+          <div>
+            <h4 style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:9px">{k.cls.prog}</h4>
+            <dl class="specs">{programme.map((x) => <div><dt style="font-variant-numeric:tabular-nums">{x.time}</dt><dd>{x.text}</dd></div>)}</dl>
+          </div>
+        )}
+
+        <div class="panel" id="book" style="margin-top:6px">
+          <span class="eyebrow">{full ? k.waitlist : k.book}</span>
+          <h3 style="font-size:22px;margin:8px 0 16px">{title} — {v(c, lang, 'when')}</h3>
+          <Form subject={`${full ? 'Waiting list' : 'Booking'} — ${v(c, 'en', 'title')} ${v(c, 'en', 'when')}`} submit={f.sending}>
+            <div class="frow"><Field id="b-n" label={f.name} check="name" /><Field id="b-e" label={f.email} type="email" check="email" /></div>
+            <div class="frow"><Field id="b-p" label={f.phone} type="tel" /><Select id="b-s" label={f.seats} options={['1', '2', '3']} /></div>
+            <Select id="b-l" label={f.level} options={k.fopt.level} />
+            <Field id="b-m" label={f.word} type="area" />
+            <p class="hint">{full ? k.waitNote : k.bookNote}</p>
+          </Form>
+        </div>
+      </div>
+    </div>
+  </div></section>
+</Base>

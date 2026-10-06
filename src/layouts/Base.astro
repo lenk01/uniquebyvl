@@ -1,0 +1,116 @@
+---
+import '../styles/global.css';
+import { LANGS, site, legal, v } from '../lib/content.js';
+import { ui, NAV, path } from '../lib/ui.js';
+
+const { lang, title, description = '', image = '' } = Astro.props;
+const k = ui(lang);
+const here = Astro.url.pathname;
+const swap = (l) => here.replace(/^\/(en|fr|cs)\//, `/${l}/`);
+const active = (key) => key === 'home' ? here === `/${lang}/` : here.startsWith(`/${lang}/${key}/`);
+
+const email = v(site, 'en', 'contact_email');
+const phone = v(site, 'en', 'phone');
+const ico = v(site, 'en', 'ico');
+const logo = v(site, 'en', 'logo') || '/uploads/logo.png';
+const logoSize = Number(v(site, 'en', 'logo_size')) || 34;
+const font = v(site, 'en', 'display_font') || 'Anton';
+const indexing = v(site, 'en', 'allow_indexing') === true;
+const socials = [
+  ['Instagram', v(site, 'en', 'instagram')],
+  ['Facebook', v(site, 'en', 'facebook')],
+  ...((v(site, 'en', 'extra_socials') || []).map((s) => [s.label, s.url]))
+].filter(([, u]) => u);
+
+const fullTitle = title ? `${title} — UNIQUE By VL` : 'UNIQUE By VL';
+const canonical = new URL(here, Astro.site).href;
+const ogImage = image ? new URL(image, Astro.site).href : new URL('/uploads/wave-a.jpg', Astro.site).href;
+const fontParam = { 'Anton': 'Anton', 'Archivo Black': 'Archivo+Black', 'Bebas Neue': 'Bebas+Neue', 'Oswald': 'Oswald:wght@500;600' }[font] || 'Anton';
+const uiForScript = {
+  vName: k.vName, vEmail: k.vEmail, vEmailTypo: k.vEmailTypo, vEmailTld: k.vEmailTld, vUse: k.vUse,
+  vFix: k.vFix, formNotReady: k.formNotReady, sendError: k.sendError, sentShort: k.sentShort,
+  photoOf: k.photoOf, email
+};
+---
+<!doctype html>
+<html lang={lang} style={`--disp:"${font}","Arial Narrow",Impact,sans-serif;--logo:${logoSize}px`}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>{fullTitle}</title>
+  {description && <meta name="description" content={description} />}
+  {!indexing && <meta name="robots" content="noindex, nofollow" />}
+  <link rel="canonical" href={canonical} />
+  {LANGS.map((l) => <link rel="alternate" hreflang={l} href={new URL(swap(l), Astro.site).href} />)}
+  <link rel="alternate" hreflang="x-default" href={new URL(swap('en'), Astro.site).href} />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={fullTitle} />
+  {description && <meta property="og:description" content={description} />}
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:url" content={canonical} />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href={`https://fonts.googleapis.com/css2?family=${fontParam}&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap`} />
+</head>
+<body>
+  <a class="skip" href="#main">{k.skip}</a>
+  <header>
+    <div class="wrap hrow">
+      <a class="brand" href={path(lang, 'home')}><img src={logo} alt="UNIQUE By VL" width={logoSize} height={logoSize} /><span>Unique<br />by VL</span></a>
+      <nav aria-label="Main">
+        {NAV.map((key) => (
+          <a href={path(lang, key)} aria-current={active(key) ? 'page' : undefined}>{key === 'home' ? k.home : k.nav[key]}</a>
+        ))}
+      </nav>
+      <div class="langs">
+        {LANGS.map((l) => <a href={swap(l)} hreflang={l} lang={l} aria-current={l === lang ? 'true' : undefined}>{l.toUpperCase()}</a>)}
+      </div>
+    </div>
+  </header>
+
+  <main id="main"><slot /></main>
+  <div id="lb"></div>
+
+  <footer>
+    <div class="wrap">
+      <div>
+        <div style="display:flex;align-items:center;gap:11px;margin-bottom:13px">
+          <img src={logo} alt="" width="40" height="40" style="border-radius:50%" />
+          <span style="font-family:var(--disp);font-size:18px;line-height:1;text-transform:uppercase">Unique<br />by VL</span>
+        </div>
+        <p style="color:var(--ink-soft);font-size:14.5px;max-width:34ch">{v(site, lang, 'tagline')}</p>
+        <div class="social">
+          {socials.map(([label, url]) => <a href={url} target="_blank" rel="noopener noreferrer">{label} ↗</a>)}
+        </div>
+      </div>
+      <div>
+        <h5>{k.footNav}</h5>
+        <ul>{NAV.slice(1).map((key) => <li><a href={path(lang, key)}>{k.nav[key]}</a></li>)}</ul>
+      </div>
+      <div>
+        <h5>{k.footContact}</h5>
+        <ul>
+          {email && <li><a href={`mailto:${email}`}>{email}</a></li>}
+          {socials.map(([label, url]) => <li><a href={url} target="_blank" rel="noopener noreferrer">{label} ↗</a></li>)}
+          {phone && <li><a href={`tel:${phone.replace(/\s/g, '')}`}>{phone}</a></li>}
+          <li>{v(site, lang, 'visit')}</li>
+        </ul>
+      </div>
+      <div>
+        <h5>{k.footLegalH}</h5>
+        <ul>{legal.map((x) => <li><a href={path(lang, 'legal', x.slug)}>{v(x, lang, 'title')}</a></li>)}</ul>
+      </div>
+    </div>
+    <div class="legal"><div class="wrap">
+      <span>© {new Date().getFullYear()} Unique By VL · Praha</span>
+      <span>{ico ? `IČO ${ico} · ` : ''}{v(site, lang, 'visit')}</span>
+    </div></div>
+  </footer>
+
+  <script type="application/json" id="ui-strings" set:html={JSON.stringify(uiForScript)} />
+  <script>
+    import '../scripts/site.js';
+  </script>
+</body>
+</html>

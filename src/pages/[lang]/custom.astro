@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import Field from '../../components/Field.astro';
+import Select from '../../components/Select.astro';
+import Form from '../../components/Form.astro';
+import { page, custom, v } from '../../lib/content.js';
+import { ui, staticLangPaths } from '../../lib/ui.js';
+export const getStaticPaths = staticLangPaths;
+
+const { lang } = Astro.params;
+const k = ui(lang), f = k.f;
+const P = page('custom');
+const t = (key) => v(P, lang, key);
+const steps = t('steps') || [];
+// The "type of piece" list is built from the custom pricing entries in the admin.
+const types = custom.map((c) => v(c, lang, 'type')).concat([k.fopt.type[k.fopt.type.length - 1]]);
+---
+<Base lang={lang} title={t('title')} description={t('intro')}>
+  <section class="view"><div class="wrap stack">
+    <div>
+      <SectionHead eyebrow={t('eyebrow')} title={t('title')} lead={t('intro')} />
+      {steps.length > 0 && (
+        <div class="steps">
+          {steps.map((s, i) => (
+            <div class="step"><span class="n">{String(i + 1).padStart(2, '0')}</span><h4>{s.title}</h4><p>{s.text}</p></div>
+          ))}
+        </div>
+      )}
+    </div>
+
+    {custom.length > 0 && (
+      <div>
+        <SectionHead eyebrow={t('prices_eyebrow')} title={t('prices_title')} lead={t('prices_intro')} />
+        <div class="tablewrap"><table>
+          <thead><tr><th>{k.thType}</th><th>{k.thStyle}</th><th>{k.thFrom}</th><th>{k.thRange}</th><th>{k.thLead}</th></tr></thead>
+          <tbody>
+            {custom.map((c) => (
+              <tr><td>{v(c, lang, 'type')}</td><td>{v(c, lang, 'description')}</td>
+                <td class="num">{v(c, 'en', 'from')}</td><td class="num">{v(c, 'en', 'range')}</td><td class="num">{v(c, lang, 'lead_time')}</td></tr>
+            ))}
+          </tbody>
+        </table></div>
+      </div>
+    )}
+
+    <div class="panel">
+      <SectionHead eyebrow={t('brief_eyebrow')} title={t('brief_title')} />
+      <Form subject="Custom request" submit={f.sending}>
+        <div class="frow"><Field id="c-n" label={f.name} check="name" /><Field id="c-e" label={f.email} type="email" check="email" /></div>
+        <div class="frow"><Select id="c-t" label={f.type} options={types} /><Field id="c-o" label={f.occasion} /></div>
+        <div class="frow"><Select id="c-b" label={f.budget} options={k.fopt.budget} /><Field id="c-d" label={f.date} type="date" /></div>
+        <Field id="c-p" label={f.project} type="area" />
+        <p class="hint">{t('attach_note')}</p>
+      </Form>
+    </div>
+  </div></section>
+</Base>

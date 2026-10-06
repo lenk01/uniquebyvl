@@ -1,0 +1,89 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import PieceCard from '../../components/PieceCard.astro';
+import { page, events, classes, publicPieces, v, today } from '../../lib/content.js';
+import { ui, path, staticLangPaths } from '../../lib/ui.js';
+export const getStaticPaths = staticLangPaths;
+
+const { lang } = Astro.params;
+const k = ui(lang);
+const P = page('home');
+const t = (key) => v(P, lang, key);
+const now = today();
+const upcoming = events.filter((e) => !v(e, 'en', 'end_date') || v(e, 'en', 'end_date') >= now).slice(0, 3);
+const featured = publicPieces().filter((p) => !v(p, 'en', 'season') && v(p, 'en', 'status') !== 'sold').slice(0, Number(v(P, 'en', 'featured_count')) || 4);
+const nextClass = classes.find((c) => !v(c, 'en', 'date') || v(c, 'en', 'date') >= now);
+---
+<Base lang={lang} title={k.home} description={t('hero_subtitle')} image={v(P, 'en', 'hero_image')}>
+  <section class="hero">
+    <img src={v(P, 'en', 'hero_image')} alt="" fetchpriority="high" />
+    <div class="hero-in">
+      <h1>Unique<b>by VL</b></h1>
+      <p class="hero-sub">{t('hero_subtitle')}</p>
+      <div class="hero-cta">
+        <a class="btn" href={path(lang, 'collection')}>{t('hero_button_1')}</a>
+        <a class="btn ghost" href={path(lang, 'custom')}>{t('hero_button_2')}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="view"><div class="wrap stack">
+    <div class="band">
+      <div><SectionHead eyebrow={t('intro_eyebrow')} title={t('intro_title')} /><p class="lead">{t('intro_text')}</p></div>
+      <div class="shot"><img src={v(P, 'en', 'intro_image')} alt="" loading="lazy" /></div>
+    </div>
+
+    {upcoming.length > 0 && (
+      <div data-upcoming>
+        <SectionHead eyebrow={t('upcoming_eyebrow')} title={t('upcoming_title')} />
+        <div class="grid g3">
+          {upcoming.map((e) => {
+            const Tag = v(e, 'en', 'url') ? 'a' : 'div';
+            return (
+              <Tag class="evcard link" href={v(e, 'en', 'url') || undefined} target={v(e, 'en', 'url') ? '_blank' : undefined}
+                   rel={v(e, 'en', 'url') ? 'noopener noreferrer' : undefined} data-end={v(e, 'en', 'end_date')}>
+                <div class="shot"><img src={v(e, 'en', 'image')} alt="" loading="lazy" /></div>
+                <div>
+                  <span class="when">{v(e, lang, 'dates')}</span>
+                  <h4>{v(e, lang, 'title')}</h4>
+                  <span class="piece-sub" style="display:block;margin:3px 0 6px">{v(e, lang, 'venue')}</span>
+                  <p>{v(e, lang, 'description')}</p>
+                  {v(e, 'en', 'url') && <span class="evlink">{k.evLink} ↗</span>}
+                </div>
+              </Tag>
+            );
+          })}
+        </div>
+      </div>
+    )}
+
+    {featured.length > 0 && (
+      <div>
+        <SectionHead eyebrow={t('featured_eyebrow')} title={t('featured_title')} />
+        <div class="grid g4">{featured.map((p) => <PieceCard piece={p} lang={lang} />)}</div>
+        <div style="margin-top:26px"><a class="btn ghost" href={path(lang, 'collection')}>{t('featured_button')}</a></div>
+      </div>
+    )}
+
+    {nextClass && (
+      <div class="panel" style="display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap">
+        <div>
+          <span class="eyebrow">{t('class_eyebrow')}</span>
+          <h3 style="font-size:26px;margin:8px 0 6px">{v(nextClass, lang, 'title')} — {v(nextClass, lang, 'when')}</h3>
+          <p style="color:var(--ink-soft)">{v(nextClass, lang, 'venue')} · {v(nextClass, lang, 'time')} · {v(nextClass, 'en', 'price')}</p>
+        </div>
+        <a class="btn blue" href={path(lang, 'classes', nextClass.slug)}>{t('class_button')}</a>
+      </div>
+    )}
+
+    <div class="band">
+      <div class="shot"><img src={v(P, 'en', 'atelier_image')} alt="" loading="lazy" /></div>
+      <div>
+        <SectionHead eyebrow={t('atelier_eyebrow')} title={t('atelier_title')} />
+        <p class="lead" style="margin-bottom:22px">{t('atelier_text')}</p>
+        <a class="btn ghost" href={path(lang, 'about')}>{t('atelier_button')}</a>
+      </div>
+    </div>
+  </div></section>
+</Base>

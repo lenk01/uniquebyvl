@@ -1,0 +1,21 @@
+---
+import { ui } from '../lib/ui.js';
+const { images = [], alt = '', lang, caption = '' } = Astro.props;
+const k = ui(lang);
+---
+<div class="pdp-col"><div class="pdp-gal" data-gallery={JSON.stringify(images)}>
+  {images[0] && (
+    <button class="gal-main" type="button" data-lb-open="0" aria-label={k.zoomHint}>
+      <img src={images[0]} alt={alt} decoding="async" />
+      <span class="zoomhint">{k.zoomHint}</span>
+    </button>
+  )}
+  {images.length > 1 && (
+    <div class="thumbs">
+      {images.map((src, i) => (
+        <button type="button" data-thumb={i} aria-current={i === 0 ? 'true' : 'false'}><img src={src} alt="" loading="lazy" /></button>
+      ))}
+    </div>
+  )}
+  {caption && <p class="hint">{caption}</p>}
+</div></div>

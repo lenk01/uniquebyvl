@@ -1,0 +1,42 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import Field from '../../components/Field.astro';
+import Select from '../../components/Select.astro';
+import Form from '../../components/Form.astro';
+import { page, stockists, v, mapUrl } from '../../lib/content.js';
+import { ui, staticLangPaths } from '../../lib/ui.js';
+export const getStaticPaths = staticLangPaths;
+const { lang } = Astro.params;
+const k = ui(lang), f = k.f;
+const P = page('contact');
+const t = (key) => v(P, lang, key);
+---
+<Base lang={lang} title={k.nav.contact} description={t('stockists_intro')}>
+  <section class="view"><div class="wrap stack">
+    {stockists.length > 0 && (
+      <div>
+        <SectionHead eyebrow={t('stockists_eyebrow')} title={t('stockists_title')} lead={t('stockists_intro')} />
+        <div class="stock-grid">
+          {stockists.map((s) => (
+            <div class="stockist">
+              {v(s, 'en', 'url')
+                ? <a class="med" href={v(s, 'en', 'url')} target="_blank" rel="noopener noreferrer"><img src={v(s, 'en', 'image')} alt={v(s, 'en', 'name')} loading="lazy" /></a>
+                : <span class="med"><img src={v(s, 'en', 'image')} alt={v(s, 'en', 'name')} loading="lazy" /></span>}
+              <div><h4>{v(s, 'en', 'name')}</h4><p class="note">{v(s, lang, 'note')}</p></div>
+              <a class="addr" href={mapUrl(v(s, 'en', 'address'))} target="_blank" rel="noopener noreferrer">{v(s, 'en', 'address')} ↗</a>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+    <div class="panel" style="max-width:760px;margin-inline:auto;width:100%">
+      <SectionHead eyebrow={t('eyebrow')} title={t('title')} />
+      <Form subject="General message" submit={f.send}>
+        <div class="frow"><Field id="g-n" label={f.name} check="name" /><Field id="g-e" label={f.email} type="email" check="email" /></div>
+        <Select id="g-s" label={f.subject} options={k.fopt.subject} />
+        <Field id="g-m" label={f.msg} type="area" />
+      </Form>
+    </div>
+  </div></section>
+</Base>

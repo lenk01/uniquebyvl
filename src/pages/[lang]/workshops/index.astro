@@ -1,0 +1,58 @@
+---
+import Base from '../../../layouts/Base.astro';
+import SectionHead from '../../../components/SectionHead.astro';
+import Field from '../../../components/Field.astro';
+import Select from '../../../components/Select.astro';
+import Form from '../../../components/Form.astro';
+import { page, workshops, formats, v } from '../../../lib/content.js';
+import { ui, path, staticLangPaths } from '../../../lib/ui.js';
+export const getStaticPaths = staticLangPaths;
+
+const { lang } = Astro.params;
+const k = ui(lang), f = k.f;
+const P = page('workshops');
+const t = (key) => v(P, lang, key);
+// The "type of event" list is built from the workshop formats in the admin.
+const types = formats.map((x) => v(x, lang, 'title')).concat([k.fopt.evtype[k.fopt.evtype.length - 1]]);
+---
+<Base lang={lang} title={t('title')} description={t('intro')}>
+  <section class="view"><div class="wrap stack">
+    <div class="band">
+      <div>
+        <SectionHead eyebrow={t('eyebrow')} title={t('title')} lead={t('intro')} />
+        <div class="prose">{(t('paragraphs') || []).map((x) => <p>{x}</p>)}</div>
+      </div>
+      {v(P, 'en', 'image') && <div class="shot"><img src={v(P, 'en', 'image')} alt="" loading="lazy" /></div>}
+    </div>
+
+    {workshops.length > 0 && (
+      <div>
+        <SectionHead eyebrow={t('past_eyebrow')} title={t('past_title')} />
+        <div class="grid g3">
+          {workshops.map((w) => (
+            <a class="piece" href={path(lang, 'workshops', w.slug)}>
+              <div class="shot" style="aspect-ratio:4/3"><img src={(v(w, 'en', 'images') || [])[0]} alt="" loading="lazy" /></div>
+              <div>
+                <span style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)">{v(w, lang, 'when')}</span>
+                <h4 style="font-size:18px;margin:4px 0">{v(w, lang, 'title')}</h4>
+                <p style="font-size:15px;color:var(--ink-soft)">{v(w, lang, 'short')}</p>
+                <span class="evlink">{k.wsMore} →</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <div class="panel" id="request">
+      <SectionHead eyebrow={t('form_eyebrow')} title={t('form_title')} />
+      <Form subject="Workshop request" submit={f.sending}>
+        <div class="frow"><Field id="w-n" label={f.name} check="name" /><Field id="w-e" label={f.email} type="email" check="email" /></div>
+        <div class="frow"><Select id="w-t" label={f.evtype} options={types} /><Field id="w-p" label={f.people} type="number" /></div>
+        <div class="frow"><Field id="w-v" label={f.venue} /><Field id="w-d" label={f.date} type="date" /></div>
+        <Field id="w-b" label={f.gbudget} />
+        <Field id="w-c" label={f.context} type="area" />
+      </Form>
+    </div>
+  </div></section>
+</Base>

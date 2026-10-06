@@ -1,0 +1,31 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { LANGS, legal, site, v } from '../../../lib/content.js';
+import { ui, path } from '../../../lib/ui.js';
+import { md } from '../../../lib/markdown.js';
+
+export function getStaticPaths() {
+  return LANGS.flatMap((lang) => legal.map((x) => ({ params: { lang, slug: x.slug }, props: { x } })));
+}
+const { lang } = Astro.params;
+const { x } = Astro.props;
+const k = ui(lang);
+const email = v(site, 'en', 'contact_email') || '';
+const body = md(String(v(x, lang, 'body') || '').replace(/\{MAIL\}/g, email));
+---
+<Base lang={lang} title={v(x, lang, 'title')}>
+  <section class="view"><div class="wrap">
+    <span class="eyebrow" style="margin-bottom:22px;display:block">{k.legalEb}</span>
+    <div class="legalwrap">
+      <nav class="legalnav" aria-label={k.legalEb}>
+        {legal.map((y) => <a href={path(lang, 'legal', y.slug)} aria-current={y.slug === x.slug ? 'true' : undefined}>{v(y, lang, 'title')}</a>)}
+      </nav>
+      <div class="legalbody">
+        <p class="ltitle">{v(x, lang, 'title')}</p>
+        <p class="upd">{v(x, lang, 'updated')}</p>
+        <Fragment set:html={body} />
+        <p class="upd" style="margin-top:26px">{k.legalDisc}</p>
+      </div>
+    </div>
+  </div></section>
+</Base>

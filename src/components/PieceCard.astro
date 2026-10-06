@@ -1,0 +1,22 @@
+---
+import { v, kc } from '../lib/content.js';
+import { ui, path } from '../lib/ui.js';
+const { piece, lang } = Astro.props;
+const k = ui(lang);
+const img = (v(piece, 'en', 'images') || [])[0];
+const status = v(piece, 'en', 'status');
+const sold = status === 'sold' || !!v(piece, 'en', 'season');
+const inStore = !!v(piece, 'en', 'stockist');
+---
+<a class="piece" href={path(lang, 'collection', piece.slug)}
+   data-cat={v(piece, 'en', 'category') || ''} data-sub={v(piece, 'en', 'subcategory') || ''}
+   data-season={v(piece, 'en', 'season') || ''}>
+  <div class="shot">
+    {img && <img src={img} alt={v(piece, lang, 'name')} loading="lazy" decoding="async" />}
+    {sold ? <span class="tag sold flag">{k.sold}</span>
+      : inStore ? <span class="tag flag" style="background:var(--surface-2)">{k.inStoreTag}</span>
+      : <span class="tag blue flag">{k.oneOfOne}</span>}
+  </div>
+  <div class="piece-meta"><h3>{v(piece, lang, 'name')}</h3><span class="price">{kc(v(piece, 'en', 'price'))}</span></div>
+  <span class="piece-sub">{v(piece, 'en', 'size')}</span>
+</a>

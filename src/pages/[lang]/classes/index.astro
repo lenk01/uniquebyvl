@@ -1,0 +1,57 @@
+---
+import Base from '../../../layouts/Base.astro';
+import SectionHead from '../../../components/SectionHead.astro';
+import Field from '../../../components/Field.astro';
+import Select from '../../../components/Select.astro';
+import Form from '../../../components/Form.astro';
+import { page, classes, v, today } from '../../../lib/content.js';
+import { ui, path, staticLangPaths } from '../../../lib/ui.js';
+export const getStaticPaths = staticLangPaths;
+
+const { lang } = Astro.params;
+const k = ui(lang), f = k.f;
+const P = page('classes');
+const t = (key) => v(P, lang, key);
+const now = today();
+const list = classes.filter((c) => !v(c, 'en', 'date') || v(c, 'en', 'date') >= now);
+---
+<Base lang={lang} title={t('title')} description={t('intro')}>
+  <section class="view"><div class="wrap stack">
+    <div>
+      <SectionHead eyebrow={t('eyebrow')} title={t('title')} lead={t('intro')} />
+      {list.length === 0 ? <p class="empty">{k.noClasses}</p> : (
+        <div class="rows">
+          {list.map((c) => {
+            const seats = Number(v(c, 'en', 'seats_left')) || 0;
+            const full = seats <= 0;
+            return (
+              <div class="row" data-end={v(c, 'en', 'date')}>
+                <div class="when">{v(c, lang, 'when')}<br />{v(c, lang, 'time')}</div>
+                <div>
+                  <h4><a class="rowtitle" href={path(lang, 'classes', c.slug)} style="color:inherit;text-decoration:none">{v(c, lang, 'title')}</a></h4>
+                  <p>{v(c, lang, 'short')}</p>
+                  <span class="piece-sub" style="display:block;margin-top:5px">{v(c, lang, 'venue')} · {v(c, lang, 'duration')} · {v(c, lang, 'level')}</span>
+                  <a class="evlink" href={path(lang, 'classes', c.slug)}>{k.cls.see} →</a>
+                </div>
+                <div class="side">
+                  <span class="price">{v(c, 'en', 'price')}</span>
+                  <span class={`tag ${full ? 'sold' : 'ok'}`}>{full ? k.full : `${seats} ${k.seatsLeft}`}</span>
+                  <a class={`btn sm${full ? ' ghost' : ''}`} href={`${path(lang, 'classes', c.slug)}#book`}>{full ? k.waitlist : k.book}</a>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+
+    <div class="panel">
+      <SectionHead eyebrow={t('private_eyebrow')} title={t('private_title')} lead={t('private_intro')} />
+      <Form subject="Private lesson request" submit={f.sending}>
+        <div class="frow"><Field id="pl-n" label={f.name} check="name" /><Field id="pl-e" label={f.email} type="email" check="email" /></div>
+        <div class="frow"><Select id="pl-l" label={f.level} options={k.fopt.level} /><Select id="pl-p" label={f.place} options={k.fopt.place} /></div>
+        <Field id="pl-m" label={f.project} type="area" />
+      </Form>
+    </div>
+  </div></section>
+</Base>
