@@ -1,0 +1,44 @@
+{
+  "en": {
+    "title": "Hen party — 11 guests",
+    "when": "June 2026",
+    "place": "Private flat, Vinohrady",
+    "short": "Three hours of denim customising, with a jacket offered to the bride.",
+    "long": "Eleven guests, eleven denim jackets bought second-hand the week before, and a table covered in patches, offcuts and beads. Everyone worked on their own jacket while Virginie moved between the machines; the bride's was finished in secret and given at the end. The flat smelled of coffee and hot iron for the rest of the day.",
+    "included": [
+      "Two machines plus hand-sewing stations",
+      "Denim jackets sourced in advance",
+      "A finished jacket as a gift for the bride"
+    ],
+    "images": [
+      "/uploads/event-stand.jpg",
+      "/uploads/pouch-a.jpg",
+      "/uploads/atelier-table.jpg"
+    ],
+    "order": 1
+  },
+  "fr": {
+    "title": "EVJF — 11 participantes",
+    "when": "Juin 2026",
+    "place": "Appartement privé, Vinohrady",
+    "short": "Trois heures de customisation de jean, avec une veste offerte à la mariée.",
+    "long": "Onze participantes, onze vestes en jean chinées la semaine d'avant, et une table couverte d'écussons, de chutes et de perles. Chacune a travaillé sur sa veste pendant que Virginie passait de machine en machine ; celle de la mariée a été finie en secret et offerte à la fin. L'appartement a senti le café et le fer chaud tout le reste de la journée.",
+    "included": [
+      "Deux machines et des postes de couture main",
+      "Vestes en jean chinées à l'avance",
+      "Une veste finie offerte à la mariée"
+    ]
+  },
+  "cs": {
+    "title": "Rozlučka — 11 hostů",
+    "when": "Červen 2026",
+    "place": "Soukromý byt, Vinohrady",
+    "short": "Tři hodiny úprav džínových bund, nevěsta dostala bundu darem.",
+    "long": "Jedenáct hostů, jedenáct džínových bund koupených týden předem z druhé ruky a stůl plný nášivek, odstřižků a korálků. Každá pracovala na své bundě, zatímco Virginie přecházela mezi stroji; nevěstina se dokončila tajně a předala na konci. Byt pak celý den voněl kávou a horkou žehličkou.",
+    "included": [
+      "Dva stroje a místa na ruční šití",
+      "Džínové bundy sehnané předem",
+      "Hotová bunda jako dárek pro nevěstu"
+    ]
+  }
+}

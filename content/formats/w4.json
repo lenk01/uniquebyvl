@@ -1,0 +1,21 @@
+{
+  "en": {
+    "title": "Private events",
+    "meta": "Any format",
+    "description": "Festival, fair, residency, film set. Describe the context and a format is built for it.",
+    "price": "on quotation",
+    "order": 4
+  },
+  "fr": {
+    "title": "Événements privés",
+    "meta": "Format libre",
+    "description": "Festival, salon, résidence, tournage. Décrivez le contexte, le format est construit pour lui.",
+    "price": "sur devis"
+  },
+  "cs": {
+    "title": "Soukromé akce",
+    "meta": "Volný formát",
+    "description": "Festival, veletrh, rezidence, natáčení. Popište kontext a formát vznikne na míru.",
+    "price": "na vyžádání"
+  }
+}

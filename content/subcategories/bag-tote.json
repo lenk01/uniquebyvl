@@ -1,0 +1,13 @@
+{
+  "en": {
+    "name": "Totes",
+    "category": "bag",
+    "order": 1
+  },
+  "fr": {
+    "name": "Cabas"
+  },
+  "cs": {
+    "name": "Tašky"
+  }
+}

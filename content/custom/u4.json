@@ -1,0 +1,20 @@
+{
+  "en": {
+    "type": "Rebuilt from your garment",
+    "description": "A piece you own, taken apart and rebuilt into something you will wear again.",
+    "lead_time": "3–5 weeks",
+    "from": "1 800 Kč",
+    "range": "2 500 – 6 000 Kč",
+    "order": 4
+  },
+  "fr": {
+    "type": "Reconstruit depuis votre vêtement",
+    "description": "Une pièce qui vous appartient, démontée puis reconstruite en quelque chose que vous porterez de nouveau.",
+    "lead_time": "3–5 semaines"
+  },
+  "cs": {
+    "type": "Přeměna vašeho kusu",
+    "description": "Váš vlastní kus, rozebraný a znovu ušitý do podoby, kterou budete nosit.",
+    "lead_time": "3–5 týdnů"
+  }
+}

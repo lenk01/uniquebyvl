@@ -1,0 +1,20 @@
+{
+  "en": {
+    "type": "Creative alteration",
+    "description": "Re-shaping, added panels, a new collar, a changed closure.",
+    "lead_time": "2–3 weeks",
+    "from": "800 Kč",
+    "range": "1 200 – 3 000 Kč",
+    "order": 5
+  },
+  "fr": {
+    "type": "Retouche créative",
+    "description": "Recintrage, panneaux ajoutés, nouveau col, fermeture modifiée.",
+    "lead_time": "2–3 semaines"
+  },
+  "cs": {
+    "type": "Kreativní úprava",
+    "description": "Přestřižení, přidané díly, nový límec, jiné zapínání.",
+    "lead_time": "2–3 týdny"
+  }
+}

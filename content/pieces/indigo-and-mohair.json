@@ -1,0 +1,31 @@
+{
+  "en": {
+    "name": "Indigo & Mohair",
+    "description": "Wrap-front denim body, one sleeve in yellow mohair, asymmetric closure.",
+    "materials": "Raw indigo denim, hand-knit yellow mohair, brass zip",
+    "story": "Half jacket, half sweater. The mohair sleeves were knitted for this piece; the denim is a pair of jeans that never fitted anyone.",
+    "price": 3900,
+    "size": "M / 38",
+    "images": [
+      "/uploads/denim-a.jpg"
+    ],
+    "category": "jacket",
+    "subcategory": "jacket-knit",
+    "status": "available",
+    "season": "",
+    "stockist": "",
+    "order": 9
+  },
+  "fr": {
+    "name": "Indigo & Mohair",
+    "description": "Corps en denim croisé, manches en mohair jaune, fermeture asymétrique.",
+    "materials": "Denim indigo brut, mohair jaune tricoté main, zip laiton",
+    "story": "Mi-veste, mi-pull. Les manches en mohair ont été tricotées pour cette pièce ; le denim était un jean qui n'allait à personne."
+  },
+  "cs": {
+    "name": "Indigo & Mohér",
+    "description": "Zavinovací džínové tělo, rukávy ze žlutého mohéru, asymetrické zapínání.",
+    "materials": "Surový indigový denim, ručně pletený žlutý mohér, mosazný zip",
+    "story": "Napůl bunda, napůl svetr. Mohérové rukávy byly upleteny přímo pro tento kus; denim byly džíny, které nikomu neseděly."
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "en": {
+    "name": "Silk Road Bomber",
+    "description": "Cloud-pattern silk in red over blue, violet zip and piping, welt pockets.",
+    "materials": "Red and blue silk brocade, violet zip, blue satin lining",
+    "story": "Cut from a brocade bedspread. The violet zip was chosen so the jacket reads loud from across a room — which is where it was first seen, at the Prague design market.",
+    "price": 4200,
+    "size": "M / 38",
+    "images": [
+      "/uploads/silk-a.jpg",
+      "/uploads/silk-b.jpg"
+    ],
+    "category": "bomber",
+    "subcategory": "bomber-brocade",
+    "status": "available",
+    "season": "",
+    "stockist": "",
+    "order": 4
+  },
+  "fr": {
+    "name": "Bomber Route de la Soie",
+    "description": "Soie à motif de nuages rouge sur bleu, zip et passepoil violets, poches passepoilées.",
+    "materials": "Brocart de soie rouge et bleu, zip violet, doublure satin bleu",
+    "story": "Taillé dans un couvre-lit en brocart. Le zip violet a été choisi pour que la veste s'impose à l'autre bout de la pièce — c'est là qu'on l'a vue pour la première fois, au marché du design de Prague."
+  },
+  "cs": {
+    "name": "Bomber Hedvábná stezka",
+    "description": "Hedvábí s oblakovým vzorem, červená přes modrou, fialový zip a lemování, kapsy s paspulí.",
+    "materials": "Červeno-modrý hedvábný brokát, fialový zip, modrá saténová podšívka",
+    "story": "Ušitý z brokátového přehozu. Fialový zip byl zvolen tak, aby byla bunda vidět přes celou místnost — právě tam ji lidé poprvé uviděli, na pražském design marketu."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "en": {
+    "name": "Workwear",
+    "category": "jacket",
+    "order": 4
+  },
+  "fr": {
+    "name": "Workwear"
+  },
+  "cs": {
+    "name": "Workwear"
+  }
+}

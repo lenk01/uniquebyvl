@@ -1,0 +1,26 @@
+{
+  "en": {
+    "eyebrow": "Collection",
+    "title": "Every piece, one of one",
+    "intro": "Sizes are fixed — each garment is built around the fabric that was available. If a piece is sold or does not fit, it can be reinterpreted for you.",
+    "tab_now": "Available now",
+    "tab_archive": "Past collections",
+    "archive_note": "This piece has found its owner. Virginie can build you one in the same spirit — a different fabric, your measurements."
+  },
+  "fr": {
+    "eyebrow": "Collection",
+    "title": "Chaque pièce en un seul exemplaire",
+    "intro": "Les tailles sont fixes — chaque vêtement est construit autour du tissu disponible. Si une pièce est vendue ou ne vous va pas, elle peut être réinterprétée pour vous.",
+    "tab_now": "Disponible",
+    "tab_archive": "Collections passées",
+    "archive_note": "Cette pièce a trouvé sa propriétaire. Virginie peut vous en faire une dans le même esprit — un autre tissu, vos mesures."
+  },
+  "cs": {
+    "eyebrow": "Kolekce",
+    "title": "Každý kus jen jednou",
+    "intro": "Velikosti jsou dané — každý kus vzniká podle látky, která byla k dispozici. Pokud je kus prodaný nebo vám nesedí, může pro vás vzniknout jeho nová verze.",
+    "tab_now": "K dispozici",
+    "tab_archive": "Minulé kolekce",
+    "archive_note": "Tento kus už má majitele. Virginie vám může ušít kus ve stejném duchu — jiná látka, vaše míry."
+  }
+}

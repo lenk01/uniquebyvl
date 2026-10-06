@@ -1,0 +1,18 @@
+{
+  "en": {
+    "title": "Delivery",
+    "updated": "Updated 19 September 2026",
+    "body": "## Where we ship\n\nWe ship within the Czech Republic only. If you are outside the Czech Republic and would like a piece, write to us at {MAIL} — we will tell you whether we can arrange it and what it would cost.\n\n## Methods and cost\n\n- Pick-up at the atelier, Praha 7 — free, by appointment\n- Tracked parcel anywhere in the Czech Republic — 120 Kč\n- Free delivery on orders over 5 000 Kč\n\n## Dispatch time\n\nPieces from the collection are dispatched within 3 working days of your payment reaching us. Made-to-measure pieces are dispatched once finished, on the date agreed with you in writing.\n\n## If a parcel goes missing or arrives damaged\n\nTell us within 7 days of the delivery date recorded by the carrier. We open the claim with the carrier ourselves. Where the piece was damaged in transit we repair it, remake it if that is possible for a one-of-a-kind piece, or refund you in full.",
+    "order": 1
+  },
+  "fr": {
+    "title": "Livraison",
+    "updated": "Mise à jour le 19 septembre 2026",
+    "body": "## Où nous livrons\n\nNous livrons uniquement en République tchèque. Si vous êtes hors de République tchèque et qu'une pièce vous intéresse, écrivez-nous à {MAIL} — nous vous dirons si c'est possible et à quel coût.\n\n## Modes et tarifs\n\n- Retrait à l'atelier, Prague 7 — gratuit, sur rendez-vous\n- Colis suivi partout en République tchèque — 120 Kč\n- Livraison offerte à partir de 5 000 Kč d'achat\n\n## Délai d'expédition\n\nLes pièces de la collection sont expédiées sous 3 jours ouvrés après réception du paiement. Les pièces sur-mesure sont expédiées une fois terminées, à la date convenue par écrit avec vous.\n\n## Colis perdu ou endommagé\n\nSignalez-le-nous dans les 7 jours suivant la date de livraison enregistrée par le transporteur. Nous ouvrons nous-mêmes la réclamation. Si la pièce a été abîmée pendant le transport, nous la réparons, la refaisons lorsque c'est possible pour une pièce unique, ou vous remboursons intégralement."
+  },
+  "cs": {
+    "title": "Doručení",
+    "updated": "Aktualizováno 19. září 2026",
+    "body": "## Kam doručujeme\n\nDoručujeme pouze v rámci České republiky. Pokud jste mimo ČR a máte o kus zájem, napište nám na {MAIL} — sdělíme vám, zda to lze zařídit a za kolik.\n\n## Způsoby a ceny\n\n- Osobní odběr v ateliéru, Praha 7 — zdarma, po domluvě\n- Sledovaná zásilka po celé ČR — 120 Kč\n- Doprava zdarma při objednávce nad 5 000 Kč\n\n## Doba odeslání\n\nKusy z kolekce odesíláme do 3 pracovních dnů od připsání platby. Zakázky na míru odesíláme po dokončení, v termínu písemně dohodnutém s vámi.\n\n## Ztracená nebo poškozená zásilka\n\nDejte nám vědět do 7 dnů od data doručení evidovaného dopravcem. Reklamaci u dopravce řešíme my. Pokud byl kus poškozen při přepravě, opravíme ho, u originálního kusu podle možností ušijeme znovu, nebo vám vrátíme celou částku."
+  }
+}

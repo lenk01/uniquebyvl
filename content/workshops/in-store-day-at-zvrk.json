@@ -1,0 +1,44 @@
+{
+  "en": {
+    "title": "In-store day at ZVRK",
+    "when": "January 2026",
+    "place": "Concept store, Praha 10",
+    "short": "An open table in the shop: customers left with a personalised piece.",
+    "long": "One machine, one table, eight hours, and whoever walked in. People brought a shirt they had just bought or one from their bag, chose a fabric from the box, and left twenty minutes later with an embroidered initial or a patched elbow. The shop counted its best Saturday of the winter.",
+    "included": [
+      "One machine and a full fabric box",
+      "Continuous format, no booking needed",
+      "Around 30 pieces personalised in the day"
+    ],
+    "images": [
+      "/uploads/floral-a.jpg",
+      "/uploads/silk-b.jpg",
+      "/uploads/event-stand.jpg"
+    ],
+    "order": 3
+  },
+  "fr": {
+    "title": "Journée en boutique chez ZVRK",
+    "when": "Janvier 2026",
+    "place": "Concept store, Praha 10",
+    "short": "Une table ouverte en magasin : les clients repartaient avec une pièce personnalisée.",
+    "long": "Une machine, une table, huit heures, et qui voulait bien entrer. Les gens apportaient une chemise qu'ils venaient d'acheter ou une sortie de leur sac, choisissaient un tissu dans la caisse, et repartaient vingt minutes plus tard avec une initiale brodée ou un coude rapiécé. La boutique a fait son meilleur samedi de l'hiver.",
+    "included": [
+      "Une machine et une caisse de tissus",
+      "Format continu, sans réservation",
+      "Une trentaine de pièces personnalisées dans la journée"
+    ]
+  },
+  "cs": {
+    "title": "Den v obchodě ZVRK",
+    "when": "Leden 2026",
+    "place": "Concept store, Praha 10",
+    "short": "Otevřený stůl v obchodě: zákazníci odcházeli s personalizovaným kusem.",
+    "long": "Jeden stroj, jeden stůl, osm hodin a kdokoli, kdo přišel. Lidé přinesli košili, kterou si právě koupili, nebo ji vytáhli z tašky, vybrali látku z krabice a za dvacet minut odcházeli s vyšitou iniciálou nebo záplatou na lokti. Obchod měl nejlepší sobotu té zimy.",
+    "included": [
+      "Jeden stroj a plná krabice látek",
+      "Průběžný formát, bez rezervace",
+      "Za den zhruba 30 personalizovaných kusů"
+    ]
+  }
+}

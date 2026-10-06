@@ -1,0 +1,31 @@
+{
+  "en": {
+    "name": "Parade Jacket",
+    "description": "Military-cut short jacket, black braid frogging, embroidered stand collar.",
+    "materials": "Cream wool, black soutache braid, antique brass buttons",
+    "story": "A plain cream blazer taken apart and rebuilt in a parade cut. The braid was applied by hand curve by curve; the collar embroidery came from a damaged waistcoat.",
+    "price": 3200,
+    "size": "S / 36",
+    "images": [
+      "/uploads/military-a.jpg"
+    ],
+    "category": "jacket",
+    "subcategory": "jacket-tailored",
+    "status": "sold",
+    "season": "ss26",
+    "stockist": "",
+    "order": 7
+  },
+  "fr": {
+    "name": "Veste Parade",
+    "description": "Veste courte de coupe militaire, brandebourgs noirs, col officier brodé.",
+    "materials": "Laine crème, soutache noire, boutons en laiton ancien",
+    "story": "Un blazer crème tout simple, démonté puis reconstruit en coupe parade. La soutache a été posée à la main courbe par courbe ; la broderie du col vient d'un gilet abîmé."
+  },
+  "cs": {
+    "name": "Sako Parade",
+    "description": "Krátké sako vojenského střihu, černé šňůrování, vyšívaný stojáček.",
+    "materials": "Krémová vlna, černá soutache, mosazné knoflíky",
+    "story": "Obyčejné krémové sako rozebrané a znovu ušité v paradním střihu. Šňůry byly našity ručně oblouk po oblouku; výšivka límce pochází z poškozené vesty."
+  }
+}

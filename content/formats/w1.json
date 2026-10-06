@@ -1,0 +1,21 @@
+{
+  "en": {
+    "title": "Hen parties & birthdays",
+    "meta": "2–4 h · 6 to 15 people",
+    "description": "Each guest customises one piece, with a garment offered to the bride. Materials and drinks included.",
+    "price": "from 890 Kč / person",
+    "order": 1
+  },
+  "fr": {
+    "title": "EVJF & anniversaires",
+    "meta": "2–4 h · 6 à 15 personnes",
+    "description": "Chaque invitée personnalise une pièce, avec un vêtement offert à la mariée. Matériel et boissons compris.",
+    "price": "à partir de 890 Kč / pers."
+  },
+  "cs": {
+    "title": "Rozlučky a narozeniny",
+    "meta": "2–4 h · 6 až 15 osob",
+    "description": "Každý host si upraví jeden kus, nevěsta dostane oděv jako dárek. Materiál a nápoje v ceně.",
+    "price": "od 890 Kč / osoba"
+  }
+}

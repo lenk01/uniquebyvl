@@ -1,0 +1,125 @@
+{
+  "en": {
+    "title": "Full day: your first jacket",
+    "when": "Sat 21 Nov",
+    "time": "10:00–17:00",
+    "venue": "Atelier, Prague 7",
+    "level": "Machine experience needed",
+    "duration": "7 hours, lunch included",
+    "short": "A whole day, lunch included. Some machine experience needed.",
+    "long": "One day, one jacket. An unlined bomber shape, cut from fabric you choose in the morning and finished before you leave. It is a long day and the last hour is always a rush, but everyone goes home wearing theirs.",
+    "make": "An unlined bomber jacket in your size, with ribbed cuffs and a zip.",
+    "included": [
+      "Pattern in your size, prepared in advance",
+      "Fabric, zip, ribbing and thread",
+      "Lunch and drinks all day"
+    ],
+    "programme": [
+      {
+        "time": "10:00",
+        "text": "Choosing fabric, cutting the pattern"
+      },
+      {
+        "time": "11:30",
+        "text": "Body and sleeves"
+      },
+      {
+        "time": "13:00",
+        "text": "Lunch"
+      },
+      {
+        "time": "14:00",
+        "text": "Setting the sleeves, cuffs and collar"
+      },
+      {
+        "time": "16:00",
+        "text": "Zip and finishing"
+      }
+    ],
+    "date": "2026-11-21",
+    "price": "2 900 Kč",
+    "seats_left": 2,
+    "capacity": 5,
+    "images": [
+      "/uploads/military-a.jpg",
+      "/uploads/batik-a.jpg",
+      "/uploads/phoenix-a.jpg"
+    ]
+  },
+  "fr": {
+    "title": "Journée : votre première veste",
+    "when": "Sam. 21 nov.",
+    "time": "10h–17h",
+    "venue": "Atelier, Prague 7",
+    "level": "Bases de machine nécessaires",
+    "duration": "7 heures, déjeuner compris",
+    "short": "Une journée entière, déjeuner compris. Quelques bases de machine nécessaires.",
+    "long": "Une journée, une veste. Un bomber non doublé, taillé dans un tissu choisi le matin et fini avant de partir. La journée est longue et la dernière heure est toujours une course, mais tout le monde repart avec la sienne sur le dos.",
+    "make": "Un bomber non doublé à votre taille, avec bords-côtes et fermeture éclair.",
+    "included": [
+      "Patron à votre taille, préparé à l'avance",
+      "Tissu, fermeture, bords-côtes et fil",
+      "Déjeuner et boissons toute la journée"
+    ],
+    "programme": [
+      {
+        "time": "10h",
+        "text": "Choix du tissu, coupe du patron"
+      },
+      {
+        "time": "11h30",
+        "text": "Corps et manches"
+      },
+      {
+        "time": "13h",
+        "text": "Déjeuner"
+      },
+      {
+        "time": "14h",
+        "text": "Montage des manches, poignets et col"
+      },
+      {
+        "time": "16h",
+        "text": "Fermeture éclair et finitions"
+      }
+    ]
+  },
+  "cs": {
+    "title": "Celý den: vaše první bunda",
+    "when": "So 21. listopadu",
+    "time": "10:00–17:00",
+    "venue": "Ateliér, Praha 7",
+    "level": "Zkušenost se strojem nutná",
+    "duration": "7 hodin, oběd v ceně",
+    "short": "Celodenní kurz včetně oběda. Je potřeba základní zkušenost se strojem.",
+    "long": "Jeden den, jedna bunda. Nepodšitý bomber, ustřižený z látky vybrané ráno a dokončený, než odejdete. Den je dlouhý a poslední hodina je vždycky závod, ale všichni odcházejí ve svém kusu.",
+    "make": "Nepodšitý bomber ve vaší velikosti, s náplety a zipem.",
+    "included": [
+      "Střih ve vaší velikosti, připravený předem",
+      "Látka, zip, náplety a nit",
+      "Oběd a nápoje po celý den"
+    ],
+    "programme": [
+      {
+        "time": "10:00",
+        "text": "Výběr látky, stříhání podle střihu"
+      },
+      {
+        "time": "11:30",
+        "text": "Tělo a rukávy"
+      },
+      {
+        "time": "13:00",
+        "text": "Oběd"
+      },
+      {
+        "time": "14:00",
+        "text": "Všívání rukávů, manžet a límce"
+      },
+      {
+        "time": "16:00",
+        "text": "Zip a dokončení"
+      }
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "en": {
+    "name": "Wave Bomber",
+    "description": "Turquoise wave brocade across the back, magenta sleeves, elasticated hem.",
+    "materials": "Chinese silk brocade, magenta cotton twill, satin lining",
+    "story": "Built from a brocade panel found at a Prague flea market and the sleeves of a worn-out cotton jacket. The wave motif runs unbroken across the back — one panel, one jacket, no second copy.",
+    "price": 3900,
+    "size": "M / 38",
+    "images": [
+      "/uploads/wave-a.jpg"
+    ],
+    "category": "bomber",
+    "subcategory": "bomber-brocade",
+    "status": "available",
+    "season": "",
+    "stockist": "",
+    "order": 1
+  },
+  "fr": {
+    "name": "Bomber Vague",
+    "description": "Brocart à motif de vagues turquoise dans le dos, manches magenta, bas élastiqué.",
+    "materials": "Brocart de soie chinois, sergé de coton magenta, doublure satin",
+    "story": "Née d'un panneau de brocart chiné aux puces de Prague et des manches d'une veste en coton usée. Le motif de vague court sans rupture dans le dos — un panneau, une veste, aucun second exemplaire."
+  },
+  "cs": {
+    "name": "Bomber Vlna",
+    "description": "Tyrkysový vlnový brokát na zádech, purpurové rukávy, pružný lem.",
+    "materials": "Čínský hedvábný brokát, purpurový bavlněný kepr, saténová podšívka",
+    "story": "Vznikl z brokátového dílu nalezeného na pražském bleším trhu a z rukávů obnošené bavlněné bundy. Vzor vln běží po zádech bez přerušení — jeden díl, jedna bunda, žádná druhá."
+  }
+}

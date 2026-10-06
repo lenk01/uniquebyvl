@@ -1,0 +1,21 @@
+{
+  "en": {
+    "title": "In-store activation",
+    "meta": "1–3 h · drop-in",
+    "description": "An open table inside your shop: customers leave with a piece personalised in your colours.",
+    "price": "from 9 500 Kč",
+    "order": 3
+  },
+  "fr": {
+    "title": "Animation en boutique",
+    "meta": "1–3 h · en continu",
+    "description": "Une table ouverte dans votre magasin : les clients repartent avec une pièce personnalisée à vos couleurs.",
+    "price": "à partir de 9 500 Kč"
+  },
+  "cs": {
+    "title": "Akce v obchodě",
+    "meta": "1–3 h · průběžně",
+    "description": "Otevřený stůl přímo ve vašem obchodě: zákazníci odcházejí s kusem ve vašich barvách.",
+    "price": "od 9 500 Kč"
+  }
+}

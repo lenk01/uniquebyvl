@@ -1,0 +1,16 @@
+{
+  "en": {
+    "note": "The full collection, by appointment",
+    "name": "The atelier",
+    "address": "Dělnická 12, 170 00 Praha 7",
+    "url": "https://www.instagram.com/uniquebyvl/",
+    "image": "/uploads/atelier-rack.jpg",
+    "order": 2
+  },
+  "fr": {
+    "note": "Toute la collection, sur rendez-vous"
+  },
+  "cs": {
+    "note": "Celá kolekce, po domluvě"
+  }
+}

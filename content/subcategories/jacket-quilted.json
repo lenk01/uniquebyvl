@@ -1,0 +1,13 @@
+{
+  "en": {
+    "name": "Quilted",
+    "category": "jacket",
+    "order": 2
+  },
+  "fr": {
+    "name": "Matelassées"
+  },
+  "cs": {
+    "name": "Prošívané"
+  }
+}

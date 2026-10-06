@@ -1,0 +1,20 @@
+{
+  "en": {
+    "type": "Bomber",
+    "description": "Your fabric or one from the studio. Lining, zip and cuffs chosen together.",
+    "lead_time": "5–7 weeks",
+    "from": "4 500 Kč",
+    "range": "6 000 – 11 000 Kč",
+    "order": 1
+  },
+  "fr": {
+    "type": "Bomber",
+    "description": "Votre tissu ou un tissu de l'atelier. Doublure, zip et poignets choisis ensemble.",
+    "lead_time": "5–7 semaines"
+  },
+  "cs": {
+    "type": "Bomber",
+    "description": "Vaše látka nebo látka z ateliéru. Podšívka, zip a manžety vybíráme společně.",
+    "lead_time": "5–7 týdnů"
+  }
+}

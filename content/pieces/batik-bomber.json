@@ -1,0 +1,31 @@
+{
+  "en": {
+    "name": "Batik Bomber",
+    "description": "Four different batik panels, khaki denim sleeves, hand-beaded collar trim.",
+    "materials": "Indonesian batik cotton, khaki denim, yellow zip, beaded collar",
+    "story": "Four batik fabrics that were never meant to meet, joined panel by panel down the front. The collar beading was sewn on by hand over two evenings.",
+    "price": 3800,
+    "size": "L / 40",
+    "images": [
+      "/uploads/batik-a.jpg"
+    ],
+    "category": "bomber",
+    "subcategory": "bomber-print",
+    "status": "available",
+    "season": "",
+    "stockist": "",
+    "order": 6
+  },
+  "fr": {
+    "name": "Bomber Batik",
+    "description": "Quatre panneaux batik différents, manches en denim kaki, col brodé de perles à la main.",
+    "materials": "Coton batik indonésien, denim kaki, zip jaune, col perlé",
+    "story": "Quatre batiks qui n'étaient pas faits pour se rencontrer, assemblés panneau par panneau sur le devant. Les perles du col ont été cousues à la main en deux soirées."
+  },
+  "cs": {
+    "name": "Bomber Batika",
+    "description": "Čtyři různé batikované díly, khaki džínové rukávy, ručně korálkovaný límec.",
+    "materials": "Indonéská batikovaná bavlna, khaki denim, žlutý zip, korálkový límec",
+    "story": "Čtyři batiky, které se nikdy neměly potkat, spojené díl po dílu na předním díle. Korálky na límci byly našity ručně během dvou večerů."
+  }
+}

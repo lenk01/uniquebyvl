@@ -1,0 +1,44 @@
+{
+  "en": {
+    "title": "Team building — 18 people",
+    "when": "March 2026",
+    "place": "Company offices, Karlín",
+    "short": "Old company t-shirts turned into quilted pouches, half a day.",
+    "long": "The company had four boxes of unworn branded t-shirts from events going back six years. We cut them down, quilted the printed parts in narrow lines and turned them into pouches — eighteen of them, each showing a different fragment of the old logo. Nobody looked at their phone for four hours.",
+    "included": [
+      "Four machines brought to the offices",
+      "Preparation of the company's own textiles",
+      "Each participant left with a finished pouch"
+    ],
+    "images": [
+      "/uploads/atelier-table.jpg",
+      "/uploads/pouch-a.jpg",
+      "/uploads/atelier-rack.jpg"
+    ],
+    "order": 2
+  },
+  "fr": {
+    "title": "Team building — 18 salariés",
+    "when": "Mars 2026",
+    "place": "Bureaux de l'entreprise, Karlín",
+    "short": "Anciens t-shirts d'entreprise transformés en pochettes matelassées, une demi-journée.",
+    "long": "L'entreprise avait quatre cartons de t-shirts floqués jamais portés, accumulés sur six ans d'événements. On les a recoupés, matelassés en fines lignes sur les parties imprimées, et transformés en pochettes — dix-huit, chacune montrant un fragment différent de l'ancien logo. Personne n'a regardé son téléphone pendant quatre heures.",
+    "included": [
+      "Quatre machines apportées dans les bureaux",
+      "Préparation des textiles de l'entreprise",
+      "Chaque participant est reparti avec sa pochette"
+    ]
+  },
+  "cs": {
+    "title": "Team building — 18 lidí",
+    "when": "Březen 2026",
+    "place": "Kanceláře firmy, Karlín",
+    "short": "Staré firemní trička proměněná v prošívaná pouzdra, půl dne.",
+    "long": "Firma měla čtyři krabice nenošených potištěných triček z akcí za posledních šest let. Rozstříhali jsme je, potištěné části prošili v úzkých liniích a udělali z nich pouzdra — osmnáct kusů, každé s jiným fragmentem starého loga. Čtyři hodiny se nikdo nepodíval na telefon.",
+    "included": [
+      "Čtyři stroje přivezené do kanceláří",
+      "Příprava firemních textilií",
+      "Každý účastník odešel s hotovým pouzdrem"
+    ]
+  }
+}

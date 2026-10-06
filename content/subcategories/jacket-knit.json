@@ -1,0 +1,13 @@
+{
+  "en": {
+    "name": "Denim & knit",
+    "category": "jacket",
+    "order": 3
+  },
+  "fr": {
+    "name": "Denim & maille"
+  },
+  "cs": {
+    "name": "Denim a pletenina"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "en": {
+    "name": "Serpent Bomber",
+    "description": "Snake-print front panels, deep burgundy sleeves, knitted cuffs from a reclaimed sweater.",
+    "materials": "Printed cotton panel, burgundy jersey, cable-knit cuffs",
+    "story": "The printed panels come from a men's shirt that had lost its collar. The cuffs are the sleeves of a cream cable sweater that had a hole at the elbow.",
+    "price": 3600,
+    "size": "M / 38",
+    "images": [
+      "/uploads/serpent-a.jpg"
+    ],
+    "category": "bomber",
+    "subcategory": "bomber-print",
+    "status": "available",
+    "season": "",
+    "stockist": "",
+    "order": 2
+  },
+  "fr": {
+    "name": "Bomber Serpent",
+    "description": "Panneaux imprimés serpents devant, manches bordeaux, poignets en maille récupérée.",
+    "materials": "Panneau de coton imprimé, jersey bordeaux, poignets en maille torsadée",
+    "story": "Les panneaux imprimés viennent d'une chemise d'homme qui avait perdu son col. Les poignets sont les manches d'un pull écru torsadé troué au coude."
+  },
+  "cs": {
+    "name": "Bomber Had",
+    "description": "Přední díly s hadím potiskem, tmavě vínové rukávy, pletené manžety z recyklovaného svetru.",
+    "materials": "Potištěný bavlněný díl, vínový žerzej, pletené manžety",
+    "story": "Potištěné díly pocházejí z pánské košile, která přišla o límec. Manžety jsou rukávy krémového svetru s dírou na lokti."
+  }
+}

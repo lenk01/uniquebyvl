@@ -1,0 +1,101 @@
+{
+  "en": {
+    "eyebrow": "Custom",
+    "title": "A garment drawn for you",
+    "intro": "From the first conversation to the finished piece, count five to nine weeks. Bring your own fabric, or choose from the studio.",
+    "steps": [
+      {
+        "title": "First exchange",
+        "text": "You describe the project, the occasion and the budget. Reply within 48 hours."
+      },
+      {
+        "title": "Sketch & quote",
+        "text": "Two proposals for the cut, a fabric selection, a firm price."
+      },
+      {
+        "title": "Measurements",
+        "text": "At the atelier in Prague, or remotely with a detailed measuring guide."
+      },
+      {
+        "title": "Making",
+        "text": "A toile fitting on structured pieces, then the final build."
+      },
+      {
+        "title": "Delivery",
+        "text": "Pick-up at the atelier or tracked parcel. Alterations free for the first month."
+      }
+    ],
+    "prices_eyebrow": "Price guide",
+    "prices_title": "What a commission costs",
+    "prices_intro": "Indicative ranges, fabric included. The firm price comes with the sketch, before you commit to anything.",
+    "brief_eyebrow": "Your project",
+    "brief_title": "Tell us what you have in mind",
+    "attach_note": "You can attach your inspiration photos when you reply to the first email."
+  },
+  "fr": {
+    "eyebrow": "Sur-mesure",
+    "title": "Un vêtement dessiné pour vous",
+    "intro": "Du premier échange à la pièce finie, comptez cinq à neuf semaines. Apportez votre tissu, ou choisissez dans ceux de l'atelier.",
+    "steps": [
+      {
+        "title": "Premier échange",
+        "text": "Vous décrivez le projet, l'occasion, le budget. Réponse sous 48 h."
+      },
+      {
+        "title": "Croquis & devis",
+        "text": "Deux propositions de coupe, une sélection de tissus, un prix ferme."
+      },
+      {
+        "title": "Mesures",
+        "text": "À l'atelier à Prague, ou à distance avec un guide de mesure détaillé."
+      },
+      {
+        "title": "Réalisation",
+        "text": "Toile d'essayage sur les pièces structurées, puis montage final."
+      },
+      {
+        "title": "Livraison",
+        "text": "Retrait à l'atelier ou colis suivi. Retouches offertes le premier mois."
+      }
+    ],
+    "prices_eyebrow": "Repères tarifaires",
+    "prices_title": "Ce que coûte une commande",
+    "prices_intro": "Fourchettes indicatives, tissu compris. Le prix ferme arrive avec le croquis, avant tout engagement.",
+    "brief_eyebrow": "Votre projet",
+    "brief_title": "Dites-nous ce que vous avez en tête",
+    "attach_note": "Vous pourrez joindre vos photos d'inspiration en réponse au premier e-mail."
+  },
+  "cs": {
+    "eyebrow": "Na míru",
+    "title": "Oděv navržený pro vás",
+    "intro": "Od prvního kontaktu po hotový kus počítejte pět až devět týdnů. Přineste vlastní látku, nebo vyberte z ateliéru.",
+    "steps": [
+      {
+        "title": "První kontakt",
+        "text": "Popíšete projekt, příležitost a rozpočet. Odpověď do 48 hodin."
+      },
+      {
+        "title": "Skica a cena",
+        "text": "Dva návrhy střihu, výběr látek, pevná cena."
+      },
+      {
+        "title": "Míry",
+        "text": "V ateliéru v Praze, nebo na dálku s podrobným návodem na míry."
+      },
+      {
+        "title": "Šití",
+        "text": "U strukturovaných kusů zkouška na plátně, poté finální ušití."
+      },
+      {
+        "title": "Předání",
+        "text": "Osobní odběr nebo sledovaná zásilka. Úpravy první měsíc zdarma."
+      }
+    ],
+    "prices_eyebrow": "Orientační ceny",
+    "prices_title": "Kolik stojí zakázka",
+    "prices_intro": "Orientační rozpětí včetně látky. Pevná cena přichází se skicou, ještě než se k čemukoli zavážete.",
+    "brief_eyebrow": "Váš projekt",
+    "brief_title": "Popište, co máte v hlavě",
+    "attach_note": "Inspirační fotky můžete připojit v odpovědi na první e-mail."
+  }
+}

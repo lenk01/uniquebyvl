@@ -1,0 +1,32 @@
+{
+  "en": {
+    "name": "Archive Pouch",
+    "description": "Small quilted pouch, 1990s catalogue print, denim base, wrist strap.",
+    "materials": "Quilted sportswear catalogue print, denim base, brass zip",
+    "story": "Printed with pages of an old sportswear catalogue, quilted in narrow lines. Every pouch falls on a different part of the print, so no two are the same.",
+    "price": 690,
+    "size": "22 × 15 cm",
+    "images": [
+      "/uploads/pouch-a.jpg",
+      "/uploads/atelier-table.jpg"
+    ],
+    "category": "bag",
+    "subcategory": "bag-pouch",
+    "status": "available",
+    "season": "",
+    "stockist": "",
+    "order": 13
+  },
+  "fr": {
+    "name": "Pochette Archive",
+    "description": "Petite pochette matelassée, imprimé catalogue des années 1990, base denim, dragonne.",
+    "materials": "Imprimé catalogue de sport matelassé, base en denim, zip laiton",
+    "story": "Imprimée de pages d'un vieux catalogue de sport, matelassée en fines lignes. Chaque pochette tombe sur une partie différente de l'imprimé : aucune n'est identique."
+  },
+  "cs": {
+    "name": "Pouzdro Archive",
+    "description": "Malé prošívané pouzdro, potisk katalogu z 90. let, džínové dno, poutko na ruku.",
+    "materials": "Prošívaný potisk sportovního katalogu, džínové dno, mosazný zip",
+    "story": "Potištěné stránkami starého sportovního katalogu, prošité v úzkých liniích. Každé pouzdro padne na jinou část potisku, takže žádná dvě nejsou stejná."
+  }
+}

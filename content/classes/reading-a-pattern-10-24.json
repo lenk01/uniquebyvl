@@ -1,0 +1,100 @@
+{
+  "en": {
+    "title": "Reading a pattern",
+    "when": "Sat 24 Oct",
+    "time": "10:00–13:00",
+    "venue": "Atelier, Prague 7",
+    "level": "Some basics needed",
+    "duration": "3 hours",
+    "short": "Symbols, grain lines, tracing and adjusting a pattern to your own measurements.",
+    "long": "The class that turns a commercial pattern from an unreadable sheet into a tool. We decode the symbols, take your measurements properly, and adjust a pattern so it fits you rather than a standard size.",
+    "make": "Your own traced and adjusted pattern, ready to cut at home.",
+    "included": [
+      "A commercial pattern to work from",
+      "Tracing paper, rulers, tape measure",
+      "A printed cheat sheet of the symbols"
+    ],
+    "programme": [
+      {
+        "time": "10:00",
+        "text": "What all those lines and notches mean"
+      },
+      {
+        "time": "11:00",
+        "text": "Taking measurements that are actually right"
+      },
+      {
+        "time": "12:00",
+        "text": "Tracing and adjusting for your body"
+      }
+    ],
+    "date": "2026-10-24",
+    "price": "1 200 Kč",
+    "seats_left": 0,
+    "capacity": 6,
+    "images": [
+      "/uploads/atelier-table.jpg",
+      "/uploads/atelier-rack.jpg"
+    ]
+  },
+  "fr": {
+    "title": "Lire un patron",
+    "when": "Sam. 24 oct.",
+    "time": "10h–13h",
+    "venue": "Atelier, Prague 7",
+    "level": "Quelques bases nécessaires",
+    "duration": "3 heures",
+    "short": "Symboles, droit-fil, décalquer et ajuster un patron à ses propres mesures.",
+    "long": "Le cours qui transforme un patron du commerce, feuille illisible, en outil. On décode les symboles, on prend les mesures correctement, et on ajuste un patron pour qu'il vous aille à vous plutôt qu'à une taille standard.",
+    "make": "Votre patron décalqué et ajusté, prêt à couper chez vous.",
+    "included": [
+      "Un patron du commerce pour travailler",
+      "Papier calque, règles, mètre ruban",
+      "Un aide-mémoire imprimé des symboles"
+    ],
+    "programme": [
+      {
+        "time": "10h",
+        "text": "Ce que veulent dire toutes ces lignes et ces crans"
+      },
+      {
+        "time": "11h",
+        "text": "Prendre des mesures qui tombent juste"
+      },
+      {
+        "time": "12h",
+        "text": "Décalquer et ajuster à votre morphologie"
+      }
+    ]
+  },
+  "cs": {
+    "title": "Jak číst střih",
+    "when": "So 24. října",
+    "time": "10:00–13:00",
+    "venue": "Ateliér, Praha 7",
+    "level": "Základy nutné",
+    "duration": "3 hodiny",
+    "short": "Značky, směr nitě, obkreslení a úprava střihu na vlastní míry.",
+    "long": "Kurz, který z komerčního střihu — nečitelného archu papíru — udělá nástroj. Rozluštíme značky, správně vezmeme míry a upravíme střih tak, aby seděl vám, ne standardní velikosti.",
+    "make": "Vlastní obkreslený a upravený střih, připravený stříhat doma.",
+    "included": [
+      "Komerční střih na práci",
+      "Pauzovací papír, pravítka, krejčovský metr",
+      "Tištěný tahák se značkami"
+    ],
+    "programme": [
+      {
+        "time": "10:00",
+        "text": "Co znamenají všechny ty čáry a zářezy"
+      },
+      {
+        "time": "11:00",
+        "text": "Jak vzít míry, které opravdu sedí"
+      },
+      {
+        "time": "12:00",
+        "text": "Obkreslení a úprava na vaši postavu"
+      }
+    ]
+  }
+}

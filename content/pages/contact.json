@@ -1,0 +1,23 @@
+{
+  "en": {
+    "stockists_eyebrow": "Points of sale",
+    "stockists_title": "Where to find the pieces",
+    "stockists_intro": "Besides this site, the pieces are in these places. Click a name for the shop, click an address to open it in Maps.",
+    "eyebrow": "Contact",
+    "title": "Write to Virginie"
+  },
+  "fr": {
+    "stockists_eyebrow": "Points de vente",
+    "stockists_title": "Où trouver les pièces",
+    "stockists_intro": "En dehors de ce site, les pièces sont dans ces lieux. Cliquez sur un nom pour la boutique, sur une adresse pour l'ouvrir dans Maps.",
+    "eyebrow": "Contact",
+    "title": "Écrire à Virginie"
+  },
+  "cs": {
+    "stockists_eyebrow": "Prodejní místa",
+    "stockists_title": "Kde kusy najdete",
+    "stockists_intro": "Kromě tohoto webu najdete kusy na těchto místech. Kliknutím na název otevřete obchod, kliknutím na adresu Mapy.",
+    "eyebrow": "Kontakt",
+    "title": "Napište Virginii"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "en": {
+    "name": "Print & batik",
+    "category": "bomber",
+    "order": 2
+  },
+  "fr": {
+    "name": "Imprimé & batik"
+  },
+  "cs": {
+    "name": "Potisk a batika"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "en": {
+    "eyebrow": "Workshops",
+    "title": "An atelier built around your event",
+    "intro": "Virginie travels with the machines and designs the workshop around your group: format, length, the piece made and the mood are decided together.",
+    "paragraphs": [
+      "Virginie brings the machines, the fabric and the boxes of offcuts, and builds the session around your group rather than around a fixed programme. A hen party in a flat, eighteen colleagues in a meeting room, a shop that wants something happening on a Saturday — the shape changes every time.",
+      "What stays the same: everyone works with their hands for the whole session, everyone leaves with a finished piece they made themselves, and nothing is thrown away. The material is usually something you already have — old company t-shirts, jackets that no longer fit, fabric from the studio boxes.",
+      "Tell us the group, the place and roughly what you want people to leave with. We come back with a format, a length and a firm price. Sessions run from two hours to a full day, for six to twenty people, in Prague and anywhere in the Czech Republic."
+    ],
+    "past_eyebrow": "Already done",
+    "past_title": "Recent workshops",
+    "form_eyebrow": "Your event",
+    "form_title": "Tell us about your project",
+    "image": "/uploads/event-stand.jpg"
+  },
+  "fr": {
+    "eyebrow": "Workshops",
+    "title": "Un atelier construit pour votre événement",
+    "intro": "Virginie se déplace avec les machines et conçoit l'atelier autour de votre groupe : le format, la durée, la pièce réalisée et l'ambiance se décident ensemble.",
+    "paragraphs": [
+      "Virginie apporte les machines, le tissu et les caisses de chutes, et construit la séance autour de votre groupe plutôt qu'autour d'un programme figé. Un EVJF dans un appartement, dix-huit collègues dans une salle de réunion, une boutique qui veut de l'animation un samedi — la forme change à chaque fois.",
+      "Ce qui ne change pas : tout le monde travaille de ses mains pendant toute la séance, tout le monde repart avec une pièce finie qu'il a faite lui-même, et rien ne se jette. La matière première est souvent quelque chose que vous avez déjà — vieux t-shirts d'entreprise, vestes devenues trop petites, tissus des caisses de l'atelier.",
+      "Dites-nous le groupe, le lieu et à peu près ce que vous voulez que les gens emportent. Nous revenons avec un format, une durée et un prix ferme. Les séances vont de deux heures à une journée entière, pour six à vingt personnes, à Prague et partout en République tchèque."
+    ],
+    "past_eyebrow": "Déjà réalisés",
+    "past_title": "Workshops récents",
+    "form_eyebrow": "Votre événement",
+    "form_title": "Parlez-nous de votre projet"
+  },
+  "cs": {
+    "eyebrow": "Workshopy",
+    "title": "Dílna ušitá na míru vaší akci",
+    "intro": "Virginie přijede se stroji a připraví dílnu podle vaší skupiny: formát, délku, vyráběný kus i atmosféru určíme společně.",
+    "paragraphs": [
+      "Virginie přiveze stroje, látky i krabice se zbytky a postaví lekci podle vaší skupiny, ne podle pevného programu. Rozlučka v bytě, osmnáct kolegů v zasedačce, obchod, který chce v sobotu něco živého — pokaždé to vypadá jinak.",
+      "Co zůstává stejné: všichni celou dobu pracují rukama, všichni odcházejí s hotovým kusem, který si sami ušili, a nic se nevyhazuje. Materiálem bývá něco, co už máte — stará firemní trička, bundy, které už nesedí, látky z ateliérových krabic.",
+      "Napište nám, kdo se sejde, kde a zhruba s čím mají lidé odejít. Vrátíme se s formátem, délkou a pevnou cenou. Lekce trvají od dvou hodin po celý den, pro šest až dvacet lidí, v Praze i kdekoli v Česku."
+    ],
+    "past_eyebrow": "Již proběhlo",
+    "past_title": "Nedávné workshopy",
+    "form_eyebrow": "Vaše akce",
+    "form_title": "Napište nám o svém projektu"
+  }
+}

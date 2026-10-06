@@ -1,0 +1,31 @@
+{
+  "en": {
+    "name": "Jungle Bomber",
+    "description": "Banana-leaf print front and shoulders, bottle-green sleeves and back.",
+    "materials": "Printed viscose, bottle-green fleece, green zip",
+    "story": "The print is a summer dress that no longer fitted its owner; the green body is a fleece jacket from the 1990s.",
+    "price": 3400,
+    "size": "M / 38",
+    "images": [
+      "/uploads/jungle-a.jpg"
+    ],
+    "category": "bomber",
+    "subcategory": "bomber-print",
+    "status": "available",
+    "season": "",
+    "stockist": "",
+    "order": 5
+  },
+  "fr": {
+    "name": "Bomber Jungle",
+    "description": "Imprimé feuilles de bananier devant et sur les épaules, manches et dos vert bouteille.",
+    "materials": "Viscose imprimée, polaire vert bouteille, zip vert",
+    "story": "L'imprimé était une robe d'été devenue trop petite ; le corps vert est une veste polaire des années 1990."
+  },
+  "cs": {
+    "name": "Bomber Džungle",
+    "description": "Potisk banánových listů vpředu a na ramenou, lahvově zelené rukávy a záda.",
+    "materials": "Potištěná viskóza, lahvově zelený fleece, zelený zip",
+    "story": "Potisk býval letními šaty, které už majitelce neseděly; zelené tělo je fleecová bunda z 90. let."
+  }
+}

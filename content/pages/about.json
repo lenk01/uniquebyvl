@@ -1,0 +1,31 @@
+{
+  "en": {
+    "eyebrow": "About",
+    "title": "Virginie Lenoir",
+    "paragraphs": [
+      "Text to write with Virginie: how she came to Prague, why one-of-a-kind pieces, how she chooses her fabrics, what a day in the atelier looks like. This is the page people read before they commission something — it deserves to be personal.",
+      "For now this block shows the useful length: around 250 words, two atelier photos and a portrait."
+    ],
+    "quote": "A fabric that already had one life, given a second cut",
+    "image_1": "/uploads/atelier-table.jpg",
+    "image_2": "/uploads/atelier-rack.jpg"
+  },
+  "fr": {
+    "eyebrow": "À propos",
+    "title": "Virginie Lenoir",
+    "paragraphs": [
+      "Texte à écrire avec Virginie : comment elle est arrivée à Prague, pourquoi la pièce unique, comment elle choisit ses tissus, à quoi ressemble une journée à l'atelier. C'est la page que les gens lisent avant de commander — elle mérite d'être personnelle.",
+      "Pour l'instant ce bloc montre la longueur utile : environ 250 mots, deux photos d'atelier et un portrait."
+    ],
+    "quote": "Un tissu qui a déjà vécu, à qui on donne une seconde coupe"
+  },
+  "cs": {
+    "eyebrow": "O nás",
+    "title": "Virginie Lenoir",
+    "paragraphs": [
+      "Text k napsání s Virginií: jak se dostala do Prahy, proč jediné kusy, jak vybírá látky, jak vypadá den v ateliéru. Tuhle stránku si lidé čtou, než si něco objednají — zaslouží si být osobní.",
+      "Zatím tento blok ukazuje užitečnou délku: zhruba 250 slov, dvě fotky ateliéru a portrét."
+    ],
+    "quote": "Látka, která už jeden život měla, dostává druhý střih"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "en": {
+    "title": "Upcycling: rebuild your jeans",
+    "when": "Sun 8 Nov",
+    "time": "14:00–18:00",
+    "venue": "Atelier, Prague 7",
+    "level": "Open to all levels",
+    "duration": "4 hours",
+    "short": "Bring a pair you never wear. Leave with something you do. All tools provided.",
+    "long": "The class closest to how the studio actually works. You arrive with a garment that does not work any more, we look at it together, and we decide what it could become — wider leg, patched panels, a bag. Nothing is thrown away.",
+    "make": "Your own jeans, rebuilt — or a bag made from them if the fit is beyond saving.",
+    "included": [
+      "Machines, needles for denim, thread",
+      "Fabric from the studio scrap boxes",
+      "Coffee and a break in the middle"
+    ],
+    "programme": [
+      {
+        "time": "14:00",
+        "text": "Looking at what you brought, deciding what it becomes"
+      },
+      {
+        "time": "15:00",
+        "text": "Unpicking and cutting"
+      },
+      {
+        "time": "16:00",
+        "text": "Rebuilding, panel by panel"
+      },
+      {
+        "time": "17:30",
+        "text": "Finishing and a photo of everyone's piece"
+      }
+    ],
+    "date": "2026-11-08",
+    "price": "1 400 Kč",
+    "seats_left": 6,
+    "capacity": 6,
+    "images": [
+      "/uploads/denim-a.jpg",
+      "/uploads/jungle-a.jpg"
+    ]
+  },
+  "fr": {
+    "title": "Upcycling : transformer son jean",
+    "when": "Dim. 8 nov.",
+    "time": "14h–18h",
+    "venue": "Atelier, Prague 7",
+    "level": "Tous niveaux",
+    "duration": "4 heures",
+    "short": "Apportez un jean que vous ne portez jamais. Repartez avec une pièce que vous porterez. Outils fournis.",
+    "long": "Le cours le plus proche de la manière dont l'atelier travaille vraiment. Vous arrivez avec un vêtement qui ne va plus, on le regarde ensemble, et on décide ce qu'il peut devenir — jambe élargie, panneaux rapportés, un sac. Rien ne se jette.",
+    "make": "Votre jean, reconstruit — ou un sac taillé dedans si la coupe est irrécupérable.",
+    "included": [
+      "Machines, aiguilles à denim, fil",
+      "Tissus des caisses à chutes de l'atelier",
+      "Café et une pause au milieu"
+    ],
+    "programme": [
+      {
+        "time": "14h",
+        "text": "On regarde ce que vous avez apporté et on décide"
+      },
+      {
+        "time": "15h",
+        "text": "Découdre et couper"
+      },
+      {
+        "time": "16h",
+        "text": "Reconstruire, panneau par panneau"
+      },
+      {
+        "time": "17h30",
+        "text": "Finitions et photo des pièces de chacun"
+      }
+    ]
+  },
+  "cs": {
+    "title": "Upcyklace: proměňte své džíny",
+    "when": "Ne 8. listopadu",
+    "time": "14:00–18:00",
+    "venue": "Ateliér, Praha 7",
+    "level": "Pro všechny úrovně",
+    "duration": "4 hodiny",
+    "short": "Přineste džíny, které nenosíte. Odejdete s kusem, který nosit budete. Nářadí k dispozici.",
+    "long": "Kurz nejbližší tomu, jak ateliér doopravdy pracuje. Přijdete s kusem, který už nefunguje, společně se na něj podíváme a rozhodneme, čím může být — širší nohavice, našité díly, taška. Nic se nevyhazuje.",
+    "make": "Vaše džíny, znovu ušité — nebo taška z nich, pokud už střih zachránit nejde.",
+    "included": [
+      "Stroje, jehly na denim, nitě",
+      "Látky z ateliérových krabic se zbytky",
+      "Káva a pauza uprostřed"
+    ],
+    "programme": [
+      {
+        "time": "14:00",
+        "text": "Podíváme se, co jste přinesli, a rozhodneme"
+      },
+      {
+        "time": "15:00",
+        "text": "Párání a stříhání"
+      },
+      {
+        "time": "16:00",
+        "text": "Znovu šijeme, díl po dílu"
+      },
+      {
+        "time": "17:30",
+        "text": "Dokončení a fotka kusů všech účastníků"
+      }
+    ]
+  }
+}

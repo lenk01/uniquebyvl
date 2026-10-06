@@ -1,0 +1,100 @@
+{
+  "en": {
+    "title": "Sewing machine, first steps",
+    "when": "Sat 10 Oct",
+    "time": "14:00–17:00",
+    "venue": "Atelier, Prague 7",
+    "level": "Absolute beginner",
+    "duration": "3 hours",
+    "short": "Threading, straight seams, zips. Machines and fabric provided; leave with a finished pouch.",
+    "long": "Three hours to stop being afraid of the machine. You thread it, you sew crooked lines, you unpick them, and by the end you have set a zip on your own. Six people maximum, so nobody waits for a machine.",
+    "make": "A lined zip pouch, in a fabric you pick from the studio shelves.",
+    "included": [
+      "One machine per person",
+      "Fabric, thread, zip, needles",
+      "Tea, coffee and something sweet"
+    ],
+    "programme": [
+      {
+        "time": "14:00",
+        "text": "Tour of the machine, threading, first lines on scrap fabric"
+      },
+      {
+        "time": "15:00",
+        "text": "Cutting your pouch and sewing the sides"
+      },
+      {
+        "time": "16:00",
+        "text": "Setting the zip, lining, finishing"
+      }
+    ],
+    "date": "2026-10-10",
+    "price": "950 Kč",
+    "seats_left": 4,
+    "capacity": 6,
+    "images": [
+      "/uploads/pouch-a.jpg",
+      "/uploads/atelier-table.jpg"
+    ]
+  },
+  "fr": {
+    "title": "Machine à coudre, premiers pas",
+    "when": "Sam. 10 oct.",
+    "time": "14h–17h",
+    "venue": "Atelier, Prague 7",
+    "level": "Grand débutant",
+    "duration": "3 heures",
+    "short": "Enfilage, coutures droites, fermetures éclair. Machines et tissu fournis ; repartez avec une pochette finie.",
+    "long": "Trois heures pour ne plus avoir peur de la machine. Vous l'enfilez, vous cousez de travers, vous décousez, et à la fin vous posez une fermeture éclair sans aide. Six personnes maximum, personne n'attend son tour.",
+    "make": "Une pochette zippée doublée, dans un tissu choisi sur les étagères de l'atelier.",
+    "included": [
+      "Une machine par personne",
+      "Tissu, fil, fermeture, aiguilles",
+      "Thé, café et quelque chose de sucré"
+    ],
+    "programme": [
+      {
+        "time": "14h",
+        "text": "Tour de la machine, enfilage, premières lignes sur des chutes"
+      },
+      {
+        "time": "15h",
+        "text": "Coupe de la pochette et couture des côtés"
+      },
+      {
+        "time": "16h",
+        "text": "Pose de la fermeture, doublure, finitions"
+      }
+    ]
+  },
+  "cs": {
+    "title": "Šicí stroj, první kroky",
+    "when": "So 10. října",
+    "time": "14:00–17:00",
+    "venue": "Ateliér, Praha 7",
+    "level": "Úplný začátečník",
+    "duration": "3 hodiny",
+    "short": "Navlékání, rovné švy, zipy. Stroje i látka k dispozici; odejdete s hotovým pouzdrem.",
+    "long": "Tři hodiny na to, abyste se přestali stroje bát. Navléknete ho, ušijete křivě, párátkem to rozpárete a na konci sami všijete zip. Maximálně šest lidí, nikdo nečeká na stroj.",
+    "make": "Podšité pouzdro na zip z látky, kterou si vyberete z ateliérových polic.",
+    "included": [
+      "Stroj pro každého",
+      "Látka, nit, zip, jehly",
+      "Čaj, káva a něco sladkého"
+    ],
+    "programme": [
+      {
+        "time": "14:00",
+        "text": "Seznámení se strojem, navlékání, první švy na zbytcích"
+      },
+      {
+        "time": "15:00",
+        "text": "Střih pouzdra a šití boků"
+      },
+      {
+        "time": "16:00",
+        "text": "Všití zipu, podšívka, dokončení"
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "en": {
+    "type": "Structured jacket",
+    "description": "Tailored shoulder, interfacing, full lining. A toile fitting is included.",
+    "lead_time": "7–9 weeks",
+    "from": "6 000 Kč",
+    "range": "8 000 – 16 000 Kč",
+    "order": 2
+  },
+  "fr": {
+    "type": "Veste structurée",
+    "description": "Épaule montée, entoilage, doublure complète. Une toile d'essayage est incluse.",
+    "lead_time": "7–9 semaines"
+  },
+  "cs": {
+    "type": "Strukturované sako",
+    "description": "Tvarované rameno, výztuha, celopodšívka. Součástí je zkouška na plátně.",
+    "lead_time": "7–9 týdnů"
+  }
+}

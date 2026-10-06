@@ -1,0 +1,26 @@
+{
+  "en": {
+    "eyebrow": "Classes",
+    "title": "Learn to sew with Virginie",
+    "intro": "Small groups, machines provided, leave with your own piece. Places are confirmed by email within 48 hours.",
+    "private_eyebrow": "Private lessons",
+    "private_title": "A session just for you",
+    "private_intro": "Alone or with a friend, on the project of your choice. 1 100 Kč/h at the atelier, 1 400 Kč/h at your place in Prague."
+  },
+  "fr": {
+    "eyebrow": "Cours",
+    "title": "Apprendre à coudre avec Virginie",
+    "intro": "Petits groupes, machines fournies, repartez avec votre pièce. Les places sont confirmées par e-mail sous 48 h.",
+    "private_eyebrow": "Cours particulier",
+    "private_title": "Un créneau rien que pour vous",
+    "private_intro": "Seul ou à deux, sur le projet de votre choix. 1 100 Kč/h à l'atelier, 1 400 Kč/h chez vous à Prague."
+  },
+  "cs": {
+    "eyebrow": "Kurzy",
+    "title": "Naučte se šít s Virginií",
+    "intro": "Malé skupiny, stroje k dispozici, odcházíte s vlastním kusem. Místa potvrzujeme e-mailem do 48 hodin.",
+    "private_eyebrow": "Individuální lekce",
+    "private_title": "Termín jen pro vás",
+    "private_intro": "Sami nebo ve dvou, na projektu podle vašeho výběru. 1 100 Kč/h v ateliéru, 1 400 Kč/h u vás v Praze."
+  }
+}

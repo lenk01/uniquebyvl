@@ -1,0 +1,21 @@
+{
+  "en": {
+    "title": "Companies & team building",
+    "meta": "Half day · 8 to 20 people",
+    "description": "Upcycling session around your own textiles: old uniforms, event merch, offcuts.",
+    "price": "on quotation",
+    "order": 2
+  },
+  "fr": {
+    "title": "Entreprises & team building",
+    "meta": "Demi-journée · 8 à 20 personnes",
+    "description": "Atelier upcycling autour de vos propres textiles : anciens uniformes, goodies, chutes.",
+    "price": "sur devis"
+  },
+  "cs": {
+    "title": "Firmy a team building",
+    "meta": "Půl dne · 8 až 20 osob",
+    "description": "Upcyklační dílna z vašich vlastních textilií: staré uniformy, merch, odstřižky.",
+    "price": "na vyžádání"
+  }
+}

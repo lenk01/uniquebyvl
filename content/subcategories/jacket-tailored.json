@@ -1,0 +1,13 @@
+{
+  "en": {
+    "name": "Tailored",
+    "category": "jacket",
+    "order": 1
+  },
+  "fr": {
+    "name": "Structurées"
+  },
+  "cs": {
+    "name": "Střižené"
+  }
+}

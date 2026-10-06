@@ -1,0 +1,20 @@
+{
+  "en": {
+    "type": "Dress",
+    "description": "Fitted or loose, lined. Silk, linen, crêpe or a fabric you bring.",
+    "lead_time": "4–6 weeks",
+    "from": "3 500 Kč",
+    "range": "4 500 – 9 000 Kč",
+    "order": 3
+  },
+  "fr": {
+    "type": "Robe",
+    "description": "Ajustée ou fluide, doublée. Soie, lin, crêpe ou un tissu que vous apportez.",
+    "lead_time": "4–6 semaines"
+  },
+  "cs": {
+    "type": "Šaty",
+    "description": "Přiléhavé nebo volné, podšité. Hedvábí, len, krep nebo vaše látka.",
+    "lead_time": "4–6 týdnů"
+  }
+}

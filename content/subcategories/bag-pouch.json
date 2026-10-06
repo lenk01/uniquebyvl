@@ -1,0 +1,13 @@
+{
+  "en": {
+    "name": "Pouches",
+    "category": "bag",
+    "order": 2
+  },
+  "fr": {
+    "name": "Pochettes"
+  },
+  "cs": {
+    "name": "Pouzdra"
+  }
+}

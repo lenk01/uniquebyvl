@@ -1,0 +1,25 @@
+{
+  "en": {
+    "tagline": "One-of-a-kind and upcycled garments, custom pieces, classes and workshops. Prague 7.",
+    "visit": "Atelier in Prague 7, by appointment",
+    "contact_email": "hello@uniquebyvl.com",
+    "phone": "",
+    "ico": "",
+    "atelier_address": "Praha 7",
+    "instagram": "https://www.instagram.com/uniquebyvl/",
+    "facebook": "https://www.facebook.com/uniquebyvl",
+    "extra_socials": [],
+    "form_endpoint": "",
+    "logo_size": 34,
+    "display_font": "Anton",
+    "logo": "/uploads/logo.png"
+  },
+  "fr": {
+    "tagline": "Vêtements uniques et upcyclés, sur-mesure, cours et workshops. Prague 7.",
+    "visit": "Atelier à Prague 7, sur rendez-vous"
+  },
+  "cs": {
+    "tagline": "Originální a upcyklované oděvy, zakázky na míru, kurzy a workshopy. Praha 7.",
+    "visit": "Ateliér v Praze 7, po domluvě"
+  }
+}
