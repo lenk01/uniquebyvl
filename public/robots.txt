@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /admin/
 
-Sitemap: https://uniquebyvl.pages.dev/sitemap.xml
+Sitemap: https://uniquebyvl.klara-lenek05.workers.dev/sitemap.xml
