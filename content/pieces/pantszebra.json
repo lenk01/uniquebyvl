@@ -1,0 +1,31 @@
+{
+  "en": {
+    "name": "Pantszebra",
+    "images": [
+      "/uploads/canvas-a.jpg"
+    ],
+    "price": 3040,
+    "size": "M/38",
+    "description": "Improved fabrics\nRelaxed fit\nFront pleats for subtle structure\nClean, minimal finish",
+    "materials": "68% Polyester - 28% Rayon - 4% Spandex",
+    "story": "",
+    "category": "pants",
+    "subcategory": "",
+    "status": "available",
+    "season": "",
+    "stockist": "atelier",
+    "order": 100
+  },
+  "fr": {
+    "name": "",
+    "description": "",
+    "materials": "",
+    "story": ""
+  },
+  "cs": {
+    "name": "",
+    "description": "",
+    "materials": "",
+    "story": ""
+  }
+}
