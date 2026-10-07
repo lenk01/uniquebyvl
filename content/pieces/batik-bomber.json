@@ -1,14 +1,14 @@
 {
   "en": {
     "name": "Batik Bomber",
+    "images": [
+      "/uploads/815919857_889906217391092_3715932780422225963_n.webp"
+    ],
+    "price": 3800,
+    "size": "L / 40",
     "description": "Four different batik panels, khaki denim sleeves, hand-beaded collar trim.",
     "materials": "Indonesian batik cotton, khaki denim, yellow zip, beaded collar",
     "story": "Four batik fabrics that were never meant to meet, joined panel by panel down the front. The collar beading was sewn on by hand over two evenings.",
-    "price": 3800,
-    "size": "L / 40",
-    "images": [
-      "/uploads/batik-a.jpg"
-    ],
     "category": "bomber",
     "subcategory": "bomber-print",
     "status": "available",
