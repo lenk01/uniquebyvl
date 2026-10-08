@@ -1,10 +1,16 @@
 ---
 // Every form posts to the address set in the admin (Site settings → Form address).
+// That field accepts either a plain e-mail address (sent through FormSubmit, no account needed)
+// or the address of a form service such as Formspree (https://formspree.io/f/xxxx).
 import { site, v } from '../lib/content.js';
 const { subject, submit } = Astro.props;
-const endpoint = v(site, 'en', 'form_endpoint') || '';
+const raw = String(v(site, 'en', 'form_endpoint') || '').trim().replace(/^mailto:/i, '');
+const isEmail = /^[^\s@/]+@[^\s@/]+\.[a-z]{2,}$/i.test(raw);
+const endpoint = isEmail ? `https://formsubmit.co/ajax/${raw}` : (/^https:\/\//i.test(raw) ? raw : '');
+const service = isEmail ? 'formsubmit' : (endpoint ? 'url' : '');
+const action = isEmail ? `https://formsubmit.co/${raw}` : (endpoint || undefined);
 ---
-<form novalidate data-form={subject} data-endpoint={endpoint} method="POST" action={endpoint || undefined}>
+<form novalidate data-form={subject} data-endpoint={endpoint} data-service={service} method="POST" action={action}>
   <input type="hidden" name="_subject" value={`${subject} — uniquebyvl`} />
   <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true" />
   <slot />

@@ -466,7 +466,7 @@ collections:
         i18n: true
         fields:
           - { name: contact_email, label: "Contact e-mail (shown on the site)", widget: string }
-          - { name: form_endpoint, label: "Form address", widget: string, required: false, hint: "The address given by the form service (e.g. https://formspree.io/f/xxxx). Every form on the site sends there." }
+          - { name: form_endpoint, label: "Form address", widget: string, required: false, hint: "Simplest: just your e-mail address (messages go there through FormSubmit, free, no account — the first message triggers a confirmation e-mail: click Activate). Or a form service address such as https://formspree.io/f/xxxx. Every form on the site sends there." }
           - { name: phone, label: Phone, widget: string, required: false }
           - { name: ico, label: IČO, widget: string, required: false }
           - { name: atelier_address, label: Atelier address, widget: string, required: false }

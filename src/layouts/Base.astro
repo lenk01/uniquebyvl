@@ -28,7 +28,7 @@ const ogImage = image ? new URL(image, Astro.site).href : new URL('/uploads/wave
 const fontParam = { 'Anton': 'Anton', 'Archivo Black': 'Archivo+Black', 'Bebas Neue': 'Bebas+Neue', 'Oswald': 'Oswald:wght@500;600' }[font] || 'Anton';
 const uiForScript = {
   vName: k.vName, vEmail: k.vEmail, vEmailTypo: k.vEmailTypo, vEmailTld: k.vEmailTld, vUse: k.vUse,
-  vFix: k.vFix, formNotReady: k.formNotReady, sendError: k.sendError, sentShort: k.sentShort,
+  vFix: k.vFix, formNotReady: k.formNotReady, formActivate: k.formActivate, sendError: k.sendError, sentShort: k.sentShort,
   photoOf: k.photoOf, email
 };
 ---

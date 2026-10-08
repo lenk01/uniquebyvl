@@ -154,16 +154,26 @@ $$('form[data-form]').forEach((f) => f.addEventListener('submit', async (e) => {
   }
   const data = {};
   new FormData(f).forEach((val, key) => { if (val !== '') data[key] = val; });
+  if (data._gotcha) { done(f, `<span class="eyebrow">✓</span><p style="font-size:16px">${esc(UI.sentShort)}</p>`); return; } // bot
+  delete data._gotcha;
   const reply = $('[data-check="email"]', f)?.value; if (reply) data._replyto = reply;
+  if (f.dataset.service === 'formsubmit') { data._captcha = 'false'; data._template = 'table'; }
   f.classList.add('sending');
-  try {
-    const r = await fetch(endpoint, { method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
-    if (!r.ok) throw new Error(String(r.status));
-    done(f, `<span class="eyebrow">✓</span><p style="font-size:16px">${esc(UI.sentShort)}</p>`);
-  } catch (err) {
+  const fail = (msg) => {
     f.classList.remove('sending'); clearErr(f);
     const box = document.createElement('div'); box.className = 'formerr';
-    box.innerHTML = `${esc(UI.sendError)} <a href="mailto:${esc(UI.email)}">${esc(UI.email)}</a>`;
+    box.innerHTML = msg || `${esc(UI.sendError)} <a href="mailto:${esc(UI.email)}">${esc(UI.email)}</a>`;
     f.prepend(box);
-  }
+  };
+  let r, body = {};
+  try {
+    r = await fetch(endpoint, { method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+    try { body = await r.json(); } catch (_) { body = {}; }
+  } catch (err) { console.warn('[form] network error', err); fail(); return; }
+  const message = String(body.message || (body.errors && body.errors.map((x) => x.message).join(' ')) || '');
+  // FormSubmit answers 200 with success "false" until the address is confirmed by e-mail.
+  if (/activat/i.test(message)) { console.warn('[form]', message); fail(esc(UI.formActivate)); return; }
+  const ok = r.ok && body.success !== false && String(body.success) !== 'false' && !body.errors;
+  if (!ok) { console.warn('[form] refused', r.status, message); fail(); return; }
+  done(f, `<span class="eyebrow">✓</span><p style="font-size:16px">${esc(UI.sentShort)}</p>`);
 }));
