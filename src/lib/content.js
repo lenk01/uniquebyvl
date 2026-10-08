@@ -15,7 +15,7 @@ const load = (glob) =>
 export function v(entry, lang, key) {
   const d = entry && entry.data ? entry.data : entry;
   if (!d) return undefined;
-  const empty = (x) => x === undefined || x === null || x === '' || (Array.isArray(x) && x.length === 0);
+  const empty = (x) => x === undefined || x === null || (typeof x === 'string' && x.trim() === '') || (Array.isArray(x) && x.length === 0);
   const a = d[lang] && d[lang][key];
   if (!empty(a)) return a;
   const b = d.en && d.en[key];

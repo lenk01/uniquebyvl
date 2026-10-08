@@ -17,13 +17,11 @@
     "order": 10
   },
   "fr": {
-    "name": "Veste à Capuche Pierre",
     "description": "Veste à capuche oversize en toile pierre, fermoirs métalliques, zips latéraux.",
     "materials": "Toile de coton épaisse, fermoirs métal, poches plaquées",
     "story": "La pièce la plus discrète de l'atelier. Construite à partir de deux vestes de travail, teintes dans un même gris pierre pour faire disparaître les coutures."
   },
   "cs": {
-    "name": "Bunda s kapucí Stone",
     "description": "Oversize bunda s kapucí v kamenné barvě, kovové přezky, boční zipy.",
     "materials": "Silné bavlněné plátno, kovové přezky, našité kapsy",
     "story": "Nejtišší kus v ateliéru. Vznikl ze dvou pracovních bund obarvených do jedné kamenné šedi, aby švy zmizely."

@@ -17,13 +17,11 @@
     "order": 3
   },
   "fr": {
-    "name": "Bomber Phénix",
     "description": "Corps en jacquard ocre à oiseaux et pagodes, manches en velours côtelé noir.",
     "materials": "Jacquard doré, velours côtelé noir, doublure coton",
     "story": "Le jacquard est un panneau de rideau issu d'un appartement vidé à Vinohrady. De quoi faire une veste, et une seule."
   },
   "cs": {
-    "name": "Bomber Fénix",
     "description": "Okrové žakárové tělo s ptáky a pagodami, černé manšestrové rukávy.",
     "materials": "Zlatý žakár, černý manšestr, bavlněná podšívka",
     "story": "Žakár je závěsový díl z vyklízeného bytu na Vinohradech. Látky bylo přesně na jednu bundu."

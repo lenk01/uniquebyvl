@@ -17,13 +17,11 @@
     "order": 11
   },
   "fr": {
-    "name": "Robe Léopard",
     "description": "Robe ample imprimé léopard, taille froncée par une ceinture à anneau laiton.",
     "materials": "Viscose imprimée, ceinture à anneau",
     "story": "Une robe arrivée pour une réparation et repartie autrement : raccourcie, recoupée à l'épaule, ceinturée d'un anneau pris dans le bocal à boutons."
   },
   "cs": {
-    "name": "Šaty Leopard",
     "description": "Volné šaty s leopardím potiskem, nabíraný pas s mosazným kroužkem.",
     "materials": "Potištěná viskóza, pásek s kroužkem",
     "story": "Šaty přišly na opravu a odešly jako něco jiného: zkrácené, přestřižené v rameni a doplněné páskem s kroužkem ze sklenice s knoflíky."

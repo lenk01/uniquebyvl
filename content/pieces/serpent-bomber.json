@@ -17,13 +17,11 @@
     "order": 2
   },
   "fr": {
-    "name": "Bomber Serpent",
     "description": "Panneaux imprimés serpents devant, manches bordeaux, poignets en maille récupérée.",
     "materials": "Panneau de coton imprimé, jersey bordeaux, poignets en maille torsadée",
     "story": "Les panneaux imprimés viennent d'une chemise d'homme qui avait perdu son col. Les poignets sont les manches d'un pull écru torsadé troué au coude."
   },
   "cs": {
-    "name": "Bomber Had",
     "description": "Přední díly s hadím potiskem, tmavě vínové rukávy, pletené manžety z recyklovaného svetru.",
     "materials": "Potištěný bavlněný díl, vínový žerzej, pletené manžety",
     "story": "Potištěné díly pocházejí z pánské košile, která přišla o límec. Manžety jsou rukávy krémového svetru s dírou na lokti."

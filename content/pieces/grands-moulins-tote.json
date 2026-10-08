@@ -18,13 +18,11 @@
     "order": 12
   },
   "fr": {
-    "name": "Sac Grands Moulins",
     "description": "Grand cabas taillé dans un sac de farine imprimé, soufflets léopard, anses longues.",
     "materials": "Sac de farine en jute vintage, soufflets coton léopard, anses en sangle",
     "story": "Le sac porte encore le tampon du moulin. Rien n'a été imprimé ni ajouté — le graphisme est exactement là où le meunier l'a posé il y a cinquante ans."
   },
   "cs": {
-    "name": "Taška Grands Moulins",
     "description": "Velká taška ušitá z potištěného pytle od mouky, leopardí boky, dlouhá ucha.",
     "materials": "Vintage jutový pytel od mouky, leopardí bavlněné boky, plátěná ucha",
     "story": "Pytel stále nese razítko mlýna. Nic nebylo dotištěno ani přidáno — grafika je přesně tam, kam ji před padesáti lety dal mlynář."

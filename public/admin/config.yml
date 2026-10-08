@@ -4,9 +4,9 @@
 # ---------------------------------------------------------------------------
 backend:
   name: github
-  repo: lenk01/uniquebyvl          # ← replace GITHUB-ACCOUNT with VL's GitHub username
+  repo: lenk01/uniquebyvl
   branch: main
-  base_url: https://sveltia-cms-auth.klara-lenek05.workers.dev   # ← the authenticator address (step 5)
+  base_url: https://sveltia-cms-auth.klara-lenek05.workers.dev
   commit_messages:
     create: "Add {{collection}} “{{slug}}”"
     update: "Update {{collection}} “{{slug}}”"
@@ -43,7 +43,7 @@ collections:
   - name: pieces
     label: Pieces
     label_singular: Piece
-    description: "Each piece of the collection. The first photo is the one shown in the grid. Leave French or Czech empty and the site shows English."
+    description: "Each piece of the collection. The first photo is the cover. In French or Czech, an empty field shows the English text; a filled field is that language's own version."
     folder: content/pieces
     format: json
     extension: json
@@ -54,7 +54,7 @@ collections:
     summary: "{{name}} — {{price}} Kč — {{status}}"
     sortable_fields: [order, name, price]
     fields:
-      - { name: name, label: Name, widget: string, i18n: true, required: [en] }
+      - { name: name, label: Name, widget: string, i18n: true, required: [en], hint: "Same name in every language: leave French and Czech empty. Type a French or Czech version only if this language needs a different one." }
       - name: images
         label: Photos
         hint: "Drag to reorder. The first photo is the cover. Delete a photo with its bin icon."
@@ -170,10 +170,10 @@ collections:
     slug: "{{title}}"
     summary: "{{title}} — {{end_date}}"
     fields:
-      - { name: title, label: Title, widget: string, i18n: true, required: [en] }
+      - { name: title, label: Title, widget: string, i18n: true, required: [en], hint: "Same name in every language: leave French and Czech empty. Type a French or Czech version only if this language needs a different one." }
       - { name: dates, label: "Dates as displayed", widget: string, i18n: true, required: [en], hint: "e.g. 3–5 October 2026" }
       - { name: end_date, label: "Last day", widget: datetime, time_format: false, date_format: "YYYY-MM-DD", format: "YYYY-MM-DD" }
-      - { name: venue, label: Venue, widget: string, i18n: true, required: false }
+      - { name: venue, label: Venue, widget: string, i18n: true, required: false, hint: "Same name in every language: leave French and Czech empty. Type a French or Czech version only if this language needs a different one." }
       - { name: description, label: Description, widget: text, i18n: true, required: false }
       - { name: image, label: Photo, widget: image }
       - { name: url, label: "Link (event page)", widget: string, required: false }
@@ -432,7 +432,7 @@ collections:
         i18n: true
         fields:
           - { name: eyebrow, label: Small label, widget: string, i18n: true, required: false }
-          - { name: title, label: Title, widget: string, i18n: true, required: [en] }
+          - { name: title, label: Title, widget: string, i18n: true, required: [en], hint: "Same name in every language: leave French and Czech empty. Type a French or Czech version only if this language needs a different one." }
           - name: paragraphs
             label: Paragraphs
             widget: list

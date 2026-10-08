@@ -18,13 +18,11 @@
     "order": 13
   },
   "fr": {
-    "name": "Pochette Archive",
     "description": "Petite pochette matelassée, imprimé catalogue des années 1990, base denim, dragonne.",
     "materials": "Imprimé catalogue de sport matelassé, base en denim, zip laiton",
     "story": "Imprimée de pages d'un vieux catalogue de sport, matelassée en fines lignes. Chaque pochette tombe sur une partie différente de l'imprimé : aucune n'est identique."
   },
   "cs": {
-    "name": "Pouzdro Archive",
     "description": "Malé prošívané pouzdro, potisk katalogu z 90. let, džínové dno, poutko na ruku.",
     "materials": "Prošívaný potisk sportovního katalogu, džínové dno, mosazný zip",
     "story": "Potištěné stránkami starého sportovního katalogu, prošité v úzkých liniích. Každé pouzdro padne na jinou část potisku, takže žádná dvě nejsou stejná."
