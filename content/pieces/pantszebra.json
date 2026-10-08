@@ -17,15 +17,15 @@
     "order": 100
   },
   "fr": {
-    "name": "",
-    "description": "",
-    "materials": "",
+    "name": "Pantszebra",
+    "description": "Tissus améliorés\nCoupe décontractée\nPliages à l'avant pour une structure subtile\nFinition épurée et minimaliste",
+    "materials": "68 % Polyester - 28 % Rayon - 4 % Spandex",
     "story": ""
   },
   "cs": {
-    "name": "",
-    "description": "",
-    "materials": "",
+    "name": "Pantszebra",
+    "description": "Vylepšené materiály\nVolný střih\nPřední záhyby pro jemnou strukturu\nČisté, minimalistické zpracování",
+    "materials": "68 % polyester – 28 % rayon – 4 % spandex",
     "story": ""
   }
 }
