@@ -55,8 +55,7 @@ const size = v(piece, 'en', 'size');
           <div class="instore">
             <span class="eyebrow">{k.storeOnlyH}</span>
             <p style="font-size:15.5px">{k.storeOnlyP}</p>
-            <p><strong>{v(shop, 'en', 'name')}</strong><br />
-              <a href={mapUrl(v(shop, 'en', 'address'))} target="_blank" rel="noopener noreferrer">{v(shop, 'en', 'address')} ↗</a></p>
+            <p><strong>{v(shop, 'en', 'name')}</strong><br /><a href={mapUrl(v(shop, 'en', 'address'))} target="_blank" rel="noopener noreferrer">{v(shop, 'en', 'address')} ↗</a></p>
             <div class="pdp-actions" style="margin-top:4px">
               {v(shop, 'en', 'url') && <a class="btn sm blue" href={v(shop, 'en', 'url')} target="_blank" rel="noopener noreferrer">{k.storeCta} ↗</a>}
               <a class="btn sm ghost" href={path(lang, 'custom')}>{k.variation}</a>

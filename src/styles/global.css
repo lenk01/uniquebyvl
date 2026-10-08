@@ -383,3 +383,6 @@ button.gal-main{border:0;padding:0;width:100%;display:block;text-align:left}
 .legalnav a:hover{background:var(--rule-soft);color:var(--ink)}
 .legalnav a[aria-current="true"]{background:var(--blue-soft);color:var(--blue);font-weight:600}
 @media (max-width:860px){.legalnav a{white-space:nowrap}}
+
+/* keep the line breaks typed in the admin */
+main p, main td, main dd{white-space:pre-line}

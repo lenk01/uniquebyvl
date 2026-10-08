@@ -209,15 +209,15 @@ collections:
         widget: list
         i18n: true
         required: false
-        field: { name: item, label: Item, widget: string }
+        field: { name: item, label: Item, widget: string, i18n: true }
       - name: programme
         label: Programme
         widget: list
         i18n: true
         required: false
         fields:
-          - { name: time, label: Time, widget: string }
-          - { name: text, label: What happens, widget: string }
+          - { name: time, label: Time, widget: string, i18n: true, required: false }
+          - { name: text, label: What happens, widget: string, i18n: true, required: false }
       - name: images
         label: "Photos (pieces made in this class)"
         widget: list
@@ -245,7 +245,7 @@ collections:
         widget: list
         i18n: true
         required: false
-        field: { name: item, label: Item, widget: string }
+        field: { name: item, label: Item, widget: string, i18n: true }
       - name: images
         label: Photos
         widget: list
@@ -385,8 +385,8 @@ collections:
             i18n: true
             required: false
             fields:
-              - { name: title, label: Title, widget: string }
-              - { name: text, label: Text, widget: text }
+              - { name: title, label: Title, widget: string, i18n: true, required: false }
+              - { name: text, label: Text, widget: text, i18n: true, required: false }
           - { name: prices_eyebrow, label: Prices — small label, widget: string, i18n: true, required: false }
           - { name: prices_title, label: Prices — title, widget: string, i18n: true, required: false }
           - { name: prices_intro, label: Prices — intro, widget: text, i18n: true, required: false }
@@ -419,7 +419,7 @@ collections:
             widget: list
             i18n: true
             required: false
-            field: { name: paragraph, label: Paragraph, widget: text }
+            field: { name: paragraph, label: Paragraph, widget: text, i18n: true }
           - { name: image, label: Photo next to the text, widget: image, required: false }
           - { name: past_eyebrow, label: Past workshops — small label, widget: string, i18n: true, required: false }
           - { name: past_title, label: Past workshops — title, widget: string, i18n: true, required: false }
@@ -438,7 +438,7 @@ collections:
             widget: list
             i18n: true
             required: false
-            field: { name: paragraph, label: Paragraph, widget: text }
+            field: { name: paragraph, label: Paragraph, widget: text, i18n: true }
           - { name: image_1, label: Photo 1, widget: image, required: false }
           - { name: image_2, label: Photo 2, widget: image, required: false }
           - { name: quote, label: Quote, widget: string, i18n: true, required: false }
