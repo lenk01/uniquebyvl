@@ -196,6 +196,7 @@ collections:
       - { name: when, label: "Date as displayed", widget: string, i18n: true, required: [en], hint: "e.g. Sat 10 Oct" }
       - { name: time, label: Time, widget: string, i18n: true, required: false, hint: "e.g. 14:00–17:00" }
       - { name: price, label: Price, widget: string, hint: "e.g. 950 Kč" }
+      - { name: payment_link, label: "Payment link (SumUp / Stripe)", widget: string, required: false, hint: "Optional. If filled, the booking confirmation e-mail includes it so the client can pay." }
       - { name: seats_left, label: "Seats left", widget: number, value_type: int, min: 0, hint: "Set to 0 and the class shows Full with a waiting list." }
       - { name: capacity, label: Capacity, widget: number, value_type: int, min: 1 }
       - { name: venue, label: Venue, widget: string, i18n: true, required: false }
@@ -485,3 +486,5 @@ collections:
           - { name: logo_size, label: "Logo size (px)", widget: number, value_type: int, min: 20, max: 72, default: 34 }
           - { name: display_font, label: Title typeface, widget: select, options: [Anton, Archivo Black, Bebas Neue, Oswald], default: Anton }
           - { name: allow_indexing, label: "Let Google index the site", widget: boolean, default: false, required: false, hint: "Leave off until launch day." }
+          - { name: booking_subject, label: "Booking confirmation — e-mail subject", widget: string, i18n: true, required: false, hint: "Leave empty to use the built-in text. Words in braces are replaced: {name} {class} {when} {time} {venue} {seats} {price}" }
+          - { name: booking_body, label: "Booking confirmation — e-mail text", widget: text, i18n: true, required: false, hint: "Leave empty to use the built-in text. Words in braces are replaced: {name} {class} {when} {time} {venue} {seats} {price} {payment} ({payment} = the sentence with the class payment link, or nothing)." }

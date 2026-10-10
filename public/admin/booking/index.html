@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Confirmer une réservation — UNIQUE By VL</title>
+<style>
+  :root { --ink:#141414; --soft:#5b5b5b; --line:#e3e0da; --bg:#f7f5f1; --card:#fff; --blue:#2b3fd6; --ok:#1d7a46; --okbg:#e8f5ec; --warn:#8a5a00; --warnbg:#fff4dc; --bad:#a32020; --badbg:#fbeaea; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  main { max-width:640px; margin:0 auto; padding:24px 16px 60px; }
+  h1 { font-size:22px; margin:0 0 4px; }
+  .sub { color:var(--soft); margin:0 0 20px; font-size:14px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px; margin-bottom:16px; }
+  dl { display:grid; grid-template-columns:auto 1fr; gap:6px 14px; margin:0; }
+  dt { color:var(--soft); font-size:14px; }
+  dd { margin:0; font-weight:600; word-break:break-word; }
+  .note { border-radius:10px; padding:12px 14px; margin-bottom:16px; font-size:15px; }
+  .note.ok { background:var(--okbg); color:var(--ok); }
+  .note.warn { background:var(--warnbg); color:var(--warn); }
+  .note.bad { background:var(--badbg); color:var(--bad); }
+  label { display:block; font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; color:var(--soft); margin:12px 0 6px; }
+  input, textarea { width:100%; font:inherit; padding:10px 12px; border:1px solid var(--line); border-radius:10px; background:#fff; color:var(--ink); }
+  textarea { min-height:260px; resize:vertical; }
+  .btns { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+  button, .btn { appearance:none; border:0; border-radius:999px; padding:12px 18px; font-family:inherit; font-size:15px; font-weight:600; line-height:1.2; cursor:pointer; text-decoration:none; display:inline-block; text-align:center; }
+  .primary { background:var(--ink); color:#fff; }
+  .secondary { background:transparent; color:var(--ink); border:1px solid var(--ink); }
+  button[disabled] { opacity:.5; cursor:wait; }
+  .big { font-size:28px; font-weight:700; }
+  a { color:var(--blue); }
+  [hidden] { display:none !important; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Confirmer une réservation</h1>
+  <p class="sub">UNIQUE By VL · cours</p>
+  <div id="msg"></div>
+  <div id="app" hidden>
+    <div class="card">
+      <dl>
+        <dt>Cours</dt><dd id="d-class"></dd>
+        <dt>Date</dt><dd id="d-when"></dd>
+        <dt>Client</dt><dd id="d-name"></dd>
+        <dt>E-mail</dt><dd id="d-email"></dd>
+        <dt id="t-phone">Téléphone</dt><dd id="d-phone"></dd>
+        <dt>Places demandées</dt><dd id="d-seats"></dd>
+        <dt>Places restantes</dt><dd id="d-left"></dd>
+        <dt>Langue du client</dt><dd id="d-lang"></dd>
+      </dl>
+    </div>
+    <div class="card">
+      <strong>E-mail de confirmation</strong>
+      <div style="font-size:14px;color:var(--soft)">Vous pouvez modifier le texte avant d'envoyer.</div>
+      <label for="subj">Objet</label>
+      <input id="subj">
+      <label for="body">Message</label>
+      <textarea id="body"></textarea>
+      <div class="btns">
+        <button class="primary" id="go"></button>
+        <button class="secondary" id="mailonly">Préparer l'e-mail sans toucher aux places</button>
+      </div>
+    </div>
+  </div>
+  <div id="after" hidden class="card">
+    <div class="btns" style="margin-top:0">
+      <a class="btn primary" id="mailto">Ouvrir l'e-mail</a>
+      <button class="secondary" id="copy">Copier le texte</button>
+    </div>
+    <p style="font-size:14px;color:var(--soft);margin:12px 0 0">Si votre messagerie ne s'ouvre pas, copiez le texte et envoyez-le à <b id="a-email"></b>.</p>
+  </div>
+</main>
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const LOG = 'content/bookings/confirmed.json';
+  const LANGS = { en: 'anglais', fr: 'français', cs: 'tchèque' };
+  const say = (html, cls) => { $('msg').innerHTML = `<div class="note ${cls}">${html}</div>`; };
+  const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  const DEFAULTS = {
+    en: {
+      subject: 'Booking confirmed — {class}, {when}',
+      body: 'Hello {name},\n\nYour booking is confirmed: {seats} place(s) for "{class}" on {when}, {time}.\nVenue: {venue}\nPrice: {price} per person.\n\n{payment}\n\nIf you can no longer come, just reply to this e-mail so I can offer your place to someone else.\n\nSee you soon,\nVirginie\nUNIQUE By VL',
+      payment: 'To secure your place, please pay through this link: {link}'
+    },
+    fr: {
+      subject: 'Réservation confirmée — {class}, {when}',
+      body: 'Bonjour {name},\n\nVotre réservation est confirmée : {seats} place(s) pour « {class} » le {when}, {time}.\nLieu : {venue}\nPrix : {price} par personne.\n\n{payment}\n\nSi vous ne pouvez plus venir, répondez simplement à cet e-mail pour que je propose votre place à quelqu\'un d\'autre.\n\nÀ bientôt,\nVirginie\nUNIQUE By VL',
+      payment: 'Pour bloquer votre place, merci de régler via ce lien : {link}'
+    },
+    cs: {
+      subject: 'Rezervace potvrzena — {class}, {when}',
+      body: 'Dobrý den,\n\nvaše rezervace je potvrzena: {seats} místo/místa na kurz „{class}“, {when}, {time}.\nMísto konání: {venue}\nCena: {price} za osobu.\n\n{payment}\n\nPokud nebudete moct přijít, stačí odpovědět na tento e-mail, abych místo mohla nabídnout někomu dalšímu.\n\nTěším se na vás,\nVirginie\nUNIQUE By VL',
+      payment: 'Pro potvrzení místa prosím zaplaťte přes tento odkaz: {link}'
+    }
+  };
+
+  // ---------- booking data from the link ----------
+  const q = new URLSearchParams(location.hash.slice(1));
+  const B = { slug: q.get('c') || '', id: q.get('id') || '', lang: q.get('l') || 'en', name: q.get('n') || '', email: q.get('e') || '', seats: Math.max(1, parseInt(q.get('s'), 10) || 1), phone: q.get('p') || '' };
+  if (!DEFAULTS[B.lang]) B.lang = 'en';
+  if (!B.slug || !B.email) { say('Ce lien de réservation est incomplet. Ouvrez-le directement depuis l\'e-mail de demande de réservation.', 'bad'); return; }
+
+  // ---------- GitHub access: the session of the admin (same site) ----------
+  let token = '';
+  try { token = (JSON.parse(localStorage.getItem('sveltia-cms.user') || 'null') || {}).token || ''; } catch (_) {}
+  const needLogin = () => say('Vous devez d\'abord être connectée à l\'admin. <a href="/admin/" target="_blank" rel="noopener">Ouvrir l\'admin</a>, se connecter avec GitHub, puis <a href="javascript:location.reload()">recharger cette page</a>.', 'warn');
+  if (!token) { needLogin(); return; }
+
+  let repo = '', branch = 'main';
+  const api = async (path, opts = {}) => {
+    const r = await fetch(`https://api.github.com/repos/${repo}/${path}`, {
+      ...opts, cache: 'no-store',
+      headers: { Accept: 'application/vnd.github+json', Authorization: `token ${token}`, ...(opts.body ? { 'Content-Type': 'application/json' } : {}) }
+    });
+    if (r.status === 401) { const e = new Error('auth'); e.auth = true; throw e; }
+    return r;
+  };
+  const b64decode = (s) => new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\s/g, '')), (c) => c.charCodeAt(0)));
+  const readJSON = async (path, ref) => {
+    const r = await api(`contents/${path}?ref=${encodeURIComponent(ref)}`);
+    if (r.status === 404) return null;
+    if (!r.ok) throw new Error(`lecture ${path} : ${r.status}`);
+    return JSON.parse(b64decode((await r.json()).content));
+  };
+
+  const pick = (obj, lang, key) => {
+    const x = obj?.[lang]?.[key];
+    return (x === undefined || x === null || (typeof x === 'string' && x.trim() === '')) ? obj?.en?.[key] : x;
+  };
+  const fill = (tpl, vars) => tpl.replace(/\{(\w+)\}/g, (m, k) => (k in vars ? String(vars[k] ?? '') : m))
+    .split('\n').filter((line) => !/[:：]\s*$/.test(line.trim()) || line.trim() === '').join('\n')
+    .replace(/,[ \t]*\./g, '.').replace(/([^.])\.\.(?!\.)/g, '$1.').replace(/ +\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+
+  let cls = null, log = null, confirmedAlready = null;
+
+  const render = () => {
+    const left = Number(cls.en?.seats_left) || 0;
+    const cap = Number(cls.en?.capacity) || 0;
+    $('d-class').textContent = pick(cls, 'fr', 'title');
+    $('d-when').textContent = [pick(cls, 'fr', 'when'), pick(cls, 'fr', 'time')].filter(Boolean).join(' · ') + (cls.en?.date ? ` (${cls.en.date})` : '');
+    $('d-name').textContent = B.name || '—';
+    $('d-email').textContent = B.email;
+    $('d-phone').textContent = B.phone; $('d-phone').hidden = $('t-phone').hidden = !B.phone;
+    $('d-seats').innerHTML = `<span class="big">${B.seats}</span>`;
+    $('d-left').textContent = cap ? `${left} / ${cap}` : String(left);
+    $('d-lang').textContent = LANGS[B.lang] || B.lang;
+    const after = Math.max(0, left - B.seats);
+    $('go').textContent = `Confirmer : retirer ${B.seats} place${B.seats > 1 ? 's' : ''} (${left} → ${after}) et préparer l'e-mail`;
+
+    if (confirmedAlready) {
+      say(`Cette réservation a déjà été confirmée le ${new Date(confirmedAlready.at).toLocaleString('fr-FR')} : les places ont déjà été retirées. Vous pouvez seulement préparer l'e-mail à nouveau.`, 'ok');
+      $('go').hidden = true;
+    } else if (left <= 0) {
+      say('Ce cours est <b>complet</b> (0 place restante). Il s\'agit sans doute d\'une demande de liste d\'attente : préparez l\'e-mail sans toucher aux places, ou ajoutez d\'abord des places dans l\'admin.', 'warn');
+      $('go').hidden = true;
+    } else if (B.seats > left) {
+      say(`Attention : ${B.seats} places demandées mais il n'en reste que ${left}. En confirmant, le cours passera à 0 (Complet).`, 'warn');
+    } else { $('msg').innerHTML = ''; }
+    $('app').hidden = false;
+  };
+
+  const draft = async () => {
+    const site = (await readJSON('content/settings/site.json', branch).catch(() => null)) || {};
+    const d = DEFAULTS[B.lang];
+    const own = (k) => { const x = site?.[B.lang]?.[k]; return typeof x === 'string' && x.trim() ? x : ''; };
+    const link = (cls.en?.payment_link || '').trim();
+    const vars = {
+      name: B.name, seats: B.seats,
+      class: pick(cls, B.lang, 'title'), when: pick(cls, B.lang, 'when'), time: pick(cls, B.lang, 'time'),
+      venue: pick(cls, B.lang, 'venue'), price: cls.en?.price || '',
+      payment: link ? d.payment.replace('{link}', link) : ''
+    };
+    $('subj').value = fill(own('booking_subject') || d.subject, vars);
+    $('body').value = fill(own('booking_body') || d.body, vars);
+  };
+
+  const openMail = () => {
+    const href = `mailto:${encodeURIComponent(B.email).replace(/%40/g, '@')}?subject=${encodeURIComponent($('subj').value)}&body=${encodeURIComponent($('body').value)}`;
+    $('mailto').href = href; $('a-email').textContent = B.email;
+    $('after').hidden = false;
+    location.href = href;
+  };
+
+  // One commit: seats of the class + the booking id in the log (no personal data in the repository).
+  const commit = async () => {
+    for (let attempt = 0; attempt < 3; attempt++) {
+      const ref = await (await api(`git/ref/heads/${branch}`)).json();
+      const head = ref.object.sha;
+      const c = await readJSON(`content/classes/${B.slug}.json`, head);
+      if (!c) throw new Error('Le cours n\'existe plus dans le dépôt.');
+      const lg = (await readJSON(LOG, head)) || { confirmed: [] };
+      const prev = lg.confirmed.find((x) => x.id === B.id);
+      if (prev) return { already: prev, cls: c };
+      const before = Number(c.en.seats_left) || 0;
+      const after = Math.max(0, before - B.seats);
+      c.en.seats_left = after;
+      lg.confirmed.push({ id: B.id, class: B.slug, seats: B.seats, at: new Date().toISOString() });
+      lg.confirmed = lg.confirmed.slice(-500);
+      const baseTree = (await (await api(`git/commits/${head}`)).json()).tree.sha;
+      const tree = await (await api('git/trees', { method: 'POST', body: JSON.stringify({ base_tree: baseTree, tree: [
+        { path: `content/classes/${B.slug}.json`, mode: '100644', type: 'blob', content: JSON.stringify(c, null, 2) + '\n' },
+        { path: LOG, mode: '100644', type: 'blob', content: JSON.stringify(lg, null, 2) + '\n' }
+      ] }) })).json();
+      const cm = await (await api('git/commits', { method: 'POST', body: JSON.stringify({ message: `Booking confirmed: ${B.slug} (-${B.seats} seat${B.seats > 1 ? 's' : ''}, ${before} → ${after})`, tree: tree.sha, parents: [head] }) })).json();
+      if (!cm.sha) throw new Error('création du commit refusée');
+      const up = await api(`git/refs/heads/${branch}`, { method: 'PATCH', body: JSON.stringify({ sha: cm.sha, force: false }) });
+      if (up.ok) return { before, after, cls: c };
+      if (up.status !== 422 && up.status !== 409) throw new Error(`mise à jour refusée : ${up.status}`);
+      // someone published at the same moment: start again from the new state
+    }
+    throw new Error('le dépôt change trop vite, réessayez dans un instant');
+  };
+
+  const fail = (e) => {
+    if (e && e.auth) { needLogin(); return; }
+    say(`Erreur : ${esc(e && e.message || e)}. Rien n'a été envoyé au client. Vous pouvez réessayer ou modifier les places à la main dans l'admin.`, 'bad');
+  };
+
+  $('go').addEventListener('click', async () => {
+    $('go').disabled = $('mailonly').disabled = true;
+    try {
+      const r = await commit();
+      cls = r.cls;
+      if (r.already) { confirmedAlready = r.already; render(); }
+      else {
+        $('go').hidden = true;
+        say(`✓ Réservation confirmée. Places restantes : ${r.before} → <b>${r.after}</b>. Le site sera à jour dans 2 minutes environ. Il reste à envoyer l'e-mail qui vient de s'ouvrir.`, 'ok');
+        $('d-left').textContent = String(r.after);
+      }
+      openMail();
+    } catch (e) { fail(e); }
+    $('go').disabled = $('mailonly').disabled = false;
+  });
+  $('mailonly').addEventListener('click', openMail);
+  $('copy').addEventListener('click', async () => {
+    const text = `${$('subj').value}\n\n${$('body').value}`;
+    try { await navigator.clipboard.writeText(text); $('copy').textContent = 'Copié ✓'; } catch (_) { $('body').select(); }
+  });
+
+  (async () => {
+    try {
+      say('Chargement…', 'ok');
+      const yml = await (await fetch('/admin/config.yml', { cache: 'no-store' })).text();
+      repo = (yml.match(/^\s*repo:\s*["']?([\w.-]+\/[\w.-]+)/m) || [])[1] || '';
+      branch = (yml.match(/^\s*branch:\s*["']?([\w./-]+)/m) || [])[1] || 'main';
+      if (!repo) throw new Error('dépôt introuvable dans config.yml');
+      cls = await readJSON(`content/classes/${B.slug}.json`, branch);
+      if (!cls) { say('Ce cours n\'existe plus (supprimé ou renommé dans l\'admin). Vous pouvez répondre au client depuis votre messagerie.', 'bad'); return; }
+      log = (await readJSON(LOG, branch)) || { confirmed: [] };
+      if (!B.id) B.id = 'manual-' + Date.now().toString(36);
+      confirmedAlready = log.confirmed.find((x) => x.id === B.id) || null;
+      await draft();
+      render();
+    } catch (e) { fail(e); }
+  })();
+})();
+</script>
+</body>
+</html>

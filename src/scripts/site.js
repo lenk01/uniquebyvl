@@ -157,6 +157,18 @@ $$('form[data-form]').forEach((f) => f.addEventListener('submit', async (e) => {
   if (data._gotcha) { done(f, `<span class="eyebrow">✓</span><p style="font-size:16px">${esc(UI.sentShort)}</p>`); return; } // bot
   delete data._gotcha;
   const reply = $('[data-check="email"]', f)?.value; if (reply) data._replyto = reply;
+  if (f.dataset.booking) {
+    // A link for VL: confirms the booking (updates the seats) and prepares the e-mail to the client.
+    const rnd = new Uint32Array(2); crypto.getRandomValues(rnd);
+    const id = (rnd[0].toString(36) + rnd[1].toString(36)).slice(0, 10);
+    const q = new URLSearchParams({
+      c: f.dataset.booking, id, l: document.documentElement.lang || 'en',
+      n: ($('[data-check="name"]', f)?.value || '').trim(), e: (reply || '').trim(),
+      s: $('#b-s', f)?.value || '1', p: ($('#b-p', f)?.value || '').trim()
+    });
+    data['Booking ID'] = id;
+    data['→ Confirmer la réservation'] = `${location.origin}/admin/booking/#${q}`;
+  }
   if (f.dataset.service === 'formsubmit') { data._captcha = 'false'; data._template = 'table'; }
   f.classList.add('sending');
   const fail = (msg) => {

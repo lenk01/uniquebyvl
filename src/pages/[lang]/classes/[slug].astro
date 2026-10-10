@@ -60,9 +60,9 @@ const programme = v(c, lang, 'programme') || [];
         <div class="panel" id="book" style="margin-top:6px">
           <span class="eyebrow">{full ? k.waitlist : k.book}</span>
           <h3 style="font-size:22px;margin:8px 0 16px">{title} — {v(c, lang, 'when')}</h3>
-          <Form subject={`${full ? 'Waiting list' : 'Booking'} — ${v(c, 'en', 'title')} ${v(c, 'en', 'when')}`} submit={f.sending}>
+          <Form subject={`${full ? 'Waiting list' : 'Booking'} — ${v(c, 'en', 'title')} ${v(c, 'en', 'when')}`} submit={f.sending} booking={c.slug}>
             <div class="frow"><Field id="b-n" label={f.name} check="name" /><Field id="b-e" label={f.email} type="email" check="email" /></div>
-            <div class="frow"><Field id="b-p" label={f.phone} type="tel" /><Select id="b-s" label={f.seats} options={['1', '2', '3']} /></div>
+            <div class="frow"><Field id="b-p" label={f.phone} type="tel" /><Select id="b-s" label={f.seats} options={full ? ['1', '2', '3'] : ['1', '2', '3'].slice(0, Math.min(3, seats))} /></div>
             <Select id="b-l" label={f.level} options={k.fopt.level} />
             <Field id="b-m" label={f.word} type="area" />
             <p class="hint">{full ? k.waitNote : k.bookNote}</p>
