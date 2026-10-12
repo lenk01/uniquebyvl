@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Commande — UNIQUE By VL</title>
+<style>
+  :root { --ink:#141414; --soft:#5b5b5b; --line:#e3e0da; --bg:#f7f5f1; --card:#fff; --blue:#2b3fd6; --ok:#1d7a46; --okbg:#e8f5ec; --warn:#8a5a00; --warnbg:#fff4dc; --bad:#a32020; --badbg:#fbeaea; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  main { max-width:680px; margin:0 auto; padding:24px 16px 60px; }
+  h1 { font-size:22px; margin:0 0 4px; }
+  h2 { font-size:18px; margin:0 0 4px; }
+  .sub { color:var(--soft); margin:0 0 20px; font-size:14px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px; margin-bottom:16px; }
+  .piece { display:flex; gap:16px; align-items:flex-start; margin-bottom:14px; }
+  .piece img { width:88px; height:117px; object-fit:cover; border-radius:8px; background:var(--bg); flex:none; }
+  dl { display:grid; grid-template-columns:auto 1fr; gap:6px 14px; margin:0; }
+  dt { color:var(--soft); font-size:14px; }
+  dd { margin:0; font-weight:600; word-break:break-word; white-space:pre-line; }
+  .note { border-radius:10px; padding:12px 14px; margin:12px 0; font-size:15px; }
+  .note.ok { background:var(--okbg); color:var(--ok); }
+  .note.warn { background:var(--warnbg); color:var(--warn); }
+  .note.bad { background:var(--badbg); color:var(--bad); }
+  .hint { font-size:14px; color:var(--soft); margin:2px 0 0; }
+  label { display:block; font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:.06em; color:var(--soft); margin:14px 0 6px; }
+  .choice { display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:4px; }
+  .choice label { text-transform:none; letter-spacing:0; font-size:15px; color:var(--ink); font-weight:500; margin:0; display:flex; gap:8px; align-items:center; cursor:pointer; }
+  input[type=text], input[type=url], textarea { width:100%; font:inherit; padding:10px 12px; border:1px solid var(--line); border-radius:10px; background:#fff; color:var(--ink); }
+  textarea { min-height:240px; resize:vertical; }
+  textarea.small { min-height:70px; }
+  .btns { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+  button, .btn { appearance:none; border:0; border-radius:999px; padding:12px 18px; font-family:inherit; font-size:15px; font-weight:600; line-height:1.2; cursor:pointer; text-decoration:none; display:inline-block; text-align:center; }
+  .primary { background:var(--ink); color:#fff; }
+  .secondary { background:transparent; color:var(--ink); border:1px solid var(--ink); }
+  .link { background:none; padding:0; color:var(--blue); font-weight:500; font-size:14px; border-radius:0; }
+  button[disabled] { opacity:.5; cursor:wait; }
+  .after { border-top:1px solid var(--line); margin-top:16px; padding-top:14px; }
+  a { color:var(--blue); }
+  [hidden] { display:none !important; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Commande en ligne</h1>
+  <p class="sub">UNIQUE By VL · pièce de la collection</p>
+  <div id="msg"></div>
+
+  <div id="app" hidden>
+    <div class="card">
+      <div class="piece"><img id="d-img" alt=""><div><h2 id="d-piece"></h2><div class="hint" id="d-meta"></div><div class="hint" id="d-status"></div></div></div>
+      <dl>
+        <dt>Client</dt><dd id="d-name"></dd>
+        <dt>E-mail</dt><dd id="d-email"></dd>
+        <dt id="t-phone">Téléphone</dt><dd id="d-phone"></dd>
+        <dt id="t-size">Taille souhaitée</dt><dd id="d-size"></dd>
+        <dt>Livraison</dt><dd id="d-mode"></dd>
+        <dt id="t-addr">Adresse</dt><dd id="d-addr"></dd>
+        <dt>Langue du client</dt><dd id="d-lang"></dd>
+      </dl>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="card" id="s1">
+      <h2>1 · Confirmer la commande et envoyer la facture</h2>
+      <p class="hint">La pièce passe en « Sold » sur le site (environ 2 minutes), puis votre messagerie s'ouvre avec l'e-mail prêt.</p>
+      <div id="s1-msg"></div>
+      <label>Facture</label>
+      <div class="choice">
+        <label><input type="radio" name="inv" value="link" checked> Lien de paiement (SumUp, Stripe…)</label>
+        <label><input type="radio" name="inv" value="pdf"> PDF à joindre à l'e-mail</label>
+      </div>
+      <div id="inv-link-box">
+        <label for="inv-link">Lien de la facture / du paiement</label>
+        <input type="url" id="inv-link" placeholder="https://…">
+        <p class="hint">Créez la facture ou le lien de paiement chez SumUp ou Stripe, copiez son lien et collez-le ici.</p>
+      </div>
+      <p class="hint" id="inv-pdf-hint" hidden>L'e-mail dira « facture en pièce jointe » : pensez à joindre le PDF dans votre messagerie avant d'envoyer.</p>
+      <label for="total">Montant total (livraison comprise)</label>
+      <input type="text" id="total">
+      <label for="s1-subj">Objet</label>
+      <input type="text" id="s1-subj">
+      <label for="s1-body">Message <button class="link" type="button" data-regen="s1">↺ recréer le texte</button></label>
+      <textarea id="s1-body"></textarea>
+      <div class="btns">
+        <button class="primary" id="s1-go">Confirmer : marquer la pièce « Sold » et préparer l'e-mail</button>
+        <button class="secondary" id="s1-mail">Préparer l'e-mail sans changer le site</button>
+      </div>
+      <div class="after" id="s1-after" hidden></div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="card" id="s2">
+      <h2 id="s2-title"></h2>
+      <p class="hint" id="s2-hint"></p>
+      <div id="s2-msg"></div>
+      <div id="ship-box">
+        <label for="carrier">Transporteur</label>
+        <input type="text" id="carrier" placeholder="Zásilkovna, Česká pošta, PPL…">
+        <label for="tracking">Lien de suivi du colis</label>
+        <input type="url" id="tracking" placeholder="https://…">
+      </div>
+      <div id="pickup-box">
+        <label for="info">Informations pratiques (facultatif)</label>
+        <textarea id="info" class="small" placeholder="Horaires, code de la porte, étage…"></textarea>
+      </div>
+      <label for="s2-subj">Objet</label>
+      <input type="text" id="s2-subj">
+      <label for="s2-body">Message <button class="link" type="button" data-regen="s2">↺ recréer le texte</button></label>
+      <textarea id="s2-body"></textarea>
+      <div class="btns"><button class="primary" id="s2-go"></button></div>
+      <div class="after" id="s2-after" hidden></div>
+    </div>
+  </div>
+</main>
+<script>
+(() => {
+  window.addEventListener('hashchange', () => location.reload());
+  const $ = (id) => document.getElementById(id);
+  const LOG = 'content/orders/log.json';
+  const LANGS = { en: 'anglais', fr: 'français', cs: 'tchèque' };
+  const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const note = (box, html, cls) => { $(box).innerHTML = html ? `<div class="note ${cls}">${html}</div>` : ''; };
+  const say = (html, cls) => note('msg', html, cls);
+  const when = (iso) => new Date(iso).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' });
+  const kc = (n) => (n || n === 0) && n !== '' ? Number(n).toLocaleString('cs-CZ').replace(/\s/g, ' ') + ' Kč' : '';
+
+  const T = {
+    en: {
+      order: { subject: 'Your order — {piece}', body: 'Hello {name},\n\nThank you for your order! "{piece}" is yours.\n\nAmount: {total}\n{invoice}\n\n{delivery}\n\nI am keeping the piece aside for you until the payment arrives.\n\n{terms}\n\nThank you for choosing upcycled,\nVirginie\nUNIQUE By VL' },
+      invoiceLink: 'You can pay securely through this link: {link}',
+      invoicePdf: 'You will find the invoice attached to this e-mail.',
+      pickup: 'As soon as the payment is received, I will let you know when you can pick it up at the atelier.',
+      post: 'As soon as the payment is received, I will send it to:\n{address}',
+      terms: 'Terms of sale and returns: {url}',
+      shipped: { subject: 'Your parcel is on its way — {piece}', body: 'Hello {name},\n\nGood news: your "{piece}" has just been sent!\n\nCarrier: {carrier}\nTrack your parcel: {tracking}\n\nI hope you will love wearing it. If anything is not right, simply reply to this e-mail.\n\nVirginie\nUNIQUE By VL' },
+      ready: { subject: 'Ready for pick-up — {piece}', body: 'Hello {name},\n\nYour "{piece}" is ready and waiting for you at the atelier.\n\n{info}\n\nJust reply to this e-mail to tell me when you are coming.\n\nSee you soon,\nVirginie\nUNIQUE By VL' }
+    },
+    fr: {
+      order: { subject: 'Votre commande — {piece}', body: 'Bonjour {name},\n\nMerci pour votre commande ! « {piece} » est à vous.\n\nMontant : {total}\n{invoice}\n\n{delivery}\n\nJe garde la pièce de côté pour vous en attendant le paiement.\n\n{terms}\n\nMerci d\'avoir choisi l\'upcycling,\nVirginie\nUNIQUE By VL' },
+      invoiceLink: 'Vous pouvez payer en toute sécurité via ce lien : {link}',
+      invoicePdf: 'Vous trouverez la facture en pièce jointe.',
+      pickup: 'Dès réception du paiement, je vous dis quand vous pouvez venir la chercher à l\'atelier.',
+      post: 'Dès réception du paiement, je vous l\'envoie à l\'adresse suivante :\n{address}',
+      terms: 'Conditions de vente et retours : {url}',
+      shipped: { subject: 'Votre colis est en route — {piece}', body: 'Bonjour {name},\n\nBonne nouvelle : votre pièce « {piece} » vient de partir !\n\nTransporteur : {carrier}\nSuivre le colis : {tracking}\n\nJ\'espère que vous aurez plaisir à la porter. Si quelque chose ne va pas, répondez simplement à cet e-mail.\n\nVirginie\nUNIQUE By VL' },
+      ready: { subject: 'Prête à retirer — {piece}', body: 'Bonjour {name},\n\nVotre pièce « {piece} » est prête et vous attend à l\'atelier.\n\n{info}\n\nRépondez simplement à cet e-mail pour me dire quand vous passez.\n\nÀ bientôt,\nVirginie\nUNIQUE By VL' }
+    },
+    cs: {
+      order: { subject: 'Vaše objednávka — {piece}', body: 'Dobrý den,\n\nděkuji za objednávku! Kus „{piece}“ je váš.\n\nČástka: {total}\n{invoice}\n\n{delivery}\n\nKus pro vás držím, dokud nepřijde platba.\n\n{terms}\n\nDěkuji, že jste zvolili upcyklaci,\nVirginie\nUNIQUE By VL' },
+      invoiceLink: 'Zaplatit můžete bezpečně přes tento odkaz: {link}',
+      invoicePdf: 'Fakturu najdete v příloze tohoto e-mailu.',
+      pickup: 'Jakmile platba dorazí, dám vám vědět, kdy si kus můžete vyzvednout v ateliéru.',
+      post: 'Jakmile platba dorazí, pošlu ho na tuto adresu:\n{address}',
+      terms: 'Obchodní podmínky a vrácení: {url}',
+      shipped: { subject: 'Váš balíček je na cestě — {piece}', body: 'Dobrý den,\n\nmám dobrou zprávu: váš kus „{piece}“ je na cestě!\n\nDopravce: {carrier}\nSledování zásilky: {tracking}\n\nDoufám, že vám bude dělat radost. Kdyby něco nebylo v pořádku, stačí odpovědět na tento e-mail.\n\nVirginie\nUNIQUE By VL' },
+      ready: { subject: 'Připraveno k vyzvednutí — {piece}', body: 'Dobrý den,\n\nváš kus „{piece}“ je připravený a čeká na vás v ateliéru.\n\n{info}\n\nStačí odpovědět na tento e-mail a napsat, kdy přijdete.\n\nTěším se na vás,\nVirginie\nUNIQUE By VL' }
+    }
+  };
+
+  // A line whose placeholder came out empty disappears ("Carrier: " with no carrier).
+  const fill = (tpl, vars) => tpl.split('\n').map((line) => {
+    let empty = false;
+    const out = line.replace(/\{(\w+)\}/g, (m, k) => {
+      if (!(k in vars)) return m;
+      const v = String(vars[k] ?? '');
+      if (!v.trim()) empty = true;
+      return v;
+    });
+    return empty && (out.trim() === '' || /[:：]$/.test(out.trim())) ? null : out;
+  }).filter((l) => l !== null).join('\n')
+    .replace(/,[ \t]*\./g, '.').replace(/([^.])\.\.(?!\.)/g, '$1.').replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+
+  // ---------- order data from the link ----------
+  const q = new URLSearchParams(location.hash.slice(1));
+  const O = { slug: q.get('c') || '', id: q.get('id') || '', lang: q.get('l') || 'en', name: q.get('n') || '', email: q.get('e') || '', phone: q.get('p') || '', size: q.get('s') || '', post: q.get('m') === 'post', address: q.get('a') || '' };
+  if (!T[O.lang]) O.lang = 'en';
+  if (!O.slug || !O.email) { say('Ce lien de commande est incomplet. Ouvrez-le directement depuis l\'e-mail de commande.', 'bad'); return; }
+  const L = T[O.lang];
+
+  // ---------- GitHub access through the admin session (same site) ----------
+  let token = '';
+  try { token = (JSON.parse(localStorage.getItem('sveltia-cms.user') || 'null') || {}).token || ''; } catch (_) {}
+  const needLogin = () => say('Vous devez d\'abord être connectée à l\'admin. <a href="/admin/" target="_blank" rel="noopener">Ouvrir l\'admin</a>, se connecter avec GitHub, puis <a href="javascript:location.reload()">recharger cette page</a>.', 'warn');
+  if (!token) { needLogin(); return; }
+
+  let repo = '', branch = 'main';
+  const api = async (path, opts = {}) => {
+    const r = await fetch(`https://api.github.com/repos/${repo}/${path}`, {
+      ...opts, cache: 'no-store',
+      headers: { Accept: 'application/vnd.github+json', Authorization: `token ${token}`, ...(opts.body ? { 'Content-Type': 'application/json' } : {}) }
+    });
+    if (r.status === 401) { const e = new Error('auth'); e.auth = true; throw e; }
+    return r;
+  };
+  const b64decode = (s) => new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\s/g, '')), (c) => c.charCodeAt(0)));
+  const readJSON = async (path, ref) => {
+    const r = await api(`contents/${path}?ref=${encodeURIComponent(ref)}`);
+    if (r.status === 404) return null;
+    if (!r.ok) throw new Error(`lecture ${path} : ${r.status}`);
+    return JSON.parse(b64decode((await r.json()).content));
+  };
+  const pieceFile = `content/pieces/${O.slug}.json`;
+  const entryOf = (log) => log.orders.find((x) => x.id === O.id);
+
+  // One commit for all changed files; started again if someone publishes at the same moment.
+  const commit = async (change) => {
+    for (let attempt = 0; attempt < 3; attempt++) {
+      const head = (await (await api(`git/ref/heads/${branch}`)).json()).object.sha;
+      const piece = await readJSON(pieceFile, head);
+      const log = (await readJSON(LOG, head)) || { orders: [] };
+      const res = change(piece, log);
+      if (!res) return { piece, log, unchanged: true };
+      const baseTree = (await (await api(`git/commits/${head}`)).json()).tree.sha;
+      const tree = await (await api('git/trees', { method: 'POST', body: JSON.stringify({ base_tree: baseTree,
+        tree: Object.entries(res.files).map(([path, obj]) => ({ path, mode: '100644', type: 'blob', content: JSON.stringify(obj, null, 2) + '\n' })) }) })).json();
+      const cm = await (await api('git/commits', { method: 'POST', body: JSON.stringify({ message: res.message, tree: tree.sha, parents: [head] }) })).json();
+      if (!cm.sha) throw new Error('création du commit refusée');
+      const up = await api(`git/refs/heads/${branch}`, { method: 'PATCH', body: JSON.stringify({ sha: cm.sha, force: false }) });
+      if (up.ok) return { piece, log };
+      if (up.status !== 422 && up.status !== 409) throw new Error(`mise à jour refusée : ${up.status}`);
+    }
+    throw new Error('le dépôt change trop vite, réessayez dans un instant');
+  };
+  const fail = (box, e) => {
+    if (e && e.auth) { needLogin(); return; }
+    note(box, `Erreur : ${esc(e && e.message || e)}. Rien n'a été envoyé au client. Réessayez, ou faites le changement à la main dans l'admin.`, 'bad');
+  };
+
+  // ---------- e-mails ----------
+  let piece = null, log = null, site = {};
+  const pick = (obj, lang, key) => { const x = obj?.[lang]?.[key]; return (x === undefined || x === null || (typeof x === 'string' && x.trim() === '')) ? obj?.en?.[key] : x; };
+  const own = (key) => { const x = site?.[O.lang]?.[key]; return typeof x === 'string' && x.trim() ? x : ''; };
+  const invMode = () => document.querySelector('input[name=inv]:checked').value;
+  const step2 = O.post ? 'shipped' : 'ready';
+
+  const vars = () => {
+    const link = $('inv-link').value.trim();
+    return {
+      name: O.name, piece: pick(piece, O.lang, 'name'), size: piece.en?.size || '', price: kc(piece.en?.price), total: $('total').value.trim(),
+      invoice: invMode() === 'pdf' ? L.invoicePdf : (link ? L.invoiceLink.replace('{link}', link) : ''),
+      delivery: O.post ? L.post.replace('{address}', O.address) : L.pickup,
+      terms: L.terms.replace('{url}', `${location.origin}/${O.lang}/legal/terms/`),
+      address: O.address, carrier: $('carrier').value.trim(), tracking: $('tracking').value.trim(), info: $('info').value.trim()
+    };
+  };
+  const regen = (s, force) => {
+    const key = s === 's1' ? 'order' : step2;
+    const pre = s === 's1' ? 'order' : (O.post ? 'shipped' : 'pickup');
+    const v = vars();
+    $(`${s}-subj`).value = fill(own(`${pre}_subject`) || L[key].subject, v);
+    if (force || !$(`${s}-body`).dataset.dirty) { $(`${s}-body`).value = fill(own(`${pre}_body`) || L[key].body, v); delete $(`${s}-body`).dataset.dirty; }
+  };
+
+  const openMail = (s, extra) => {
+    const href = `mailto:${encodeURIComponent(O.email).replace(/%40/g, '@')}?subject=${encodeURIComponent($(`${s}-subj`).value)}&body=${encodeURIComponent($(`${s}-body`).value)}`;
+    $(`${s}-after`).innerHTML = `${extra ? `<div class="note warn">${extra}</div>` : ''}
+      <div class="btns" style="margin-top:0"><a class="btn primary" href="${esc(href)}">Ouvrir l'e-mail</a><button class="secondary" type="button" data-copy="${s}">Copier le texte</button></div>
+      <p class="hint">Si votre messagerie ne s'ouvre pas, copiez le texte et envoyez-le à <b>${esc(O.email)}</b>.</p>`;
+    $(`${s}-after`).hidden = false;
+    location.href = href;
+  };
+
+  const render = () => {
+    const entry = entryOf(log);
+    const img = (piece.en?.images || [])[0];
+    if (img) $('d-img').src = img; else $('d-img').hidden = true;
+    $('d-piece').textContent = pick(piece, 'fr', 'name');
+    $('d-meta').textContent = [kc(piece.en?.price), piece.en?.size && `taille ${piece.en.size}`].filter(Boolean).join(' · ');
+    const st = piece.en?.status || 'available';
+    $('d-status').innerHTML = `Statut sur le site : <b>${{ available: 'disponible', sold: 'Sold (vendue)', draft: 'brouillon (cachée)' }[st] || esc(st)}</b>`;
+    $('d-name').textContent = O.name || '—';
+    $('d-email').textContent = O.email;
+    $('d-phone').textContent = O.phone; $('d-phone').hidden = $('t-phone').hidden = !O.phone;
+    $('d-size').textContent = O.size; $('d-size').hidden = $('t-size').hidden = !O.size;
+    $('d-mode').textContent = O.post ? 'Envoi en République tchèque' : 'Retrait à l\'atelier';
+    $('d-addr').textContent = O.address; $('d-addr').hidden = $('t-addr').hidden = !O.address;
+    $('d-lang').textContent = LANGS[O.lang] || O.lang;
+
+    // step 1
+    if (entry?.confirmed_at) {
+      note('s1-msg', `✓ Commande confirmée le ${when(entry.confirmed_at)} : la pièce est déjà marquée « Sold ». Vous pouvez seulement préparer l'e-mail à nouveau.`, 'ok');
+      $('s1-go').hidden = true;
+    } else if (st === 'sold') {
+      note('s1-msg', 'Attention : cette pièce est <b>déjà vendue</b> sur le site (autre commande, ou changée à la main). Vérifiez avant de répondre au client.', 'warn');
+      $('s1-go').hidden = true;
+    } else { note('s1-msg', ''); $('s1-go').hidden = false; }
+
+    // step 2
+    $('s2-title').textContent = O.post ? '2 · Colis envoyé' : '2 · Pièce prête à retirer';
+    $('s2-hint').textContent = O.post ? 'Une fois le colis déposé, collez le lien de suivi : l\'e-mail au client est prêt.' : 'Quand la pièce est prête, prévenez le client qu\'il peut passer à l\'atelier.';
+    $('ship-box').hidden = !O.post; $('pickup-box').hidden = O.post;
+    $('s2-go').textContent = O.post ? 'Préparer l\'e-mail « colis envoyé »' : 'Préparer l\'e-mail « prête à retirer »';
+    const done2 = O.post ? entry?.shipped_at : entry?.ready_at;
+    note('s2-msg', done2 ? `E-mail déjà préparé le ${when(done2)}.` : '', 'ok');
+    $('app').hidden = false;
+  };
+
+  // ---------- actions ----------
+  document.querySelectorAll('input[name=inv]').forEach((r) => r.addEventListener('change', () => {
+    $('inv-link-box').hidden = invMode() === 'pdf'; $('inv-pdf-hint').hidden = invMode() !== 'pdf'; regen('s1');
+  }));
+  ['inv-link', 'total'].forEach((id) => $(id).addEventListener('input', () => regen('s1')));
+  ['carrier', 'tracking', 'info'].forEach((id) => $(id).addEventListener('input', () => regen('s2')));
+  ['s1-body', 's2-body'].forEach((id) => $(id).addEventListener('input', () => { $(id).dataset.dirty = '1'; }));
+  document.addEventListener('click', async (e) => {
+    const r = e.target.closest('[data-regen]'); if (r) { e.preventDefault(); regen(r.dataset.regen, true); return; }
+    const c = e.target.closest('[data-copy]');
+    if (c) { const s = c.dataset.copy; try { await navigator.clipboard.writeText(`${$(`${s}-subj`).value}\n\n${$(`${s}-body`).value}`); c.textContent = 'Copié ✓'; } catch (_) { $(`${s}-body`).select(); } }
+  });
+
+  const checkInvoice = () => {
+    if (invMode() === 'link' && !/^https?:\/\/\S+$/.test($('inv-link').value.trim())) {
+      note('s1-msg', 'Collez d\'abord le lien de la facture / du paiement (il commence par https://), ou choisissez « PDF à joindre ».', 'warn');
+      $('inv-link').focus(); return false;
+    }
+    if ($('s1-body').dataset.dirty) return true;
+    regen('s1'); return true;
+  };
+  const pdfReminder = () => invMode() === 'pdf' ? 'N\'oubliez pas de <b>joindre la facture PDF</b> à l\'e-mail avant de l\'envoyer.' : '';
+
+  $('s1-go').addEventListener('click', async () => {
+    if (!checkInvoice()) return;
+    const btns = [$('s1-go'), $('s1-mail')]; btns.forEach((b) => (b.disabled = true));
+    try {
+      const at = new Date().toISOString();
+      const r = await commit((p, lg) => {
+        if (!p) throw new Error('la pièce n\'existe plus dans le dépôt (supprimée ou renommée)');
+        if (lg.orders.find((x) => x.id === O.id)?.confirmed_at) return null;
+        p.en.status = 'sold';
+        const ent = lg.orders.find((x) => x.id === O.id) || (lg.orders.push({ id: O.id, piece: O.slug }), lg.orders[lg.orders.length - 1]);
+        ent.confirmed_at = at; lg.orders = lg.orders.slice(-500);
+        return { files: { [pieceFile]: p, [LOG]: lg }, message: `Order confirmed: ${O.slug} → sold` };
+      });
+      piece = r.piece; log = r.log;
+      render();
+      if (!r.unchanged) {
+        note('s1-msg', '✓ Commande confirmée : la pièce sera affichée « Sold » sur le site dans 2 minutes environ. Il reste à envoyer l\'e-mail qui vient de s\'ouvrir.', 'ok');
+        $('s1-go').hidden = true;
+      }
+      openMail('s1', pdfReminder());
+    } catch (e) { fail('s1-msg', e); }
+    btns.forEach((b) => (b.disabled = false));
+  });
+  $('s1-mail').addEventListener('click', () => { if (checkInvoice()) openMail('s1', pdfReminder()); });
+
+  $('s2-go').addEventListener('click', async () => {
+    if (O.post && !/^https?:\/\/\S+$/.test($('tracking').value.trim())) {
+      note('s2-msg', 'Collez d\'abord le lien de suivi du colis (il commence par https://).', 'warn'); $('tracking').focus(); return;
+    }
+    if (!$('s2-body').dataset.dirty) regen('s2');
+    $('s2-go').disabled = true;
+    const field = O.post ? 'shipped_at' : 'ready_at';
+    try {
+      const r = await commit((p, lg) => {
+        const ent = lg.orders.find((x) => x.id === O.id) || (lg.orders.push({ id: O.id, piece: O.slug }), lg.orders[lg.orders.length - 1]);
+        if (ent[field]) return null;
+        ent[field] = new Date().toISOString(); lg.orders = lg.orders.slice(-500);
+        return { files: { [LOG]: lg }, message: `Order ${O.post ? 'shipped' : 'ready for pick-up'}: ${O.slug}` };
+      });
+      log = r.log;
+      note('s2-msg', '', 'ok');
+    } catch (e) { if (e && e.auth) { needLogin(); $('s2-go').disabled = false; return; } /* the e-mail matters more than the note in the log */ }
+    $('s2-go').disabled = false;
+    openMail('s2');
+  });
+
+  // ---------- start ----------
+  (async () => {
+    try {
+      say('Chargement…', 'ok');
+      const yml = await (await fetch('/admin/config.yml', { cache: 'no-store' })).text();
+      repo = (yml.match(/^\s*repo:\s*["']?([\w.-]+\/[\w.-]+)/m) || [])[1] || '';
+      branch = (yml.match(/^\s*branch:\s*["']?([\w./-]+)/m) || [])[1] || 'main';
+      if (!repo) throw new Error('dépôt introuvable dans config.yml');
+      piece = await readJSON(pieceFile, branch);
+      if (!piece) { say('Cette pièce n\'existe plus (supprimée ou renommée dans l\'admin). Répondez au client depuis votre messagerie.', 'bad'); return; }
+      log = (await readJSON(LOG, branch)) || { orders: [] };
+      site = (await readJSON('content/settings/site.json', branch).catch(() => null)) || {};
+      if (!O.id) O.id = 'manual-' + Date.now().toString(36);
+      $('total').value = kc(piece.en?.price);
+      say('', 'ok');
+      render(); regen('s1'); regen('s2');
+    } catch (e) { if (e && e.auth) needLogin(); else say(`Erreur : ${esc(e && e.message || e)}`, 'bad'); }
+  })();
+})();
+</script>
+</body>
+</html>

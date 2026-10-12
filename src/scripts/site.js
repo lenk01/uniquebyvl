@@ -169,6 +169,22 @@ $$('form[data-form]').forEach((f) => f.addEventListener('submit', async (e) => {
     data['Booking ID'] = id;
     data['→ Confirmer la réservation'] = `${location.origin}/admin/booking/#${q}`;
   }
+  if (f.dataset.order) {
+    // A link for VL: confirms the order (piece marked sold), then prepares the invoice and shipping e-mails.
+    const rnd = new Uint32Array(2); crypto.getRandomValues(rnd);
+    const id = (rnd[0].toString(36) + rnd[1].toString(36)).slice(0, 10);
+    const val = (sel) => ($(sel, f)?.value || '').trim();
+    const post = ($('#o-m', f)?.selectedIndex || 0) > 0;
+    const zipCity = [val('#o-z'), val('#o-c')].filter(Boolean).join(' ');
+    const q = new URLSearchParams({
+      c: f.dataset.order, id, l: document.documentElement.lang || 'en',
+      n: val('[data-check="name"]'), e: (reply || '').trim(), p: val('#o-p'), s: val('#o-s'),
+      m: post ? 'post' : 'pickup',
+      a: post ? [val('#o-a'), val('#o-a2'), zipCity, val('#o-co')].filter(Boolean).join('\n') : ''
+    });
+    data['Order ID'] = id;
+    data['→ Confirmer la commande'] = `${location.origin}/admin/order/#${q}`;
+  }
   if (f.dataset.service === 'formsubmit') { data._captcha = 'false'; data._template = 'table'; }
   f.classList.add('sending');
   const fail = (msg) => {

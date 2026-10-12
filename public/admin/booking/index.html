@@ -74,6 +74,7 @@
 </main>
 <script>
 (() => {
+  window.addEventListener('hashchange', () => location.reload());
   const $ = (id) => document.getElementById(id);
   const LOG = 'content/bookings/confirmed.json';
   const LANGS = { en: 'anglais', fr: 'français', cs: 'tchèque' };

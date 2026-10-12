@@ -68,7 +68,7 @@ const size = v(piece, 'en', 'size');
               <a class="btn ghost" href={path(lang, 'custom')}>{k.variation}</a>
             </div>
             <div id="order-form" hidden>
-              <Form subject={`Order — ${v(piece, 'en', 'name')} (${kc(v(piece, 'en', 'price'))})`} submit={f.sending}>
+              <Form subject={`Order — ${v(piece, 'en', 'name')} (${kc(v(piece, 'en', 'price'))})`} submit={f.sending} order={piece.slug}>
                 <div class="frow"><Field id="o-n" label={f.name} check="name" /><Field id="o-e" label={f.email} type="email" check="email" /></div>
                 <div class="frow"><Field id="o-p" label={f.phone} type="tel" /><Field id="o-s" label={f.size} placeholder={size} /></div>
                 <fieldset>
