@@ -55,10 +55,19 @@
         <dt>E-mail</dt><dd id="d-email"></dd>
         <dt id="t-phone">Téléphone</dt><dd id="d-phone"></dd>
         <dt id="t-size">Taille souhaitée</dt><dd id="d-size"></dd>
-        <dt>Livraison</dt><dd id="d-mode"></dd>
-        <dt id="t-addr">Adresse</dt><dd id="d-addr"></dd>
+        <dt>Choix du client</dt><dd id="d-mode"></dd>
         <dt>Langue du client</dt><dd id="d-lang"></dd>
       </dl>
+      <label>Mode de livraison</label>
+      <div class="choice">
+        <label><input type="radio" name="mode" value="pickup"> Retrait à l'atelier</label>
+        <label><input type="radio" name="mode" value="post"> Envoi postal</label>
+      </div>
+      <p class="hint">Si le client change d'avis, changez ici : les deux e-mails s'adaptent.</p>
+      <div id="addr-box">
+        <label for="addr">Adresse de livraison</label>
+        <textarea id="addr" class="small" placeholder="Rue et numéro&#10;Code postal Ville&#10;Pays"></textarea>
+      </div>
     </div>
 
     <!-- STEP 1 -->
@@ -233,21 +242,22 @@
   const pick = (obj, lang, key) => { const x = obj?.[lang]?.[key]; return (x === undefined || x === null || (typeof x === 'string' && x.trim() === '')) ? obj?.en?.[key] : x; };
   const own = (key) => { const x = site?.[O.lang]?.[key]; return typeof x === 'string' && x.trim() ? x : ''; };
   const invMode = () => document.querySelector('input[name=inv]:checked').value;
-  const step2 = O.post ? 'shipped' : 'ready';
+  const post = () => document.querySelector('input[name=mode]:checked')?.value === 'post';
+  const addr = () => $('addr').value.trim();
 
   const vars = () => {
     const link = $('inv-link').value.trim();
     return {
       name: O.name, piece: pick(piece, O.lang, 'name'), size: piece.en?.size || '', price: kc(piece.en?.price), total: $('total').value.trim(),
       invoice: invMode() === 'pdf' ? L.invoicePdf : (link ? L.invoiceLink.replace('{link}', link) : ''),
-      delivery: O.post ? L.post.replace('{address}', O.address) : L.pickup,
+      delivery: post() ? L.post.replace('{address}', addr()) : L.pickup,
       terms: L.terms.replace('{url}', `${location.origin}/${O.lang}/legal/terms/`),
-      address: O.address, carrier: $('carrier').value.trim(), tracking: $('tracking').value.trim(), info: $('info').value.trim()
+      address: addr(), carrier: $('carrier').value.trim(), tracking: $('tracking').value.trim(), info: $('info').value.trim()
     };
   };
   const regen = (s, force) => {
-    const key = s === 's1' ? 'order' : step2;
-    const pre = s === 's1' ? 'order' : (O.post ? 'shipped' : 'pickup');
+    const key = s === 's1' ? 'order' : (post() ? 'shipped' : 'ready');
+    const pre = s === 's1' ? 'order' : (post() ? 'shipped' : 'pickup');
     const v = vars();
     $(`${s}-subj`).value = fill(own(`${pre}_subject`) || L[key].subject, v);
     if (force || !$(`${s}-body`).dataset.dirty) { $(`${s}-body`).value = fill(own(`${pre}_body`) || L[key].body, v); delete $(`${s}-body`).dataset.dirty; }
@@ -274,8 +284,7 @@
     $('d-email').textContent = O.email;
     $('d-phone').textContent = O.phone; $('d-phone').hidden = $('t-phone').hidden = !O.phone;
     $('d-size').textContent = O.size; $('d-size').hidden = $('t-size').hidden = !O.size;
-    $('d-mode').textContent = O.post ? 'Envoi en République tchèque' : 'Retrait à l\'atelier';
-    $('d-addr').textContent = O.address; $('d-addr').hidden = $('t-addr').hidden = !O.address;
+    $('d-mode').textContent = (O.post ? 'Envoi en République tchèque' : 'Retrait à l\'atelier') + (!O.post && O.address ? ' (mais une adresse a été indiquée)' : '');
     $('d-lang').textContent = LANGS[O.lang] || O.lang;
 
     // step 1
@@ -287,21 +296,29 @@
       $('s1-go').hidden = true;
     } else { note('s1-msg', ''); $('s1-go').hidden = false; }
 
-    // step 2
-    $('s2-title').textContent = O.post ? '2 · Colis envoyé' : '2 · Pièce prête à retirer';
-    $('s2-hint').textContent = O.post ? 'Une fois le colis déposé, collez le lien de suivi : l\'e-mail au client est prêt.' : 'Quand la pièce est prête, prévenez le client qu\'il peut passer à l\'atelier.';
-    $('ship-box').hidden = !O.post; $('pickup-box').hidden = O.post;
-    $('s2-go').textContent = O.post ? 'Préparer l\'e-mail « colis envoyé »' : 'Préparer l\'e-mail « prête à retirer »';
-    const done2 = O.post ? entry?.shipped_at : entry?.ready_at;
-    note('s2-msg', done2 ? `E-mail déjà préparé le ${when(done2)}.` : '', 'ok');
+    renderStep2();
     $('app').hidden = false;
+  };
+  const renderStep2 = () => {
+    const entry = entryOf(log);
+    $('addr-box').hidden = !post();
+    $('s2-title').textContent = post() ? '2 · Colis envoyé' : '2 · Pièce prête à retirer';
+    $('s2-hint').textContent = post() ? 'Une fois le colis déposé, collez le lien de suivi : l\'e-mail au client est prêt.' : 'Quand la pièce est prête, prévenez le client qu\'il peut passer à l\'atelier.';
+    $('ship-box').hidden = !post(); $('pickup-box').hidden = post();
+    $('s2-go').textContent = post() ? 'Préparer l\'e-mail « colis envoyé »' : 'Préparer l\'e-mail « prête à retirer »';
+    const done2 = post() ? entry?.shipped_at : entry?.ready_at;
+    note('s2-msg', done2 ? `E-mail déjà préparé le ${when(done2)}.` : '', 'ok');
   };
 
   // ---------- actions ----------
   document.querySelectorAll('input[name=inv]').forEach((r) => r.addEventListener('change', () => {
     $('inv-link-box').hidden = invMode() === 'pdf'; $('inv-pdf-hint').hidden = invMode() !== 'pdf'; regen('s1');
   }));
-  ['inv-link', 'total'].forEach((id) => $(id).addEventListener('input', () => regen('s1')));
+  ['inv-link', 'total', 'addr'].forEach((id) => $(id).addEventListener('input', () => { regen('s1'); regen('s2'); }));
+  document.querySelectorAll('input[name=mode]').forEach((r) => r.addEventListener('change', () => {
+    renderStep2(); regen('s1'); regen('s2', true);
+    if (post() && !addr()) $('addr').focus();
+  }));
   ['carrier', 'tracking', 'info'].forEach((id) => $(id).addEventListener('input', () => regen('s2')));
   ['s1-body', 's2-body'].forEach((id) => $(id).addEventListener('input', () => { $(id).dataset.dirty = '1'; }));
   document.addEventListener('click', async (e) => {
@@ -311,6 +328,7 @@
   });
 
   const checkInvoice = () => {
+    if (post() && !addr()) { note('s1-msg', 'Envoi postal choisi : indiquez d\'abord l\'adresse de livraison (en haut de la page).', 'warn'); $('addr').focus(); return false; }
     if (invMode() === 'link' && !/^https?:\/\/\S+$/.test($('inv-link').value.trim())) {
       note('s1-msg', 'Collez d\'abord le lien de la facture / du paiement (il commence par https://), ou choisissez « PDF à joindre ».', 'warn');
       $('inv-link').focus(); return false;
@@ -346,18 +364,18 @@
   $('s1-mail').addEventListener('click', () => { if (checkInvoice()) openMail('s1', pdfReminder()); });
 
   $('s2-go').addEventListener('click', async () => {
-    if (O.post && !/^https?:\/\/\S+$/.test($('tracking').value.trim())) {
+    if (post() && !/^https?:\/\/\S+$/.test($('tracking').value.trim())) {
       note('s2-msg', 'Collez d\'abord le lien de suivi du colis (il commence par https://).', 'warn'); $('tracking').focus(); return;
     }
     if (!$('s2-body').dataset.dirty) regen('s2');
     $('s2-go').disabled = true;
-    const field = O.post ? 'shipped_at' : 'ready_at';
+    const field = post() ? 'shipped_at' : 'ready_at';
     try {
       const r = await commit((p, lg) => {
         const ent = lg.orders.find((x) => x.id === O.id) || (lg.orders.push({ id: O.id, piece: O.slug }), lg.orders[lg.orders.length - 1]);
         if (ent[field]) return null;
         ent[field] = new Date().toISOString(); lg.orders = lg.orders.slice(-500);
-        return { files: { [LOG]: lg }, message: `Order ${O.post ? 'shipped' : 'ready for pick-up'}: ${O.slug}` };
+        return { files: { [LOG]: lg }, message: `Order ${post() ? 'shipped' : 'ready for pick-up'}: ${O.slug}` };
       });
       log = r.log;
       note('s2-msg', '', 'ok');
@@ -380,6 +398,8 @@
       site = (await readJSON('content/settings/site.json', branch).catch(() => null)) || {};
       if (!O.id) O.id = 'manual-' + Date.now().toString(36);
       $('total').value = kc(piece.en?.price);
+      $('addr').value = O.address;
+      document.querySelector(`input[name=mode][value=${O.post ? 'post' : 'pickup'}]`).checked = true;
       say('', 'ok');
       render(); regen('s1'); regen('s2');
     } catch (e) { if (e && e.auth) needLogin(); else say(`Erreur : ${esc(e && e.message || e)}`, 'bad'); }

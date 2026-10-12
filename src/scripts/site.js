@@ -180,7 +180,8 @@ $$('form[data-form]').forEach((f) => f.addEventListener('submit', async (e) => {
       c: f.dataset.order, id, l: document.documentElement.lang || 'en',
       n: val('[data-check="name"]'), e: (reply || '').trim(), p: val('#o-p'), s: val('#o-s'),
       m: post ? 'post' : 'pickup',
-      a: post ? [val('#o-a'), val('#o-a2'), zipCity, val('#o-co')].filter(Boolean).join('\n') : ''
+      // the address is kept even with pick-up chosen: VL can still switch to shipping
+      a: (val('#o-a') || zipCity) ? [val('#o-a'), val('#o-a2'), zipCity, val('#o-co')].filter(Boolean).join('\n') : ''
     });
     data['Order ID'] = id;
     data['→ Confirmer la commande'] = `${location.origin}/admin/order/#${q}`;
